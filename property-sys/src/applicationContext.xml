@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- 读取指定位置的jdbc.properties的信息 -->
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:jdbc.properties"></property>
+	</bean>
+<!-- Hibernate配置start -->
+	<!-- 使用C3P0连接池的数据源 -->
+	<!-- 最常用的数据库连接源是DBCP，使用该数据源需要有commons-dbcp.jar包并且依赖包commons-pool.jar，
+		   因为DBCP是对象池机制的数据库连接池。这两个包在spring中已经存在。
+		   现在，在 hibernate3.0 中，已经不再支持 dbcp 了， hibernate 的作者明确指出在实践中发现 dbcp 有 BUG,
+	 	   在某些种情会产生很多空连接不能释放，所以抛弃了对 dbcp 的支持。 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<!-- 使用配置文件配置数据库 -->
+		<!-- 数据库驱动 -->
+		<property name="driverClass"><value>${driver}</value></property>
+		<!-- 数据库连接地址 -->
+		<property name="jdbcUrl" ><value>${url}</value></property>
+		<!-- 数据库用户名 -->
+		<property name="user"><value>${username}</value></property>
+		<!-- 数据库密码 -->
+		<property name="password"><value>${password}</value></property>
+		
+		<!-- 数据库性能配置 -->
+		<!-- 当连接池中的连接用完时，C3P0一次性创建新连接的数目 -->
+		<property name="acquireIncrement"><value>10</value></property>
+		<!-- 定义在从数据库获取新连接失败后重复尝试获取的次数，默认为30 -->
+		<property name="acquireRetryAttempts"><value>30</value></property>
+		<!-- 两次连接中间隔时间，单位毫秒，默认为1000 -->
+		<property name="acquireRetryDelay"><value>1000</value></property>
+		<!-- 连接关闭时默认将所有未提交的操作回滚。默认为false -->
+		<property name="autoCommitOnClose"><value>false</value></property>
+		<!-- C3P0将建一张名为Test的空表，并使用其自带的查询语句进行测试。
+			如果定义了这个参数那么属性preferredTestQuery将被忽略。 
+			你 不能在这张Test表上进行任何操作，它将中为C3P0测试所用，默认为null -->
+		<!-- <property name="automaticTestTable"><value>null</value></property> -->
+		<!-- 定义所有连接测试都执行的测试语句。在使用连接测试的情况下这个参数能显著提高测试速度。
+			测试的表必须在初始数据源的时候就存在。默认为null；  -->
+		<!-- <property name="preferredTestQuery"><value>null</value></property> -->
+		<!-- 获取连接失败将会引起所有等待获取连接的线程抛出异常。
+			但是数据源仍有效保留，并在下次调    用getConnection()的时候继续尝试获取连 接。
+			如果设为true，那么在尝试获取连接失败后该数据源将申明已断开并永久关闭。默认为 false --> 
+		<property name="breakAfterAcquireFailure"><value>false</value></property>
+		<!-- 当连接池用完时客户端调用getConnection()后等待获取新连接的时间，
+			超时后将抛出SQLException，如设为0则无限期等待。单位毫秒，默认为0-->
+		<property name="checkoutTimeout"><value>0</value></property>
+		<!-- 通过实现ConnectionTester或QueryConnectionTester的类来测试连接，
+			类名需设置为全限定名。默认为 com.mchange.v2.C3P0.impl.DefaultConnectionTester-->
+		<!-- <property name="connectionTesterClassName"><value>com.mchange.v2.C3P0.impl.DefaultConnectionTester</value></property> -->
+		<!-- 隔多少秒检查所有连接池中的空闲连接，默认为0表示不检查 -->
+		<property name="idleConnectionTestPeriod"><value>0</value></property>
+		<!-- 连接池中保留的最大连接数。默认为15 -->
+		<property name="maxPoolSize"><value>100</value></property>
+		 <!-- 设置数据库连接池最小连接数 -->
+    	<property name="minPoolSize"><value>10</value></property>
+		<!-- 初始化时创建的连接数，应在minPoolSize与maxPoolSize之间取值。默认为3 -->
+		<property name="initialPoolSize"><value>10</value></property>
+		<!-- 最大空闲时间，超过空闲时间的连接将被丢弃。为0或负数则永不丢弃。默认为0 -->
+		<property name="maxIdleTime"><value>20</value></property>
+		<!-- JDBC的标准参数，用以控制数据源内加载的PreparedStatement数量。
+			但由于预缓存的Statement属 于单个Connection 而不是整个连接池。所以设置这个参数需要考虑到多方面的因素，
+			如果maxStatements与 maxStatementsPerConnection均为0，则缓存被关闭。默认为0 -->
+		<property name="maxStatements"><value>0</value></property>
+		<!-- 连接池内单个连接所拥有的最大缓存Statement数。默认为0 -->
+		<property name="maxStatementsPerConnection"><value>0</value></property>
+		<!-- C3P0是异步操作的，缓慢的JDBC操作通过帮助进程完成。扩展这些操作可以有效的提升性能，
+			通过多线程实现多个操作同时被执行。默认为3-->
+		<property name="numHelperThreads"><value>3</value></property>
+		<!-- 用户修改系统配置参数执行前最多等待的秒数。默认为300 -->
+		<property name="propertyCycle"><value>300</value></property>
+		<!-- 因性能消耗大请只在需要的时候使用它。如果设为true那么在每个connection提交的时候都 将校验其有效性。
+			建议使用 idleConnectionTestPeriod或automaticTestTable等方法来提升连接测试的性能。默认为false --> 
+		<property name="testConnectionOnCheckout"><value>false</value></property>
+		<!-- 如果设为true那么在取得连接的同时将校验连接的有效性。默认为false -->
+		<property name="testConnectionOnCheckin"><value>false</value></property>
+	</bean>
+	
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+    	<!-- 依赖上面注入的数据源 -->
+    	<property name="dataSource" ref="dataSource"></property>
+    	<!-- 设置hibernate属性 -->
+    	<property name="hibernateProperties">
+    		<props>
+    			<!-- 方言 -->
+    			<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+    			<!-- 打印sql语句 -->
+    			<prop key="hibernate.show_sql">true</prop>
+    			<!-- 自动建表 -->
+    			<prop key="hibernate.hbm2ddl.auto">update</prop>
+    			<!-- 批处理大小 -->
+    			<prop key="hibernate.jdbc.batch_size">50</prop>
+    			<!-- 设置二级缓存 -->
+    			<prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
+    			<!-- 设置二级缓存，打开查询缓存 -->
+    			<prop key="hibernate.cache.use_query_cache">true</prop>
+    		</props>
+    	</property>
+    	<!-- 注册Hibernate的ORM配置文件（实体类与表的对应关系） -->
+    	<property name="mappingDirectoryLocations">
+    		<list>
+    			<!-- 实体类所在的路径 -->
+     			<value>classpath:/com/property/sys/model</value>
+    		</list>
+    	</property>
+    </bean>
+    
+    <!-- 配置Hibernate的事务管理器HibernateTransactionManager -->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+    	<property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    
+     <!-- 定义Spring的事务拦截器TransactionInterceptor -->
+    <bean id="transactionInterceptor" class="org.springframework.transaction.interceptor.TransactionInterceptor">
+    	<property name="transactionManager" ref="transactionManager"></property>
+    	<!-- 定义需要进行事务拦截的方法及采用的事务控制类型 -->
+    	<property name="transactionAttributes">
+    		<props>
+    			<!-- 以browse,list,load,get,is开头的所有方法采用只读型事务控制类型 -->
+   				<prop key="has*">PROPAGATION_REQUIRED,readOnly</prop>
+    			<prop key="list*">PROPAGATION_REQUIRED,readOnly</prop>
+    			<prop key="find*">PROPAGATION_REQUIRED,readOnly</prop>
+    			<prop key="load*">PROPAGATION_REQUIRED,readOnly</prop>
+    			<prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
+    			<prop key="is*">PROPAGATION_REQUIRED,readOnly</prop>
+    			<!-- 对所有方法进行事务控制，如果当前没有事务，则创建一个新事务 -->
+     			<prop key="*">PROPAGATION_REQUIRED</prop>
+    		</props>
+    	</property>
+    </bean>
+<!-- Hibernate配置end -->
+   <!--  依赖注入 -->
+	<bean id="baseDao" class="com.sechand.platform.base.BaseDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="baseService" class="com.sechand.platform.base.BaseServiceImpl">
+	    <property name="baseDao">
+			<ref bean="baseDao" />
+		</property>
+	</bean>
+	 <bean id="baseAction" class="com.sechand.platform.base.BaseAction">
+        <property name="baseService">
+           <ref bean="baseService"/>
+        </property>
+    </bean>
+
+</beans>
