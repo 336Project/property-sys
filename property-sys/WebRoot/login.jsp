@@ -35,7 +35,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<div class="content clearfix">
 		
-		<form action="./index.html" method="post">
+		<form action="./index.jsp" method="post">
 		
 			<h1>登录</h1>		
 			
