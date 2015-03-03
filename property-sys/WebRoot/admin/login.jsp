@@ -35,7 +35,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<div class="content clearfix">
 		
-		<form action="./admin_index.jsp" method="post">
 		
 			<h1>登录</h1>		
 			
@@ -60,11 +59,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<label class="choice" for="Field">保持登录</label>
 				</span> -->
 									
-				<button class="button btn btn-primary btn-large">登录</button>
+				<button class="button btn btn-primary btn-large" id="btn_login">登录</button>
 				
 			</div> <!-- .actions -->
 			
-		</form>
 		
 	</div> <!-- /content -->
 	
@@ -78,6 +76,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="../js/libs/bootstrap/bootstrap.min.js"></script>
 
 <script src="../js/signin.js"></script>
-
+<script type="text/javascript">
+	$(function() {
+		$("#btn_login").click(
+			 function() {
+				$.ajax({
+					type : "POST",
+					url : "<%=path%>/property-sys/userAction!login.action",
+					data : {
+						username : $("#username").val(),
+						password : $("#password").val(),
+						type : "1"
+					},
+					dataType : "json",
+					success : function(data) {
+						console.log(data);
+						if(data.success){
+							window.location.href ='<%=path%>'+data.msg;
+						}else{
+							alert(data.msg);
+						}
+					}
+				}) ;
+			});
+	});
+</script>
 </body>
 </html>

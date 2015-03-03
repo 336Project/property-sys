@@ -9,6 +9,7 @@ import java.util.Map;
 import org.apache.commons.lang.StringUtils;
 
 
+import com.property.sys.model.Role;
 import com.property.sys.model.User;
 import com.property.sys.service.UserService;
 import com.property.sys.utils.DataTableParams;
@@ -49,7 +50,11 @@ public class UserAction extends BaseAction{
 				//更新最后一次登录时间
 				userService.updateColumnById(User.class, "lastLoginTime", SysUtils.getDateFormat(new Date()), a.getId());
 				json.setSuccess(true);
-				json.setMsg("/index.jsp");
+				if(a.getRoleCode().equals(Role.CODE_ADMIN)){
+					json.setMsg("/admin/admin_index.jsp");
+				}else{
+					json.setMsg("/index.jsp");
+				}
 			}
 		}else {
 			json.setSuccess(false);
