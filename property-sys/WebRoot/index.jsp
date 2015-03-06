@@ -13,6 +13,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/bootstrap-responsive.css">
 	<link rel="stylesheet" href="css/pages/index.css" type="text/css"></link>
+	<script type="text/javascript" src="js/libs/jquery-1.7.2.min.js"></script>
 </head>
 
 <body>
@@ -60,7 +61,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="l-b-col l-main">
           <div class="l-inner">
             <div class="l-header">         
-                <nav class="wgt-topNav">
+                <ul class="wgt-topNav">
                     <li class="important">
                        <a href="#">首页</a>
                     </li>
@@ -82,182 +83,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <li>
                         <a href="login.jsp">注销</a>
                     </li>
-                </nav>
+                </ul>
             </div>
             <div class="l-b-row row-fluid">
                 <div class="pagination pagination-right">
-                <ul>
-                    <li><a href="#">1</a></li>
-                    <li><span class="active">2</span></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="5">5</a></li>
-                </ul>
+                    <ul>
+                    </ul>
                 </div>
                 <div class="wgt-zpList row-fluid  ">
-                    <ul class="thumbnails">
-                        <li class="span4">
-                            <div class="inner">
-                                <div class="preview-box">
-                                        <blockquote>一个基于jQuery的日历选择组件，支持假期显示，dataRang，下拉选择年，月等其他主流日历框功能...</blockquote>
-                                </div>
-                                <a class="preview-mask" href="/works/285" title="yo-datepicker"></a>
-                                <h5>
-                                    <a href="/works/285" title="yo-datepicker">yo-datepicker</a>
-                                </h5>
-                                <div class="info">
-                                    <span class="author-info">
-                                        <a href="/author/727" class="author-name" title="norfish">norfish</a>
-
-                                        
-                                    </span>
-
-                                    <span class="opts">
-
-                                        <a href="javascript:void(0)" onclick="do_good_await('Works','good',285)" class="btn-like" title="喜欢+1">
-
-                                            <span id="do_good_285">2</span>
-
-                                        </a>
-
-                                    </span>
-
-                                </div>
-
-                            </div>
-                        </li><li class="span4">
-
-                            <div class="inner">
-
-                                <div class="preview-box">
-
-                                    <img src="http://layasset.qiniudn.com/labs/UI.jpg" alt="响应式用户交互组件库UI">
-                                                                
-                                </div>
-
-                                <a class="preview-mask" href="/works/284" title="响应式用户交互组件库UI"></a>
-
-                                <h5>
-
-                                    <a href="/works/284" title="响应式用户交互组件库UI">响应式用户交互组件库UI</a>
-
-                                </h5>
-
-                                <div class="info">
-
-                                    <span class="author-info">
-
-                                        <a href="/author/724" class="author-name" title="bh-lay">bh-lay</a>
-
-                                        
-                                    </span>
-
-                                    <span class="opts">
-
-                                        <a href="javascript:void(0)" onclick="do_good_await('Works','good',284)" class="btn-like" title="喜欢+1">
-
-                                            <span id="do_good_284">1</span>
-
-                                        </a>
-
-                                    </span>
-
-                                </div>
-
-                            </div>
-
-                        </li><li class="span4">
-
-                            <div class="inner">
-
-                                <div class="preview-box">
-
-                                    
-                                        <blockquote>功能源于公司内部需求，需要在地图上展示土地分布（建筑用地），包括展示和增加新的坐标集，因为原始数据需要保密，所以用的测试数据。尝试了mvc分层的模式来开发，尽量靠近面向对象的js编程。...</blockquote>
-                                </div>
-
-                                <a class="preview-mask" href="/works/282" title="百度地图的描点工具"></a>
-
-                                <h5>
-
-                                    <a href="/works/282" title="百度地图的描点工具">百度地图的描点工具</a>
-
-                                </h5>
-
-                                <div class="info">
-
-                                    <span class="author-info">
-
-                                        <a href="/author/721" class="author-name" title="luzuoquan">luzuoquan</a>
-
-                                        
-                                    </span>
-
-                                    <span class="opts">
-
-                                        <a href="javascript:void(0)" onclick="do_good_await('Works','good',282)" class="btn-like" title="喜欢+1">
-
-                                            <span id="do_good_282">1</span>
-
-                                        </a>
-
-                                    </span>
-
-                                </div>
-
-                            </div>
-
-                        </li><li class="span4">
-
-                            <div class="inner">
-
-                                <div class="preview-box">
-
-                                    
-                                        <blockquote>短小精悍的CSS3动画库...</blockquote>
-                                </div>
-
-                                <a class="preview-mask" href="/works/280" title="Animator：CSS3动画库"></a>
-
-                                <h5>
-
-                                    <a href="/works/280" title="Animator：CSS3动画库">Animator：CSS3动画库</a>
-
-                                </h5>
-
-                                <div class="info">
-
-                                    <span class="author-info">
-
-                                        <a href="/author/698" class="author-name" title="牧之">牧之</a>
-
-                                        
-                                    </span>
-
-                                    <span class="opts">
-
-                                        <a href="javascript:void(0)" onclick="do_good_await('Works','good',280)" class="btn-like" title="喜欢+1">
-
-                                            <span id="do_good_280">3</span>
-
-                                        </a>
-
-                                    </span>
-
-                                </div>
-
-                            </div>
-
-                        </li>
+                    <ul class="thumbnails" id="MsgId">
+                        <!-- 消息列表 -->
                     </ul>
                 </div>
                 <div class="pagination pagination-right">
                     <ul>
-                          <li><a href="#">1</a></li>
-                          <li><span class="active">2</span></li>
-                          <li><a href="#">3</a></li>
-                          <li><a href="#">4</a></li>
-                          <li><a href="5">5</a></li>
                     </ul>
                 </div>
             </div>
@@ -265,5 +104,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
     </div>
 </div>
+<script type="text/javascript" src="js/common.js"></script>
 </body>
 </html>
