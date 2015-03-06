@@ -7,7 +7,7 @@ $().ready(function(){
 	CreatList.msg($where,"all",example.data);
 
 	/*使用的时候，上面几行都不要写直接写下面的*/
-	//CreatList.init("all",0);//参数为列表的类型[全部信息，活动信息，投票信息。。。]
+	//CreatList.init("all",0);//参数为列表的类型[全部信息，活动信息，投票信息。。。]从0页开始
 });
 
 var CreatList={
@@ -23,11 +23,16 @@ var CreatList={
 		console.log("你已经重新刷新了列表，type:"+type);
 	},
 	msg:function($w,type,d){
-		var model = MSGmodel.namol;
 		var str = "", pgStr = "";
 		for(var i=0; i<d.list.length; i++){
-			str += model;
+			var item = d.list[i];
+			var model = MSGmodel.namol;
+			model = model.replace(/{title}/g, item.title)
+				.replace(/{content}/g, item.content)
+				.replace(/{author}/g, item.author)
+				.replace(/{date}/g, item.date);
 			var liStr = "";
+			str += model;
 			if(i+1 == d.curent){
 				liStr = '<li><span class="active">'+(i+1)+'</span></li>';
 			}else{
@@ -94,3 +99,15 @@ var example = {
 		},
 		others:""
 	}
+
+//模块html加载
+function changeMainPanel(pname){
+    $.ajax({
+        url:"modules/"+pname+".html",
+        dataType:"html",
+        type:"get",
+        success:function(result){
+            $("#main-panel").html(result);
+        }
+    });
+}

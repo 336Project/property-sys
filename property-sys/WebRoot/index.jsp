@@ -14,6 +14,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="css/bootstrap-responsive.css">
 	<link rel="stylesheet" href="css/pages/index.css" type="text/css"></link>
 	<script type="text/javascript" src="js/libs/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="js/libs/director/director.min.js"></script>
 </head>
 
 <body>
@@ -33,14 +34,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <a href="#" class="btn-more">更多</a>
                     </div>
                     <ul class="cst-services">
-                        <li>入住申请</li>
-                        <li>报修申请</li>
-                        <li>装修申请</li>
-                        <li>信息发布</li>
-                        <li>发起投票</li>
-                        <li>发起活动</li>
-                        <li>投诉</li>
-                        <li>咨询</li>
+                        <a href="#/form/ruzhu"><li>入住申请</li></a>
+                        <a href="#/form/baoxiu"><li>报修申请</li></a>
+                        <a href="#/form/zhuangxiu"><li>装修申请</li></a>
+                        <a href="#/form/xinxi"><li>信息发布</li></a>
+                        <a href="#/form/toupiao"><li>发起投票</li></a>
+                        <a href="#/form/huodong"><li>发起活动</li></a>
+                        <a href="#/form/tousu"><li>投诉</li></a>
+                        <a href="#/form/zixun"><li>咨询</li></a>
                     </ul>
                     <div class="box-title">
                         <h3>与我相关</h3>
@@ -56,14 +57,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </ul>
                 </div>
             </div>
-            <a class="box-shadow adshow-1" href="/pages/about">联系<strong>物业</strong>,请拨打<strong>1234567</strong></a>
+            <a class="box-shadow adshow-1" href="#">联系<strong>物业</strong>,请拨打<strong>1234567</strong></a>
         </div>
         <div class="l-b-col l-main">
           <div class="l-inner">
             <div class="l-header">         
                 <ul class="wgt-topNav">
                     <li class="important">
-                       <a href="#">首页</a>
+                       <a href="#/listAll">首页</a>
                     </li>
                     <li>
                         <a href="#">物业公告</a>
@@ -85,25 +86,38 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </li>
                 </ul>
             </div>
-            <div class="l-b-row row-fluid">
-                <div class="pagination pagination-right">
-                    <ul>
-                    </ul>
-                </div>
-                <div class="wgt-zpList row-fluid  ">
-                    <ul class="thumbnails" id="MsgId">
-                        <!-- 消息列表 -->
-                    </ul>
-                </div>
-                <div class="pagination pagination-right">
-                    <ul>
-                    </ul>
-                </div>
+            <div class="l-b-row row-fluid" id="main-panel">
+                
             </div>
           </div>
         </div>
     </div>
 </div>
 <script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript">
+    var author = function () { console.log("author"); },
+      books = function () { console.log("books"); },
+      viewBook = function(bookId) { console.log("viewBook: bookId is populated: " + bookId); };
+
+    var routes = {
+        '/listAll':function(){changeMainPanel("list")},
+        '/form':{ //表单页
+            '/ruzhu':function(){changeMainPanel("form_ruzhu")},
+            '/baoxiu': function(){changeMainPanel("form_baoxiu")},
+            '/zhuangxiu': function(){changeMainPanel("form_ruzhu")},
+            '/xinxi': function(){changeMainPanel("form_ruzhu")},
+            '/toupiao': function(){changeMainPanel("form_ruzhu")},
+            '/huodong': function(){changeMainPanel("list")},
+            '/tousu': function(){changeMainPanel("list")},
+            '/zixun': function(){changeMainPanel("list")}
+        },
+        '/list': { //列表页
+
+        }
+    };
+
+    var router = Router(routes);
+    router.init();
+</script>
 </body>
 </html>

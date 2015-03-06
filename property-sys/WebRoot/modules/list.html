@@ -1,0 +1,23 @@
+<div class="pagination pagination-right">
+    <ul>
+    </ul>
+</div>
+<div class="wgt-zpList row-fluid  ">
+    <ul class="thumbnails" id="MsgId">
+        <!-- 信息块列表 -->
+    </ul>
+</div>
+<div class="pagination pagination-right">
+    <ul>
+    </ul>
+</div>
+<script>
+$().ready(function(){
+	//获得测试数据集，
+	var d = example.data;
+	//将列表放入的位置，默认就写这个就可以了
+	var $where = $("#MsgId");
+	//构建块形列表
+	CreatList.msg($where,"all",example.data);
+});
+</script>
