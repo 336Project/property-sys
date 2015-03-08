@@ -82,7 +82,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <a href="admin/login.jsp">我是管理员</a><!-- 后台管理登入入口 -->
                     </li>
                     <li>
-                        <a href="login.jsp">注销</a>
+                        <a href="<%=path%>/property-sys/userAction!logout.action">注销</a>
                     </li>
                 </ul>
             </div>
