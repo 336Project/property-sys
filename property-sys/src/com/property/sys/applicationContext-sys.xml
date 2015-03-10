@@ -13,4 +13,12 @@
         	<ref bean="userService"/>
         </property>
     </bean>
+    <!-- 文章管理 -->
+    <bean id="articleService" class="com.property.sys.serviceimpl.ArticleServiceImpl" parent="baseService">
+    </bean>
+    <bean id="articleAction" class="com.property.sys.action.ArticleAction" parent="baseAction">
+    	<property name="articleService">
+        	<ref bean="articleService"/>
+        </property>
+    </bean>
 </beans>

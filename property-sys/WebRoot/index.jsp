@@ -34,14 +34,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <a href="#" class="btn-more">更多</a>
                     </div>
                     <ul class="cst-services">
-                        <a href="#/form/ruzhu"><li>入住申请</li></a>
-                        <a href="#/form/baoxiu"><li>报修申请</li></a>
-                        <a href="#/form/zhuangxiu"><li>装修申请</li></a>
-                        <a href="#/form/xinxi"><li>信息发布</li></a>
-                        <a href="#/form/toupiao"><li>发起投票</li></a>
-                        <a href="#/form/huodong"><li>发起活动</li></a>
-                        <a href="#/form/tousu"><li>投诉</li></a>
-                        <a href="#/form/zixun"><li>咨询</li></a>
+                        <li><a href="#/form/ruzhu">入住申请</a></li>
+                        <li><a href="#/form/baoxiu">报修申请</a></li>
+                        <li><a href="#/form/zhuangxiu">装修申请</a></li>
+                        <li><a href="#/form/xinxi">信息发布</a></li>
+                        <li><a href="#/form/toupiao">发起投票</a></li>
+                        <li><a href="#/form/huodong">发起活动</a></li>
+                        <li><a href="#/form/tousu">投诉</a></li>
+                        <li><a href="#/form/zixun">咨询</a></li>
                     </ul>
                     <div class="box-title">
                         <h3>与我相关</h3>
@@ -107,7 +107,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             '/zhuangxiu': function(){changeMainPanel("form_ruzhu")},
             '/xinxi': function(){changeMainPanel("form_ruzhu")},
             '/toupiao': function(){changeMainPanel("form_ruzhu")},
-            '/huodong': function(){changeMainPanel("list")},
+            '/huodong': function(){changeMainPanel("list_huodong")},
             '/tousu': function(){changeMainPanel("list")},
             '/zixun': function(){changeMainPanel("list")}
         },
