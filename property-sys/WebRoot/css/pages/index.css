@@ -44,6 +44,7 @@ font-style: normal;font-weight: normal;line-height: 1;-moz-osx-font-smoothing: g
 /* row */
 .l-b-row{display: block;font-size:0;line-height:0;vertical-align: top;}
 .l-b-row>*{font-size:12px;line-height:1.6;display: inline-block;vertical-align: top;}
+.l-b-row .ptitle{font-size: 16px;line-height:2; display: block;}
 
 /* box */
 .box-shadow{box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.10);background-color: #fff;display: block;}
