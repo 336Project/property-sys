@@ -25,6 +25,9 @@
         <property name="author" type="java.lang.String">
             <column name="author" length="45" />
         </property>
+        <property name="publishDate" type="java.lang.String">
+            <column name="publish_date" length="45" />
+        </property>
         <property name="visitors" type="java.lang.Long">
             <column name="visitors"  default="0"/>
         </property>

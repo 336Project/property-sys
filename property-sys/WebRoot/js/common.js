@@ -1,4 +1,4 @@
-$().ready(function(){
+/*$().ready(function(){
 	//获得测试数据集，
 	var d = example.data;
 	//将列表放入的位置，默认就写这个就可以了
@@ -6,33 +6,42 @@ $().ready(function(){
 	//构建块形列表
 	CreatList.msg($where,"all",example.data);
 
-	/*使用的时候，上面几行都不要写直接写下面的*/
+	使用的时候，上面几行都不要写直接写下面的
 	//CreatList.init("all",0);//参数为列表的类型[全部信息，活动信息，投票信息。。。]从0页开始
-});
+});*/
 
 var CreatList={
 	init:function(type,p){
 		//type 信息类型  ，p 从第几页开始
 		//此处写通过Ajax得到分页的数据内容；
-		/*$.ajax({
-			url:.....
+		var $where = $("#MsgId");
+		$.ajax({
+			url:"http://localhost:8080/property-sys/property-sys/articleAction!list.action",
+			data : {
+				type : type,
+				currentPage : p+1
+			},
+			type:"post",
 			success:function(result){
-				CreatList.msg($where,type,result.data);
+				CreatList.msg($where,type,result.msg.data);
 			}
-		})*/
+		})
 		console.log("你已经重新刷新了列表，type:"+type);
 	},
 	msg:function($w,type,d){
 		var str = "", pgStr = "";
-		for(var i=0; i<d.list.length; i++){
+		for(var i=0; i<d.list.length; i++){//数据
 			var item = d.list[i];
 			var model = MSGmodel.namol;
 			model = model.replace(/{title}/g, item.title)
 				.replace(/{content}/g, item.content)
 				.replace(/{author}/g, item.author)
 				.replace(/{date}/g, item.date);
-			var liStr = "";
 			str += model;
+			
+		}
+		for(var i=0; i<d.pg; i++){//页码
+			var liStr = "";
 			if(i+1 == d.curent){
 				liStr = '<li><span class="active">'+(i+1)+'</span></li>';
 			}else{
@@ -40,14 +49,13 @@ var CreatList={
 			}
 			pgStr += liStr;
 		}
-
 		$w.html(str);
 		$(".pagination ul").html(pgStr);
 		$(".paginaList").on("click.p",function(){
 			pageNum = $(this).data("pag");
 			console.log(pageNum);
 			//这个是分页的
-			CreatList.init("all");
+			CreatList.init(type,pageNum);
 		});
 	}
 }
@@ -90,6 +98,11 @@ var example = {
 				date:"2015-03-05"
 			},{
 				title:"张三发布的信息2",
+				content:"这是一篇由张三发布的信息2，里面包括了...",
+				author:"张三",
+				date:"2015-03-05"
+			},{
+				title:"张三发布的信息3",
 				content:"这是一篇由张三发布的信息2，里面包括了...",
 				author:"张三",
 				date:"2015-03-05"
