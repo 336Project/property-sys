@@ -19,6 +19,7 @@ public class Article implements Serializable{
 	private String content;//内容
 	private Integer userId;//用户id
 	private String author;//发布人
+	private String publishDate;//发布时间
 	private long visitors;//访问人数
 	private long supporters;//支持人数
 	private long opponents;//反对人数
@@ -76,5 +77,11 @@ public class Article implements Serializable{
 	}
 	public void setOpponents(long opponents) {
 		this.opponents = opponents;
+	}
+	public String getPublishDate() {
+		return publishDate;
+	}
+	public void setPublishDate(String publishDate) {
+		this.publishDate = publishDate;
 	}
 }

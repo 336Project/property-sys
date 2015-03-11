@@ -4,74 +4,120 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <!doctype html>
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<html>
 <head>
 	<title>社区物业管理系统</title>
 	<meta charset="utf-8">	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
 	<link rel="stylesheet" href="css/font-awesome.css">
-	
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/bootstrap-responsive.css">
-
-	<link rel="stylesheet" href="./css/ui-lightness/jquery-ui-1.8.21.custom.css">	
-	
-	<link rel="stylesheet" href="css/application.css">
-	<link rel="stylesheet" href="css/pages/dashboard.css">
-
-	<script src="js/libs/modernizr-2.5.3.min.js"></script>
-
+	<link rel="stylesheet" href="css/pages/index.css" type="text/css"></link>
+	<script type="text/javascript" src="js/libs/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="js/libs/director/director.min.js"></script>
 </head>
 
 <body>
-	
-<div id="wrapper">
-	<jsp:include page="/inc/header.jsp"></jsp:include>
-	<div id="masthead">
-	
-		<div class="container">
-			<div class="masthead-pad">
-				<div class="masthead-text">
-					<h2>用户基本信息<h2>
-				<!-- 	<p>这里也可以不写任何内容</p> -->
-				</div> <!-- /.masthead-text -->
-			</div>
-		</div> <!-- /.container -->	
-	</div> <!-- /#masthead -->
-	
-	<div id="content">
-	
-		<div class="container">
-			
-			<div class="row">
-			<!--  class='spanX' 将该行分为12列 这个div占了几个列，比如分为并排两列   即如下两个 span6  -->
-				<div class="span6">
-					xxxxxxxx xxxxxxxxxxxxxxx xxxxxxxxxxxxxxxx xxxxxxxxxxxxx xxxxxxxxxx xxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-					xxxxxxxxxxxx xxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxx xxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxx
-					xxxxx xxxxxxxxxxxxxxxx xxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxxxx xxxxxxxxx xxx xxxx xxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxx
-					xxxxxxxxxx xxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxx xxxxxxxx xxxxxxxxxxxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxxxx					xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-				</div>
-				<div class="span6">
-					xxxxxxxx xxxxxxxxxxxxxxx xxxxxxxxxxxxxxxx xxxxxxxxxxxxx xxxxxxxxxx xxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-					xxxxxxxxxxxx xxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxx xxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxx
-					xxxxx xxxxxxxxxxxxxxxx xxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxxxx xxxxxxxxx xxx xxxx xxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxx
-					xxxxxxxxxx xxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxx xxxxxxxx xxxxxxxxxxxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxxxx					xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-				</div>
-				
-			</div> <!-- /.row -->
-			
-			
-		</div> <!-- /.container -->
-	
-	</div> <!-- /#content -->
+<div class="l-container">
+    <div class="l-b-row">
+        <ul class="wgt-rainbow"><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul>
+    </div>
+    <div class="l-b-row ta-c">
+        <div class="l-b-col l-side">
+            <div class="box-shadow">
+                <div class="wgt-logo">家园物业</div>
+            </div>
+            <div class="box-shadow">
+                <div class="wgt-activityList sibar">
+                    <div class="box-title">
+                        <h3>品质服务</h3>
+                        <a href="#" class="btn-more">更多</a>
+                    </div>
+                    <ul class="cst-services">
+                        <li><a href="#/form/ruzhu">入住申请</a></li>
+                        <li><a href="#/form/baoxiu">报修申请</a></li>
+                        <li><a href="#/form/zhuangxiu">装修申请</a></li>
+                        <li><a href="#/form/xinxi">信息发布</a></li>
+                        <li><a href="#/form/toupiao">发起投票</a></li>
+                        <li><a href="#/form/huodong">发起活动</a></li>
+                        <li><a href="#/form/tousu">投诉</a></li>
+                        <li><a href="#/form/zixun">咨询</a></li>
+                    </ul>
+                    <div class="box-title">
+                        <h3>与我相关</h3>
+                        <a href="#" class="btn-more">更多</a>
+                    </div>
+                    <ul>
+                        <li>账户信息</li>
+                        <li>缴费</li>
+                        <li>充值</li>
+                        <li>申请结果</li>
+                        <li>我发布的信息</li>
+                        <li>我的投票</li>
+                    </ul>
+                </div>
+            </div>
+            <a class="box-shadow adshow-1" href="#">联系<strong>物业</strong>,请拨打<strong>1234567</strong></a>
+        </div>
+        <div class="l-b-col l-main">
+          <div class="l-inner">
+            <div class="l-header">         
+                <ul class="wgt-topNav">
+                    <li class="important">
+                       <a href="#/listAll">首页</a>
+                    </li>
+                    <li>
+                        <a href="#">物业公告</a>
+                    </li>
+                    <li>
+                        <a href="#">社区活动</a>
+                    </li>
+                    <li>
+                        <a href="#">社区投票</a>
+                    </li>
+                    <li>
+                        <a href="#">投诉咨询</a>
+                    </li>
+                    <li>
+                        <a href="admin/login.jsp">我是管理员</a><!-- 后台管理登入入口 -->
+                    </li>
+                    <li>
+                        <a href="<%=path%>/property-sys/userAction!logout.action">注销</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="l-b-row row-fluid" id="main-panel">
+                
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript">
+    var author = function () { console.log("author"); },
+      books = function () { console.log("books"); },
+      viewBook = function(bookId) { console.log("viewBook: bookId is populated: " + bookId); };
 
-</div> <!-- /#wrapper -->
-<jsp:include page="/inc/footer.jsp"></jsp:include>
+    var routes = {
+        '/listAll':function(){changeMainPanel("list")},
+        '/form':{ //表单页
+            '/ruzhu':function(){changeMainPanel("form_ruzhu")},
+            '/baoxiu': function(){changeMainPanel("form_baoxiu")},
+            '/zhuangxiu': function(){changeMainPanel("form_ruzhu")},
+            '/xinxi': function(){changeMainPanel("form_ruzhu")},
+            '/toupiao': function(){changeMainPanel("form_ruzhu")},
+            '/huodong': function(){changeMainPanel("list_huodong")},
+            '/tousu': function(){changeMainPanel("list")},
+            '/zixun': function(){changeMainPanel("list")}
+        },
+        '/list': { //列表页
 
-<script src="js/demos/demo.bonus.js"></script>
+        }
+    };
+
+    var router = Router(routes);
+    router.init();
+</script>
 </body>
 </html>
