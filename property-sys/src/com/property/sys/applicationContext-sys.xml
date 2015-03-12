@@ -21,4 +21,12 @@
         	<ref bean="articleService"/>
         </property>
     </bean>
+    <!-- 申请管理 -->
+    <bean id="applicationService" class="com.property.sys.serviceimpl.ApplicationServiceImpl" parent="baseService">
+    </bean>
+    <bean id="applyAction" class="com.property.sys.action.ApplicationAction" parent="baseAction">
+    	<property name="applicationService">
+        	<ref bean="applicationService"/>
+        </property>
+    </bean>
 </beans>

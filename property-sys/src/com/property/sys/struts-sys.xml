@@ -32,5 +32,8 @@
 		<!-- 文章管理 -->
 		<action name="articleAction" class="articleAction">
 		</action>
+		<!-- 申请管理 -->
+		<action name="applyAction" class="applyAction">
+		</action>
 	</package>
 </struts>  

@@ -10,6 +10,15 @@
             <column name="id" />
             <generator class="native"></generator>
         </id>
+        <property name="id" type="java.lang.Integer">
+            <column name="user_id" />
+        </property>
+        <property name="realName" type="java.lang.String" >
+            <column name="real_name" length="45"  />
+        </property>
+        <property name="contactNumber" type="java.lang.String" >
+            <column name="contact_number" length="45"  />
+        </property>
         <property name="type" type="java.lang.String" >
             <column name="type" length="45"  />
         </property>
@@ -27,6 +36,9 @@
         </property>
         <property name="reply" type="java.lang.String" >
             <column name="reply"  length="300"/>
+        </property>
+         <property name="address" type="java.lang.String" >
+            <column name="address"  length="45"/>
         </property>
     </class>
 </hibernate-mapping>
