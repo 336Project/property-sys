@@ -1,1 +1,89 @@
-<h3 class="ptitle text-center">装修申请表</h3>
+<h3 class="ptitle text-center">装修申请</h3>
+<div class="content" id="zhuangXiuGuiDing"><h4>《住宅小区室内装修管理规定》规章制度</h4><p>为保证住宅的结构安全，保持住宅<a href="http://www.sanwen.net/sanwen/youmei/" target="_blank">优美</a>整洁，使居民安居乐业，现对住宅区装修的有关事项规定如下：</p>
+<p>一、住宅装修必须办理相关手续。</p>
+<p>1、住户装修住宅，必须提前三天向物业管理部门申请，签订“房屋装饰装修管理服务协议”，如实填写装修项目、范围、标准、<a href="http://shijian.sanwen8.cn/" target="_blank">时间</a>、和施工队伍名称，装修人员的姓名及身份证明复印件。经物业管理部门同意后，方可进行施工。</p>
+<p>2、装修人员进出小区，必须办理小区出入证。</p>
+<p>3、户主和施工队负责人应同时在“房屋装饰装修管理服务协议”，上签字盖章。</p>
+<p>二、住宅装修不得对房屋结构和美观造成危害。<span style="position:relative;left:-100000px;">( <a href="http://www.sanwen.net/" target="_blank">散文</a><a href="http://www.sanwen.net/" target="_blank">阅读</a>：www.sanwen.net )</span></p>
+<p>1、禁止改动或损坏房屋的柱、梁、板、混凝土墙、燃气管道、屋面防水、隔热板等。</p>
+<p>2、如需拆除非承重墙，必须经有关工程建设部门论证并签字认可。另外，卫生间有防水层，严禁破坏。</p>
+<p>3、允许对住宅楼地面、内墙面、天棚面进行表面装修。但楼地面不得凿除原水泥面层。</p>
+<p>4、防盗网安装在窗户里侧。</p>
+<p>5、空调室外机应安装在不影响相邻业主正常<a href="http://www.sanwen.net/suibi/shenghuo/" target="_blank">生活</a>的位置上。</p>
+<p>6、不得改变进房门门洞的设计，不得阻塞楼梯通道和妨碍消防。</p>
+<p>8、不得改变厨房、卫生间的结构和功能，禁止将生活污水排入<a href="http://www.sanwen.net/sanwen/yu/" target="_blank">雨</a>水管道。</p>
+<p>三、装修施工管理</p>
+<p>1、为了您的财产、居住安全与舒适，装修时请务必派人盯岗。</p>
+<p>2、住宅装修时间不能影响小区住户的正常休息。</p>
+<p>3、装修垃圾应堆放在不影响住户正常通行的地方。装修垃圾由户主自行及时清运，或者交由物业管理部门进行清运，清运费由户主承担。严禁从楼上抛弃垃圾或任何物品。严禁将装修垃圾倒入垃圾箱或转运到其他小区。</p>
+<p>4、装修施工用电、用水，住户不得私自在户外接用，违者按照规定给以处罚。因装修施工造成管道堵、塞、渗、漏、停电、损坏他人物品等，应由装修业主负责修复和赔偿。</p>
+<p>5、业主装修前应按1000元/户，装修公司按500/户交纳装修保证金。工程完工后，经物业管理部查验，无违规情况，退回装修保证金。详情请参考建设部发布的《住宅室内装饰装修管理办法》（第110号令）</p>
+
+	<div class="control-group" style="margin-bottom:150px;">
+	    <div class="controls">
+	       <label class="checkbox" style="color:red;">
+	        <input type="checkbox" id="zhuangxiu-check"> 我已认真阅读本小区的管理规定，并接受以上所列规定。
+	      </label>
+	      <button id="zhuangxiu-next" class="btn  text-right">下一步</button>
+	    </div>
+	</div>
+</div>
+<script type="text/javascript">
+$().ready(function(){
+	$("#zhuangxiu-check").change(function(){
+		if($(this).prop("checked")){
+			$("#zhuangxiu-next").addClass("btn-success");
+		}else{
+			$("#zhuangxiu-next").removeClass("btn-success");
+		}
+	});
+	$("#zhuangxiu-next").click(function(){
+		//console.log();
+		if($("#zhuangxiu-check").prop("checked")){
+			$("#zhuangXiuGuiDing").hide();
+			$("#zhuangxiu-form").show();
+		}
+	});
+	
+});
+</script>
+<div class="form-horizontal" style="display:none;" id="zhuangxiu-form">
+  <div class="control-group">
+    <label class="control-label" for="">申请人真实姓名</label>
+    <div class="controls">
+      <input type="text" >
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="">联系电话</label>
+    <div class="controls">
+      <input type="text" >
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="">装修项目</label>
+    <div class="controls">
+      <input type="text" >
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="">装修范围</label>
+    <div class="controls">
+      <input type="text" style="width:600px;">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="">施工团队（人员姓名请用分号隔开）</label>
+    <div class="controls">
+      <textarea rows="5" style="width:600px;"></textarea>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+<!--       <label class="checkbox">
+        <input type="checkbox"> Remember me
+      </label> -->
+      <button type="submit" class="btn">提交申请</button>
+    </div>
+  </div>
+</div>

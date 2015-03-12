@@ -15,6 +15,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="css/pages/index.css" type="text/css"></link>
 	<script type="text/javascript" src="js/libs/jquery-1.7.2.min.js"></script>
 	<script type="text/javascript" src="js/libs/director/director.min.js"></script>
+	
+	<script type="text/javascript" src="js/ueditor/ueditor.config.js"></script>
 </head>
 
 <body>
@@ -25,7 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="l-b-row ta-c">
         <div class="l-b-col l-side">
             <div class="box-shadow">
-                <div class="wgt-logo">家园物业</div>
+                <div class="wgt-logo"><!-- 家园物业 --></div>
             </div>
             <div class="box-shadow">
                 <div class="wgt-activityList sibar">
@@ -67,16 +69,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                        <a href="#/listAll">首页</a>
                     </li>
                     <li>
-                        <a href="#">物业公告</a>
+                        <a href="#/list/xinxi">物业公告</a>
                     </li>
                     <li>
-                        <a href="#">社区活动</a>
+                        <a href="#/list/huodong">社区活动</a>
                     </li>
                     <li>
-                        <a href="#">社区投票</a>
+                        <a href="#/list/toup">社区投票</a>
                     </li>
                     <li>
-                        <a href="#">投诉咨询</a>
+                        <a href="#/list/tousu">投诉</a>
+                    </li>
+                    <li>
+                        <a href="#/list/zixun">咨询</a>
                     </li>
                     <li>
                         <a href="admin/login.jsp">我是管理员</a><!-- 后台管理登入入口 -->
@@ -95,24 +100,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div>
 <script type="text/javascript" src="js/common.js"></script>
 <script type="text/javascript">
-    var author = function () { console.log("author"); },
-      books = function () { console.log("books"); },
-      viewBook = function(bookId) { console.log("viewBook: bookId is populated: " + bookId); };
-
+	// url路由功能，a标签的href="#/form/ruzhu" 则对应执行  /form :{"/ruzhu":...} 的方法，其中changeMainPanel()是切换主面板的内容，当然，也可以执行其他函数。
     var routes = {
-        '/listAll':function(){changeMainPanel("list")},
+        '/listAll':function(){changeMainPanel("list");},
         '/form':{ //表单页
-            '/ruzhu':function(){changeMainPanel("form_ruzhu")},
-            '/baoxiu': function(){changeMainPanel("form_baoxiu")},
-            '/zhuangxiu': function(){changeMainPanel("form_ruzhu")},
-            '/xinxi': function(){changeMainPanel("form_ruzhu")},
-            '/toupiao': function(){changeMainPanel("form_ruzhu")},
-            '/huodong': function(){changeMainPanel("list_huodong")},
-            '/tousu': function(){changeMainPanel("list")},
-            '/zixun': function(){changeMainPanel("list")}
+            '/ruzhu':function(){changeMainPanel("form_ruzhu");}, //其中changeMainPanel()是切换主面板的内容，当然，也可以执行其他函数
+            '/baoxiu': function(){changeMainPanel("form_baoxiu");},
+            '/zhuangxiu': function(){changeMainPanel("form_zhuangxiu");},
+            '/xinxi': function(){changeMainPanel("form_xinxi");},
+            '/toupiao': function(){changeMainPanel("form_toupiao");},
+            '/huodong': function(){changeMainPanel("form_huodong");},
+            '/tousu': function(){changeMainPanel("list");},
+            '/zixun': function(){changeMainPanel("list");}
         },
         '/list': { //列表页
-
+			'/xinxi': function(){changeMainPanel("list_ruzhu");},
+            '/toupiao': function(){changeMainPanel("list_ruzhu");},
+            '/huodong': function(){changeMainPanel("list_huodong");}
         }
     };
 

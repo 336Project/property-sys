@@ -1,0 +1,23 @@
+
+<script type="text/javascript" src="js/ueditor/ueditor.all.min.js"></script>
+<h3 class="ptitle text-center">发布社区信息</h3>
+<div class="form-inline">
+	<label>信息标题:</label>
+	<input type="text"/>
+</div>
+<div class="editorPanel">
+	<label>信息内容:</label>
+	<script id="editor" type="text/plain" style="width:800px;height:400px;"></script>
+</div>
+<script>
+	
+	var ue = UE.getEditor('editor');
+	//获取编辑器中的内容
+    function getContent() {
+        alert(ue.getContent());
+    
+    }
+</script>
+<p style="width:100%;">
+	<button onclick="getContent() ;" class="btn text-right" type="button">发布信息</button>
+</p>

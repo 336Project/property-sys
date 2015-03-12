@@ -1,14 +1,3 @@
-/*$().ready(function(){
-	//获得测试数据集，
-	var d = example.data;
-	//将列表放入的位置，默认就写这个就可以了
-	var $where = $("#MsgId");
-	//构建块形列表
-	CreatList.msg($where,"all",example.data);
-
-	使用的时候，上面几行都不要写直接写下面的
-	//CreatList.init("all",0);//参数为列表的类型[全部信息，活动信息，投票信息。。。]从0页开始
-});*/
 
 var CreatList={
 	init:function(type,p){
@@ -16,7 +5,7 @@ var CreatList={
 		//此处写通过Ajax得到分页的数据内容；
 		var $where = $("#MsgId");
 		$.ajax({
-			url:"http://localhost:8080/property-sys/property-sys/articleAction!list.action",
+			url:"/property-sys/property-sys/articleAction!list.action",
 			data : {
 				type : type,
 				currentPage : p+1
@@ -53,7 +42,7 @@ var CreatList={
 		$(".pagination ul").html(pgStr);
 		$(".paginaList").on("click.p",function(){
 			pageNum = $(this).data("pag");
-			console.log(pageNum);
+			//console.log(pageNum);
 			//这个是分页的
 			CreatList.init(type,pageNum);
 		});
@@ -87,40 +76,17 @@ var MSGmodel={
 };
 
 
-//测试数据
-var example = {
-		data:{
-			//信息列表
-			list:[{
-				title:"张三发布的信息1",
-				content:"这是一篇由张三发布的信息1，里面包括了...",
-				author:"张三",
-				date:"2015-03-05"
-			},{
-				title:"张三发布的信息2",
-				content:"这是一篇由张三发布的信息2，里面包括了...",
-				author:"张三",
-				date:"2015-03-05"
-			},{
-				title:"张三发布的信息3",
-				content:"这是一篇由张三发布的信息2，里面包括了...",
-				author:"张三",
-				date:"2015-03-05"
-			}],
-			curent:1,//当前第几页
-			pg:3 //共有三页内容
-		},
-		others:""
-	}
-
 //模块html加载
 function changeMainPanel(pname){
     $.ajax({
         url:"modules/"+pname+".html",
         dataType:"html",
         type:"get",
+        cache:true,
         success:function(result){
             $("#main-panel").html(result);
+        },error:function(){
+        	alert("404");
         }
     });
 }
