@@ -8,13 +8,15 @@ import java.io.Serializable;
 public class Article implements Serializable{
 	private static final long serialVersionUID = 3870996444951119364L;
 	
-	public static final String TYPE_COMMUNITY_ACTIVITIES="社区活动";
-	public static final String TYPE_SOCIAL_ISSUES="社会议题";
+	public static final String TYPE_COMMUNITY_ACTIVITIES="活动";
+	public static final String TYPE_COMMUNITY_ISSUES="议题";
+	public static final String TYPE_VOTE="投票";
 	public static final String TYPE_COMPLAINT="投诉";
 	public static final String TYPE_CONSULT="咨询";
+	public static final String TYPE_NOTICE="公告";
 	
 	private Integer id;
-	private String type;//类型(社区活动、社会议题、投诉、咨询)
+	private String type;//类型(社区活动、社区信息、投票、投诉、咨询)
 	private String title;//标题
 	private String content;//内容
 	private Integer userId;//用户id

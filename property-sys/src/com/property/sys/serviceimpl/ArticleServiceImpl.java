@@ -32,11 +32,17 @@ public class ArticleServiceImpl extends BaseServiceImpl implements
 			break;
 		case 4:
 			whereMap.put("order_by", "publishDate_desc");
-			whereMap.put("type", Article.TYPE_SOCIAL_ISSUES);
+			whereMap.put("type", Article.TYPE_COMMUNITY_ISSUES);
+			break;
+		case 5:
+			whereMap.put("order_by", "publishDate_desc");
+			whereMap.put("type", Article.TYPE_VOTE);
+			break;
+		case 6:
+			whereMap.put("order_by", "publishDate_desc");
+			whereMap.put("type", Article.TYPE_NOTICE);
 			break;
 		default:
-			whereMap.put("order_by", "publishDate_desc");
-			whereMap.put("type", type);
 			break;
 		}
 		
@@ -57,10 +63,14 @@ public class ArticleServiceImpl extends BaseServiceImpl implements
 			whereMap.put("type", Article.TYPE_CONSULT);
 			break;
 		case 4:
-			whereMap.put("type", Article.TYPE_SOCIAL_ISSUES);
+			whereMap.put("type", Article.TYPE_COMMUNITY_ISSUES);
+			break;
+		case 5:
+			whereMap.put("type", Article.TYPE_VOTE);
+		case 6:
+			whereMap.put("type", Article.TYPE_NOTICE);
 			break;
 		default:
-			whereMap.put("type", type);
 			break;
 		}
 		return baseDao.countByClassNameAndParams(Article.class, whereMap);

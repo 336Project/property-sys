@@ -22,8 +22,13 @@ var CreatList={
 		for(var i=0; i<d.list.length; i++){//数据
 			var item = d.list[i];
 			var model = MSGmodel.namol;
+			var content=item.content;
+			var lengthLimit=100;
+			if(content.length>lengthLimit){
+				content=content.substring(0,lengthLimit)+"...";
+			}
 			model = model.replace(/{title}/g, item.title)
-				.replace(/{content}/g, item.content)
+				.replace(/{content}/g, content)
 				.replace(/{author}/g, item.author)
 				.replace(/{date}/g, item.date);
 			str += model;
@@ -53,7 +58,7 @@ var MSGmodel={
 	namol:'<li class="span4">'+
             '<div class="inner">'+
                 '<div class="preview-box">'+
-                     '<blockquote>{content}...</blockquote>'+
+                     '<blockquote>{content}</blockquote>'+
                 '</div>'+
                 '<a class="preview-mask" href="#"></a>'+
                 '<h5>'+

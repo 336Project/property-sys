@@ -27,7 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="l-b-row ta-c">
         <div class="l-b-col l-side">
             <div class="box-shadow">
-                <div class="wgt-logo"><!-- 家园物业 --></div>
+                <div class="wgt-logo">社区物业管理</div>
             </div>
             <div class="box-shadow">
                 <div class="wgt-activityList sibar">
@@ -39,7 +39,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <li><a href="#/form/ruzhu">入住申请</a></li>
                         <li><a href="#/form/baoxiu">报修申请</a></li>
                         <li><a href="#/form/zhuangxiu">装修申请</a></li>
-                        <li><a href="#/form/xinxi">信息发布</a></li>
+                        <li><a href="#/form/yiti">社会议题</a></li>
                         <li><a href="#/form/toupiao">发起投票</a></li>
                         <li><a href="#/form/huodong">发起活动</a></li>
                         <li><a href="#/form/tousu">投诉</a></li>
@@ -69,13 +69,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                        <a href="#/listAll">首页</a>
                     </li>
                     <li>
-                        <a href="#/list/xinxi">物业公告</a>
+                        <a href="#/list/gonggao">物业公告</a>
+                    </li>
+                    <li>
+                        <a href="#/list/yiti">社会议题</a>
                     </li>
                     <li>
                         <a href="#/list/huodong">社区活动</a>
                     </li>
                     <li>
-                        <a href="#/list/toup">社区投票</a>
+                        <a href="#/list/toupiao">社区投票</a>
                     </li>
                     <li>
                         <a href="#/list/tousu">投诉</a>
@@ -107,16 +110,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             '/ruzhu':function(){changeMainPanel("form_ruzhu");}, //其中changeMainPanel()是切换主面板的内容，当然，也可以执行其他函数
             '/baoxiu': function(){changeMainPanel("form_baoxiu");},
             '/zhuangxiu': function(){changeMainPanel("form_zhuangxiu");},
-            '/xinxi': function(){changeMainPanel("form_xinxi");},
+            '/yiti': function(){changeMainPanel("form_yiti");},
             '/toupiao': function(){changeMainPanel("form_toupiao");},
             '/huodong': function(){changeMainPanel("form_huodong");},
-            '/tousu': function(){changeMainPanel("list");},
-            '/zixun': function(){changeMainPanel("list");}
+            '/tousu': function(){changeMainPanel("form_tousu");},
+            '/zixun': function(){changeMainPanel("form_zixun");}
         },
         '/list': { //列表页
-			'/xinxi': function(){changeMainPanel("list_ruzhu");},
-            '/toupiao': function(){changeMainPanel("list_ruzhu");},
-            '/huodong': function(){changeMainPanel("list_huodong");}
+			'/gonggao': function(){changeMainPanel("list_gonggao");},
+			'/yiti': function(){changeMainPanel("list_yiti");},
+			'/huodong': function(){changeMainPanel("list_huodong");},
+            '/toupiao': function(){changeMainPanel("list_toupiao");},
+            '/tousu': function(){changeMainPanel("list_tousu");},
+            '/zixun': function(){changeMainPanel("list_zixun");}
         }
     };
 
