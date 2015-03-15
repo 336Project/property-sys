@@ -85,13 +85,18 @@ public class UserAction extends BaseAction{
 	 */
 	public String register(){
 		//注册完跳到登录页
-		user.setSource(User.SOURCE_PLATFORM);
-		String msg=userService.add(user);
-		if(StringUtils.isNotBlank(msg)){
-			json.setMsg(msg);
-			json.setSuccess(true);
-		}else{
-			json.setMsg("注册失败!");
+		try {
+			user.setSource(User.SOURCE_PLATFORM);
+			String msg=userService.add(user);
+			if(StringUtils.isNotBlank(msg)){
+				json.setMsg(msg);
+				json.setSuccess(true);
+			}else{
+				json.setMsg("注册失败!");
+				json.setSuccess(false);
+			}
+		} catch (Exception e) {
+			json.setMsg("注册失败,系统发生异常!");
 			json.setSuccess(false);
 		}
 		return SUCCESS;

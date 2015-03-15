@@ -35,6 +35,9 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService{
 			if(role==null){
 				return "注册失败,该角色不存在!";
 			}
+			if(StringUtils.isBlank(user.getUserName())){
+				return "用户名不能为空!";
+			}
 			whereParams.clear();
 			whereParams.put("userName", user.getUserName());
 			User u=baseDao.getByClassNameAndParams(User.class, whereParams);
