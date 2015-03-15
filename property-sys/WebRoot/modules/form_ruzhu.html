@@ -3,31 +3,31 @@
   <div class="control-group">
     <label class="control-label" for="">申请人真实姓名</label>
     <div class="controls">
-      <input type="text" >
+      <input type="text" id="realName">
     </div>
   </div>
   <div class="control-group">
     <label class="control-label" for="">联系电话</label>
     <div class="controls">
-      <input type="text" >
+      <input type="text" id="tel">
     </div>
   </div>
   <div class="control-group">
-    <label class="control-label" for="">报修单元</label>
+    <label class="control-label" for="">入住单元</label>
     <div class="controls">
-      <input type="text" >
+      <input type="text" id="address">
     </div>
   </div>
-  <div class="control-group">
+  <!-- <div class="control-group">
     <label class="control-label" for="">报修主体</label>
     <div class="controls">
       <input type="text" style="width:600px;">
     </div>
-  </div>
+  </div> -->
   <div class="control-group">
-    <label class="control-label" for="">描述出现的问题（请尽可能描述您所遇到的问题，方便我们快速为您解决）</label>
+    <label class="control-label" for="">附带说明</label>
     <div class="controls">
-      <textarea rows="5" style="width:600px;"></textarea>
+      <textarea rows="5" style="width:600px;" id="content"></textarea>
     </div>
   </div>
   <div class="control-group">
@@ -35,8 +35,33 @@
 <!--       <label class="checkbox">
         <input type="checkbox"> Remember me
       </label> -->
-      <button type="submit" class="btn">提交申请</button>
+      <button type="submit" class="btn" id="btn_ruzhu_apply">提交申请</button>
     </div>
   </div>
 </div>
-
+<script type="text/javascript">
+	$(function() {
+		$("#btn_ruzhu_apply").click(
+			 function() {
+				$.ajax({
+					type : "POST",
+					url : "property-sys/applyAction!apply.action",
+					data : {
+						"app.realName" : $("#realName").val(),
+						"app.contactNumber" : $("#tel").val(),
+						"app.address" : $("#address").val(),
+						"app.content" : $("#content").val(),
+						"type" : 1
+					},
+					dataType : "json",
+					success : function(data) {
+							if(data.success){
+								window.location.href="index.jsp#/listAll";
+							}
+							alert(data.msg);
+					}
+				}) ;
+			});
+	});
+	
+</script>

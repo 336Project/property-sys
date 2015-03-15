@@ -33,7 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div class="wgt-activityList sibar">
                     <div class="box-title">
                         <h3>品质服务</h3>
-                        <a href="#" class="btn-more">更多</a>
+                        <!-- <a href="#" class="btn-more">更多</a> -->
                     </div>
                     <ul class="cst-services">
                         <li><a href="#/form/ruzhu">入住申请</a></li>
@@ -47,15 +47,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </ul>
                     <div class="box-title">
                         <h3>与我相关</h3>
-                        <a href="#" class="btn-more">更多</a>
+                        <!-- <a href="#" class="btn-more">更多</a> -->
                     </div>
                     <ul>
                         <li>账户信息</li>
                         <li>缴费</li>
                         <li>充值</li>
-                        <li>申请结果</li>
-                        <li>我发布的信息</li>
-                        <li>我的投票</li>
+                        <li>我的申请</li>
+                        <li>我的消息</li>
+                        <li>我的发布</li>
                     </ul>
                 </div>
             </div>

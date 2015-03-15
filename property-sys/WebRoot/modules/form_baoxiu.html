@@ -32,29 +32,29 @@
   </div>
   <div class="control-group">
     <div class="controls">
-<!--       <label class="checkbox">
-        <input type="checkbox"> Remember me
-      </label> -->
-      <button type="button" id="btn_submit" class="btn">提交申请</button>
+      <button type="button" id="btn_baoxiu_apply" class="btn">提交申请</button>
     </div>
   </div>
 </div>
 <script type="text/javascript">
 	$(function() {
-		$("#btn_submint").click(
+		$("#btn_baoxiu_apply").click(
 			 function() {
 				$.ajax({
 					type : "POST",
-					url : "property-sys/property-sys/applyAction!apply.action",
+					url : "property-sys/applyAction!apply.action",
 					data : {
-						app.realName : $("#realName").val(),
-						app.contactNumber : $("#tel").val(),
-						app.address : $("#address").val(),
-						app.content : $("#content").val(),
-						type : 2
+						"app.realName" : $("#realName").val(),
+						"app.contactNumber" : $("#tel").val(),
+						"app.address" : $("#address").val(),
+						"app.content" : $("#content").val(),
+						"type" : 2
 					},
 					dataType : "json",
 					success : function(data) {
+							if(data.success){
+								window.location.href="index.jsp#/listAll";
+							}
 							alert(data.msg);
 					}
 				}) ;

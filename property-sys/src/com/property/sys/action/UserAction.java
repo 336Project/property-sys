@@ -53,7 +53,7 @@ public class UserAction extends BaseAction{
 				if(a.getRoleCode().equals(Role.CODE_ADMIN)){
 					json.setMsg("/admin/admin_index.jsp");
 				}else{
-					json.setMsg("/index.jsp");
+					json.setMsg("/index.jsp#/listAll");
 				}
 			}
 		}else {
