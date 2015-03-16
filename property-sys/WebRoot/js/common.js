@@ -12,10 +12,9 @@ var CreatList={
 			},
 			type:"post",
 			success:function(result){
-				CreatList.msg($where,type,result.msg.data);
+				CreatList.msg($where,type,result.msg);
 			}
 		})
-		console.log("你已经重新刷新了列表，type:"+type);
 	},
 	msg:function($w,type,d){
 		var str = "", pgStr = "";
@@ -30,7 +29,7 @@ var CreatList={
 			model = model.replace(/{title}/g, item.title)
 				.replace(/{content}/g, content)
 				.replace(/{author}/g, item.author)
-				.replace(/{date}/g, item.date);
+				.replace(/{date}/g, item.publishDate);
 			str += model;
 			
 		}
@@ -47,7 +46,6 @@ var CreatList={
 		$(".pagination ul").html(pgStr);
 		$(".paginaList").on("click.p",function(){
 			pageNum = $(this).data("pag");
-			//console.log(pageNum);
 			//这个是分页的
 			CreatList.init(type,pageNum);
 		});

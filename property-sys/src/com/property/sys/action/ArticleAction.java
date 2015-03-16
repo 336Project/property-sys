@@ -1,6 +1,5 @@
 package com.property.sys.action;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,26 +18,13 @@ public class ArticleAction extends BaseAction {
 	private int type;
 	public String list(){
 		List<Article> articles=articleService.listPageRowsByType(currentPage, pageSize,type);
-		Map<String, Object> dataMap=new HashMap<String, Object>();
-		List<Map<String, Object>> dataList=new ArrayList<Map<String,Object>>();
-		if(articles!=null){
-			for (Article article : articles) {
-				Map<String, Object> obj=new HashMap<String, Object>();
-				obj.put("title", article.getTitle());
-				obj.put("author", article.getAuthor());
-				obj.put("content", article.getContent());
-				obj.put("date", article.getPublishDate());
-				dataList.add(obj);
-			}
-		}
 		Page page=new Page(currentPage, articleService.countByType(type), pageSize);
 		Map<String, Object> map=new HashMap<String, Object>();
-		map.put("list", dataList);
+		map.put("list", articles);
 		map.put("curent", page.getCrr());
 		map.put("pg", page.getEnd());
-		dataMap.put("data", map);
 		json.setSuccess(true);
-		json.setMsg(dataMap);
+		json.setMsg(map);
 		return SUCCESS;
 	}
 	
