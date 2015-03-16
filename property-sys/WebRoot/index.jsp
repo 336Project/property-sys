@@ -116,7 +116,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             '/tousu': function(){changeMainPanel("form_tousu");},
             '/zixun': function(){changeMainPanel("form_zixun");}
         },
-        '/list': { //列表页
+        '/list': { //1列表页
 			'/gonggao': function(){changeMainPanel("list_gonggao");},
 			'/yiti': function(){changeMainPanel("list_yiti");},
 			'/huodong': function(){changeMainPanel("list_huodong");},
