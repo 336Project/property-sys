@@ -1,1 +1,50 @@
 <h3 class="ptitle text-center">发起投票 </h3>
+<div class="form-horizontal">
+  <div class="control-group">
+    <label class="control-label" for="">标题</label>
+    <div class="controls">
+      <input type="text" >
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="">投票内容</label>
+    <div class="controls">
+      <textarea rows="5" style="width:600px;" id="content"></textarea>
+    </div>
+  </div>
+  <div class="control-group option">
+    <label class="control-label" for="">选项1：</label>
+    <div class="controls">
+      <input type="text" class="span12" />
+    </div>
+  </div>
+  <div class="control-group option">
+    <label class="control-label" for="">选项2：</label>
+    <div class="controls">
+      <input type="text" class="span12" />
+    </div>
+  </div>
+  <div class="control-group btns-group" >
+    <div class="controls">
+      <button type="submit" class="btn" id="addOption" >添加选项</button>
+      <button type="submit" class="btn btn-primary" id="btn_ruzhu_apply">发起投票</button>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+(function(){
+	
+	var newOptionStr =   '<div class="control-group option">'+
+						    '<label class="control-label" for="">选项{index}：</label>'+
+						    '<div class="controls">'+
+						     ' <input type="text" class="span12" />'+
+						    '</div>'+
+						  '</div>';
+	$("#addOption").on('click.addOption',function(){
+		var i= $(".option").length+1;
+		var Str = newOptionStr.replace(/{index}/g, i);
+		$(".option:last").after(Str);
+	});
+})();
+	
+</script>
