@@ -19,4 +19,15 @@ public interface ArticleService extends BaseService {
 	 */
 	public List<Article> listPageRowsByType(int currentPage,int pageSize,int type);
 	public int countByType(int type);
+	/**
+	 * 
+	 * @Author:Helen  
+	 * 2015-3-18下午8:50:20
+	 * @param article
+	 * @param options
+	 * @return
+	 * int
+	 * @TODO 添加投票、活动、投诉、咨询、议题、公告
+	 */
+	public int add(Article article,String[] optionNames);
 }

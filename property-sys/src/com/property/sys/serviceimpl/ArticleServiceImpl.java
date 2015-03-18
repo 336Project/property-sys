@@ -1,12 +1,17 @@
 package com.property.sys.serviceimpl;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.property.sys.model.Article;
+import com.property.sys.model.Option;
+import com.property.sys.model.User;
 import com.property.sys.service.ArticleService;
+import com.property.sys.utils.SysUtils;
 import com.sechand.platform.base.BaseServiceImpl;
+import com.sechand.platform.base.BaseUtil;
 
 public class ArticleServiceImpl extends BaseServiceImpl implements
 		ArticleService {
@@ -74,6 +79,27 @@ public class ArticleServiceImpl extends BaseServiceImpl implements
 			break;
 		}
 		return baseDao.countByClassNameAndParams(Article.class, whereMap);
+	}
+
+	@Override
+	public int add(Article article, String[] optionNames) {
+		User user=(User) BaseUtil.getSession(BaseUtil.KEY_LOGIN_USER_SESSION);
+		if(article!=null){
+			article.setAuthor(user.getUserName());
+			article.setUserId(user.getId());
+			article.setPublishDate(SysUtils.getDateFormat(new Date()));
+			int id=baseDao.save(article);
+			if(id>0){
+				for (String name : optionNames) {
+					Option option=new Option();
+					option.setArticleId(id);
+					option.setName(name);
+					baseDao.save(option);
+				}
+			}
+			return id;
+		}
+		return 0;
 	}
 
 }

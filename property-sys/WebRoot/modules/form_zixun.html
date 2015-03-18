@@ -1,1 +1,43 @@
 <h3 class="ptitle text-center">咨询</h3>
+<div class="form-horizontal">
+  <div class="control-group">
+    <label class="control-label" for="">标题</label>
+    <div class="controls">
+      <input type="text" id="title">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="">咨询内容</label>
+    <div class="controls">
+      <textarea rows="5" style="width:600px;" id="content"></textarea>
+    </div>
+  </div>
+  <div class="control-group btns-group" >
+    <div class="controls">
+      <button type="submit" class="btn btn-primary" id="btn_zixun">我要咨询</button>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){
+	$("#btn_zixun").click(function(){
+		$.ajax({
+			type:"post",
+			url:"property-sys/articleAction!publish.action",
+			dataType:"json",
+			data:{
+				"article.title":$("#title").val(),
+				"article.content":$("#content").val(),
+				"article.type":"咨询",
+				"options":"赞,踩"//选项
+			},
+			success : function(data) {
+				if(data.success){
+					window.location.href="index.jsp#/listAll";
+				}
+				alert(data.msg);
+			}
+		});
+	});
+});
+</script>
