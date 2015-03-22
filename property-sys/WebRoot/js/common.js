@@ -60,7 +60,7 @@ var MSGmodel={
                 '</div>'+
                 '<a class="preview-mask" href="#"></a>'+
                 '<h5>'+
-                    '<a href="#">{title}</a>'+
+                    '<a href="#/content/huodong">{title}</a>'+
                 '</h5>'+
                 '<div class="info">'+
                     '<span class="author-info">'+
