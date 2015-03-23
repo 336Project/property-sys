@@ -39,4 +39,24 @@ public interface ArticleService extends BaseService {
 	 * @TODO 查看文章
 	 */
 	public Article getById(int id);
+	/**
+	 * 
+	 * @Author:Helen  
+	 * 2015-3-23下午10:51:58
+	 * @param currentPage
+	 * @param pageSize
+	 * @param keyword
+	 * @return
+	 * List<Article>
+	 * @TODO 获取文章列表
+	 */
+	public List<Article> listPageRowsArticlesByKeyword(int currentPage,int pageSize,String keyword);
+	/**
+	 * 
+	 * 2015-1-6 下午12:54:15
+	 * @param keyword
+	 * @return 
+	 * TODO 根据搜索关键字统计记录条数
+	 */
+	public int countByKeyword(String keyword);
 }

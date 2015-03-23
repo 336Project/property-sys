@@ -44,17 +44,10 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService{
 			if(u!=null){
 				return "该用户名已存在,请重新注册!";
 			}
-			whereParams.clear();
-			whereParams.put("nickName", user.getNickName());
-			u=baseDao.getByClassNameAndParams(User.class, whereParams);
-			if(u!=null){
-				return "该昵称太抢手啦,已经被人注册过了，请重新填写!";
-			}
+			
 			u=new User();
 			u.setBalance("0");
 			u.setEmail(user.getEmail());
-			u.setIntroduction(user.getIntroduction());
-			u.setNickName(user.getNickName());
 			u.setPassword(SysUtils.encrypt(user.getPassword()));
 			u.setRegisterTime(SysUtils.getDateFormat(new Date()));
 			u.setRoleCode(role.getCode());
@@ -81,39 +74,28 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService{
 	@Override
 	public List<User> listPageRowsUsersByKeyword(int currentPage,
 			int pageSize, String keyword) {
-		/*String hql="from Account where 1=1";
-		if(!StringUtils.isEmpty(keyword)){
-			hql+=" and (userName like '%"+keyword+"%' or realName like '%"+keyword+"%' or nickName like '%"+keyword+"%' or email like '%"+keyword+"%' or tel like '%"+keyword+"%')";
-		}
-		return baseDao.listPageRowsByHQL(hql, currentPage, pageSize);*/
 		Map<String, Object> whereParams=new HashMap<String, Object>();
 		if(!StringUtils.isEmpty(keyword)){
 			whereParams.put("or_userName_like", keyword);
-			whereParams.put("or_realName_like", keyword);
-			whereParams.put("or_nickName_like", keyword);
 			whereParams.put("or_email_like", keyword);
 			whereParams.put("or_tel_like", keyword);
 			whereParams.put("or_status_like",keyword);
 			whereParams.put("or_balance_like",keyword);
+			whereParams.put("or_roleName_like", keyword);
 		}
 		return baseDao.listPageRowsByClassNameAndParams(User.class, whereParams, currentPage, pageSize);
 	}
 
 	@Override
 	public int countByKeyword(String keyword) {
-		/*String hql="from Account where 1=1";
-		if(!StringUtils.isEmpty(keyword)){
-			hql+=" and (userName like '%"+keyword+"%' or realName like '%"+keyword+"%' or nickName like '%"+keyword+"%' or email like '%"+keyword+"%' or tel like '%"+keyword+"%')";
-		}
-		return baseDao.countByHQL(hql);*/
 		Map<String, Object> whereParams=new HashMap<String, Object>();
 		if(!StringUtils.isEmpty(keyword)){
 			whereParams.put("or_userName_like", keyword);
-			whereParams.put("or_realName_like", keyword);
-			whereParams.put("or_nickName_like", keyword);
 			whereParams.put("or_email_like", keyword);
+			whereParams.put("or_roleName_like", keyword);
 			whereParams.put("or_tel_like", keyword);
 			whereParams.put("or_status_like", keyword);
+			whereParams.put("or_balance_like",keyword);
 		}
 		return baseDao.countByClassNameAndParams(User.class, whereParams);
 	}
@@ -129,7 +111,6 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService{
 			Map<String, Object> parmas=new HashMap<String, Object>();
 			parmas.put("email", user.getEmail());
 			parmas.put("tel", user.getTel());
-			parmas.put("introduction", user.getIntroduction());
 			baseDao.updateColumnsByParmas(User.class, user.getId(), parmas);
 			return true;
 		} catch (Exception e) {

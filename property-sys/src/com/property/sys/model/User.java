@@ -18,14 +18,12 @@ public class User implements java.io.Serializable {
 	private String roleName;//角色名称
 	private String userName;//登录账号
 	private String password;//密码
-	private String nickName;//昵称，显示名称
 	private String email;//邮箱
 	private String tel;//手机号码
 	private String source;//用户来源
 	private String lastLoginTime;//最后一次登录时间
 	private String registerTime;//注册时间
 	private String status;//账号状态
-	private String introduction;//简介
 	private String balance;//余额
 	public Integer getId() {
 		return id;
@@ -44,12 +42,6 @@ public class User implements java.io.Serializable {
 	}
 	public void setPassword(String password) {
 		this.password = password;
-	}
-	public String getNickName() {
-		return nickName;
-	}
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
 	}
 	public String getEmail() {
 		return email;
@@ -98,12 +90,6 @@ public class User implements java.io.Serializable {
 	}
 	public void setRoleName(String roleName) {
 		this.roleName = roleName;
-	}
-	public String getIntroduction() {
-		return introduction;
-	}
-	public void setIntroduction(String introduction) {
-		this.introduction = introduction;
 	}
 	public String getBalance() {
 		return balance;

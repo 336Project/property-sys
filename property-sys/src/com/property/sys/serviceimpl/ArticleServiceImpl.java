@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.property.sys.model.Article;
 import com.property.sys.model.Option;
 import com.property.sys.model.User;
@@ -109,6 +111,31 @@ public class ArticleServiceImpl extends BaseServiceImpl implements
 		article.setVisitors(article.getVisitors()+1);
 		baseDao.updateColumnById(Article.class, "visitors", article.getVisitors(), id);
 		return article;
+	}
+
+	@Override
+	public List<Article> listPageRowsArticlesByKeyword(int currentPage,
+			int pageSize, String keyword) {
+		Map<String, Object> whereParams=new HashMap<String, Object>();
+		if(!StringUtils.isEmpty(keyword)){
+			whereParams.put("or_type_like", keyword);
+			whereParams.put("or_title_like", keyword);
+			whereParams.put("or_content_like", keyword);
+			whereParams.put("or_author_like",keyword);
+		}
+		return baseDao.listPageRowsByClassNameAndParams(Article.class, whereParams, currentPage, pageSize);
+	}
+
+	@Override
+	public int countByKeyword(String keyword) {
+		Map<String, Object> whereParams=new HashMap<String, Object>();
+		if(!StringUtils.isEmpty(keyword)){
+			whereParams.put("or_type_like", keyword);
+			whereParams.put("or_title_like", keyword);
+			whereParams.put("or_content_like", keyword);
+			whereParams.put("or_author_like",keyword);
+		}
+		return baseDao.countByClassNameAndParams(Article.class, whereParams);
 	}
 
 }

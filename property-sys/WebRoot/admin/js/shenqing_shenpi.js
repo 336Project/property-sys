@@ -1,6 +1,6 @@
 $().ready(function(){
 	$("#menu-wuye").addClass("active");
-	$("#table-ruzhu").DataTable({
+	$("#table-shenqing").DataTable({
 		"columns":[//定义要显示的列名
 					{ data: 'id',sTitle:"",
 						render: function(id) {
@@ -11,10 +11,13 @@ $().ready(function(){
 							return str;
 			        	}
 					},
-					{data : 'customerUser',sTitle : "用户账号"},
-					{data : 'contactTelUser',sTitle : "用户联系电话"}, 
-					{data : 'customerCompany',sTitle : "公司账号"},
-					{data : 'contactTelCompany',sTitle : "公司联系电话"}, 
+					{data : 'realName',sTitle : "真实姓名"},
+					{data : 'contactNumber',sTitle : "用户联系电话"}, 
+					{data : 'address',sTitle : "地址"},
+					{data : 'content',sTitle : "申请内容"},
+					{data : 'applyTime',sTitle : "申请时间"}, 
+					{data : 'completeTime',sTitle : "完成时间"}, 
+					{data : 'reply',sTitle : "回复内容"}, 
 					{data : 'status',sTitle : "状态"}
 				],
 		"order": [[ 1, 'asc' ]],
@@ -25,10 +28,9 @@ $().ready(function(){
 	    "bAutoWidth": false,//自适应宽度
 	    "aLengthMenu": [5,10, 20, 30, 50],//定义每页显示数据数量
 	    "fnServerData":function(n,params,fnCallback,table){//向后台请求列表数据
-	    	//alert(JSON.stringify(params));
 	    	params.push({name:"sSearch",value:params[5].value.value});
 	    	$.ajax({
-	    		url:$.urlRoot+"...",
+	    		url:"/property-sys/property-sys/applyAction!listApplyByParams.action",
 	    		type:"post",
 	    		dataType:"json",
 	    		data:{dataTableParams:JSON.stringify(params)},

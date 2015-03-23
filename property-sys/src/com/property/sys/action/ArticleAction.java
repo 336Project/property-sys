@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.property.sys.model.Article;
 import com.property.sys.service.ArticleService;
+import com.property.sys.utils.DataTableParams;
 import com.property.sys.utils.Page;
 import com.sechand.platform.base.BaseAction;
 
@@ -19,6 +20,7 @@ public class ArticleAction extends BaseAction {
 	private Article article;
 	private String options;
 	private int id;
+	private String dataTableParams;//表单参数,json格式
 	/**
 	 * 
 	 * @Author:Helen  
@@ -81,7 +83,28 @@ public class ArticleAction extends BaseAction {
 		}
 		return SUCCESS;
 	}
-	
+	/**
+	 * 
+	 * @Author:Helen  
+	 * 2015-3-23下午10:47:39
+	 * @return
+	 * String
+	 * @TODO 获取文章列表
+	 */
+	public String listArticleByParams(){
+		DataTableParams params=DataTableParams.getInstance();
+		params.parse(dataTableParams);
+		Map<String, Object> dataMap=new HashMap<String, Object>();
+		List<Article> applications=articleService.listPageRowsArticlesByKeyword(params.current_page, params.page_size, params.keyword);
+		int count=articleService.countByKeyword(params.keyword);
+		dataMap.put("recordsTotal", count);
+		dataMap.put("recordsFiltered", count);
+		dataMap.put("draw",params.draw);
+		dataMap.put("data", applications);
+		json.setMsg(dataMap);
+		json.setSuccess(true);
+		return SUCCESS;
+	}
 	public ArticleService getArticleService() {
 		return articleService;
 	}
@@ -123,5 +146,11 @@ public class ArticleAction extends BaseAction {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public String getDataTableParams() {
+		return dataTableParams;
+	}
+	public void setDataTableParams(String dataTableParams) {
+		this.dataTableParams = dataTableParams;
 	}
 }

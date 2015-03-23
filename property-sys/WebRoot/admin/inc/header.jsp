@@ -13,8 +13,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 		<div id="top-nav">			
 			<ul class="pull-right">
-				<li><a href="javascript:;"><span class="badge badge-primary">1</span> 新消息</a></li>
-				<li><a href="login.jsp">退出</a></li>
+				<li><a href="javascript:;"><span class="badge badge-primary" id="span_count"></span>申请待处理</a></li>
+				<li><a href="<%=path%>/property-sys/userAction!logout.action">退出</a></li>
 			</ul>
 		</div> <!-- /#top-nav -->
 		
@@ -29,7 +29,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<div class="container">
 		
-		<a href="./index.jsp" class="brand">个人信息</a>
+		<a href="javascript:void(0);" class="brand">个人信息</a>
 		
 		<a href="javascript:;" class="btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
         	<i class="icon-reorder"></i>
@@ -52,22 +52,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</a>	
 				
 					<ul class="dropdown-menu">
-						<li><a href="zhuhu.jsp">住户账户管理</a></li>
-						<li><a href="administrator.jsp">管理员账户管理</a></li>
+						<li><a href="zhuhu.jsp">用户管理</a></li>
+						<!-- <li><a href="administrator.jsp">管理员账户管理</a></li> -->
 					</ul>    				
 				</li>
 				
-				<li class="dropdown">					
+				<li class="dropdown" id="menu-neirong">					
 					<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
 						<i class="icon-copy"></i>
-						<span>论堂管理</span> 
+						<span>内容管理</span> 
 						<b class="caret"></b>
 					</a>	
 				
 					<ul class="dropdown-menu">
-						<li><a href="yiti.jsp">议题管理</a></li>
-						<li><a href="huodong.jsp">活动管理</a></li>
-						<li><a href="toupiao.jsp">投票管理</a></li>
+						<li><a href="wenzhang.jsp">文章管理</a></li>
 					</ul>    				
 				</li>
 				
@@ -78,10 +76,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<b class="caret"></b>
 					</a>	
 				
-					<ul class="dropdown-menu">							
-						<li><a href="ruzhu.jsp">入住审批</a></li>
-						<li><a href="zhuangxiu.jsp">装修审批</a></li>
-						<li><a href="baoxiu.jsp">报修处理</a></li>
+					<ul class="dropdown-menu">
+						<li><a href="shenqing_shenpi.jsp">申请审批</a></li>
 						<li><a href="jiaofei_tongzhi.jsp">缴费通知</a></li>
 						<li><a href="chongzhi.jsp">用户充值</a></li>
 					</ul>    				
@@ -93,3 +89,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div> <!-- /.container -->
 	
 </div> <!-- /#header -->
+<script type="text/javascript" src="../js/libs/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+ $(function(){
+		$.ajax({
+			type : "POST",
+			url : "<%=path%>/property-sys/applyAction!countUnhandle.action",
+			dataType : "json",
+			success : function(data) {
+				if(data.success){
+					$("#span_count").html(data.msg);
+				} else {
+					$("#span_count").html(0);
+				}
+			}
+		});
+});
+</script>

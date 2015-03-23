@@ -1,6 +1,6 @@
 $().ready(function(){
-	$("#menu-zhanghu").addClass("active");
-	$("#table-zhuhu").DataTable({
+	$("#menu-neirong").addClass("active");
+	$("#table-wenzhang").DataTable({
 		"columns":[//定义要显示的列名
 					{ data: 'id',sTitle:"",
 						render: function(id) {
@@ -11,15 +11,12 @@ $().ready(function(){
 							return str;
 			        	}
 					},
-					{data : 'userName',sTitle : "用户名"},
-					{data : 'roleName',sTitle : "角色类型"},
-					{data : 'email',sTitle : "邮箱"}, 
-					{data : 'tel',sTitle : "手机号码"},
-					{data : 'balance',sTitle : "账户余额"},
-					{data : 'registerTime',sTitle : "注册时间"},
-					{data : 'lastLoginTime',sTitle : "最后一次登录"},
-					{data : 'source',sTitle : "来源"},
-					{data : 'status',sTitle : "状态"}
+					{data : 'title',sTitle : "标题"},
+					{data : 'author',sTitle : "发布人"}, 
+					{data : 'publishDate',sTitle : "发布时间"},
+					{data : 'content',sTitle : "发布内容"},
+					{data : 'type',sTitle : "类型"}, 
+					{data : 'visitors',sTitle : "访问人数"}
 				],
 		"order": [[ 1, 'asc' ]],
 		"scrollX": true,//水平滚动条
@@ -31,7 +28,7 @@ $().ready(function(){
 	    "fnServerData":function(n,params,fnCallback,table){//向后台请求列表数据
 	    	params.push({name:"sSearch",value:params[5].value.value});
 	    	$.ajax({
-	    		url:"/property-sys/property-sys/userAction!listUsersByParams.action",
+	    		url:"/property-sys/property-sys/articleAction!listArticleByParams.action",
 	    		type:"post",
 	    		dataType:"json",
 	    		data:{dataTableParams:JSON.stringify(params)},

@@ -11,7 +11,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 	<jsp:include page="/admin/inc/commonheader.jsp"></jsp:include>
 	<script src="../js/libs/modernizr-2.5.3.min.js"></script>
-
 </head>
 
 <body>
