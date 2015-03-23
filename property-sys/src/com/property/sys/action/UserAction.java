@@ -42,9 +42,9 @@ public class UserAction extends BaseAction{
 		User a=userService.login(username, password,type);
 		if(a!=null){
 			if(!User.STATUS_NORMAL.equals(a.getStatus())){
-				/*json.setSuccess(false);
+				json.setSuccess(false);
 				json.setMsg("该账户被禁用，请联系管理员!");
-			}else{*/
+			}else{
 				//将用户添加到session
 				WebUtil.add2Session(WebUtil.KEY_LOGIN_USER_SESSION, a);
 				//更新最后一次登录时间

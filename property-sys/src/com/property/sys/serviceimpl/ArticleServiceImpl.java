@@ -102,4 +102,13 @@ public class ArticleServiceImpl extends BaseServiceImpl implements
 		return 0;
 	}
 
+	@Override
+	public Article getById(int id) {
+		//并发问题
+		Article article=baseDao.getByClassAndId(Article.class, id);
+		article.setVisitors(article.getVisitors()+1);
+		baseDao.updateColumnById(Article.class, "visitors", article.getVisitors(), id);
+		return article;
+	}
+
 }

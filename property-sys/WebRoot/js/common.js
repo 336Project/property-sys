@@ -29,6 +29,7 @@ var CreatList={
 			model = model.replace(/{title}/g, item.title)
 				.replace(/{content}/g, content)
 				.replace(/{author}/g, item.author)
+				/*.replace(/{id}/g, item.id)*/
 				.replace(/{date}/g, item.publishDate);
 			str += model;
 			
@@ -58,7 +59,7 @@ var MSGmodel={
                 '<div class="preview-box">'+
                      '<blockquote>{content}</blockquote>'+
                 '</div>'+
-                '<a class="preview-mask" href="#"></a>'+
+                '<a class="preview-mask" href="#/content/huodong"></a>'+
                 '<h5>'+
                     '<a href="#/content/huodong">{title}</a>'+
                 '</h5>'+

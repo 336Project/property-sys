@@ -30,4 +30,13 @@ public interface ArticleService extends BaseService {
 	 * @TODO 添加投票、活动、投诉、咨询、议题、公告
 	 */
 	public int add(Article article,String[] optionNames);
+	/**
+	 * 
+	 * @Author:Helen  
+	 * 2015-3-23下午9:19:12
+	 * @param id
+	 * void
+	 * @TODO 查看文章
+	 */
+	public Article getById(int id);
 }

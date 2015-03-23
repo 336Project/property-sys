@@ -1,4 +1,3 @@
-
 <div class="pagination pagination-right">
 	<button class="btn btn-info" style="float:left;">发起活动</button>
     <ul><li><span class="active">1</span></li><li><a href="javascript:void(0);" class="paginaList" data-pag="1">2</a></li></ul>
@@ -41,3 +40,23 @@
 	</div>
 	
 </div>
+
+<script>
+	
+	$().ready(function() {
+		$.ajax({
+			url : "/property-sys/property-sys/articleAction!look.action",
+			dataType : "json",
+			type : "post",
+			data : {
+				id : 4//文章id
+			},
+			success : function(result) {
+				if (result.success) {
+					console.log(result.msg);
+					//alert(result.msg);
+				}
+			}
+		});
+	});
+</script>

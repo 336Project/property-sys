@@ -18,6 +18,7 @@ public class ArticleAction extends BaseAction {
 	private int type;
 	private Article article;
 	private String options;
+	private int id;
 	/**
 	 * 
 	 * @Author:Helen  
@@ -62,7 +63,24 @@ public class ArticleAction extends BaseAction {
 		}
 		return SUCCESS;
 	}
-	
+	/**
+	 * 
+	 * @Author:Helen  
+	 * 2015-3-23下午9:34:35
+	 * @return
+	 * String 
+	 * @TODO 查看文章
+	 */
+	public String look(){
+		Article a=articleService.getById(id);
+		if(a!=null){
+			json.setMsg(a);
+			json.setSuccess(true);
+		}else{
+			json.setSuccess(false);
+		}
+		return SUCCESS;
+	}
 	
 	public ArticleService getArticleService() {
 		return articleService;
@@ -99,5 +117,11 @@ public class ArticleAction extends BaseAction {
 	}
 	public void setOptions(String options) {
 		this.options = options;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 }
