@@ -4,10 +4,10 @@
 <struts>
 	<package name="struts-sys" namespace="/property-sys" extends="json-default">
 		<!-- 权限验证 -->
-		<!-- <interceptors>
+		<interceptors>
 			<interceptor name="AuthInterceptors"
 				class="com.sechand.platform.base.auth.AuthorityInterceptor">
-				不进行验证的方法
+				<!-- 不进行验证的方法 -->
 				<param name="excludeName">login,register,listRole,logout</param>
 			</interceptor>
 			<interceptor-stack name="LoginInterceptors">
@@ -15,7 +15,7 @@
 				<interceptor-ref name="defaultStack"></interceptor-ref>
 			</interceptor-stack>
 		</interceptors>
-		<default-interceptor-ref name="LoginInterceptors"></default-interceptor-ref> -->
+		<default-interceptor-ref name="LoginInterceptors"></default-interceptor-ref>
 		<!-- 全局results -->
 		<global-results>
 			<result name="error" type="redirect">

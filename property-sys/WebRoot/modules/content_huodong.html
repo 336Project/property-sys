@@ -1,0 +1,62 @@
+<div class="pagination pagination-right">
+	<button class="btn btn-info" style="float:left;">发起活动</button>
+    <ul><li><span class="active">1</span></li><li><a href="javascript:void(0);" class="paginaList" data-pag="1">2</a></li></ul>
+</div>
+<div class="h-content " style="border:1px solid #ddd;border-bottom:0;background:#fff; width:100%">
+	<div class="inline h-c-left" style="text-align:center;">
+	<span style="line-height:40px;">查看人数：<span style="color:#F26C4F;">{overviewNumber}</span></span>
+	</div>
+	<div class="inline" style="padding-left:12px;">
+		<h4 style="margin:0;padding:0;">这是一个活动的标题</h4>
+	</div>
+</div>
+<div style="width:100%;background:#fff;border:1px solid #ddd;border-top:3px solid #C2D5E3;">
+	<table>
+		<tr>
+			<td class="h-c-left inline" style="line-height:50px;text-align:center;">
+				<img class="img-polaroid" src="img/userDefaulIcon.png" style="margin-top:20px;"></img>
+				<div>作者：<span style="font-weight: bold;">{author}</span></div>
+			</td>
+			<td class="inline h-c-right" style="padding:10px 14px;vertical-align: top;">
+				<div style="border-bottom:1px dashed #CDCDCD;width:100%;">
+					发表于：{date}
+				</div>
+				<div style="padding:20px 0;">{content}  icon-glass icon-music icon-search icon-envelope icon-heart icon-star icon-star-empty icon-user icon-film icon-th-large icon-th icon-th-list icon-ok icon-remove icon-zoom-in icon-zoom-out icon-off icon-signal icon-cog icon-trash icon-home icon-file icon-time icon-road icon-download-alt icon-download icon-upload icon-inbox icon-play-circle icon-repeat icon-refresh icon-list-alt icon-glass icon-music icon-search icon-envelope icon-heart icon-star icon-star-empty icon-user icon-film icon-th-large icon-th icon-th-list icon-ok icon-remove icon-zoom-in icon-zoom-out icon-off icon-signal icon-cog icon-trash icon-home icon-file icon-time icon-road icon-download-alt icon-download icon-upload icon-inbox icon-play-circle icon-repeat icon-refresh icon-list-alt icon-glass icon-music icon-search icon-envelope icon-heart icon-star icon-star-empty icon-user icon-film icon-th-large icon-th icon-th-list icon-ok icon-remove icon-zoom-in icon-zoom-out icon-off icon-signal icon-cog icon-trash icon-home icon-file icon-time icon-road icon-download-alt icon-download icon-upload icon-inbox icon-play-circle icon-repeat icon-refresh icon-list-alt</div>	
+			</td>
+		</tr>
+	</table>
+	
+</div>
+<div style="width:100%;background:#fff;border:1px solid #ddd;border-top:3px solid #C2D5E3;">
+	<div class="h-c-left inline" style="line-height:50px;text-align:center;">
+		<img class="img-polaroid" src="img/userDefaulIcon.png" style="margin-top:20px;"></img>
+		<div>作者：<span style="font-weight: bold;">{author}</span></div>
+	</div>
+	<div class="inline h-c-right" style="padding:10px 14px;vertical-align: top;">
+		<div style="border-bottom:1px dashed #CDCDCD;width:100%;">
+			发表于：{date}
+		</div>
+		<div style="padding:20px 0;">{content}</div>
+	</div>
+	
+</div>
+
+<script>
+	
+	$().ready(function() {
+		$.ajax({
+			url : "/property-sys/property-sys/articleAction!look.action",
+			dataType : "json",
+			type : "post",
+			data : {
+				id : 4//文章id
+			},
+			success : function(result) {
+				if (result.success) {
+					console.log(result.msg);
+					//alert(result.msg);
+				}
+			}
+		});
+	});
+</script>

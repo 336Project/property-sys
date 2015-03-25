@@ -23,8 +23,6 @@ public class Article implements Serializable{
 	private String author;//发布人
 	private String publishDate;//发布时间
 	private long visitors;//访问人数
-	private long supporters;//支持人数
-	private long opponents;//反对人数
 	
 	public Integer getId() {
 		return id;
@@ -67,18 +65,6 @@ public class Article implements Serializable{
 	}
 	public void setVisitors(long visitors) {
 		this.visitors = visitors;
-	}
-	public long getSupporters() {
-		return supporters;
-	}
-	public void setSupporters(long supporters) {
-		this.supporters = supporters;
-	}
-	public long getOpponents() {
-		return opponents;
-	}
-	public void setOpponents(long opponents) {
-		this.opponents = opponents;
 	}
 	public String getPublishDate() {
 		return publishDate;

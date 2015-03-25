@@ -31,11 +31,5 @@
         <property name="visitors" type="java.lang.Long">
             <column name="visitors"  default="0"/>
         </property>
-        <property name="supporters" type="java.lang.Long">
-            <column name="supporters"  default="0"/>
-        </property>
-        <property name="opponents" type="java.lang.Long">
-            <column name="opponents"  default="0"/>
-        </property>
     </class>
 </hibernate-mapping>

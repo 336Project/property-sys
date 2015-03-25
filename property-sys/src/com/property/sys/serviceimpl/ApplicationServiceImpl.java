@@ -1,6 +1,11 @@
 package com.property.sys.serviceimpl;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.lang.StringUtils;
 
 import com.property.sys.model.Application;
 import com.property.sys.model.User;
@@ -35,6 +40,44 @@ public class ApplicationServiceImpl extends BaseServiceImpl implements
 			return baseDao.save(app);
 		}
 		return 0;
+	}
+
+	@Override
+	public int countUnhandle() {
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("status", Application.STATUS_APPLYING);
+		return baseDao.countByClassNameAndParams(Application.class, map);
+	}
+
+	@Override
+	public List<Application> listPageRowsApplicationsByKeyword(int currentPage,
+			int pageSize, String keyword) {
+		Map<String, Object> whereParams=new HashMap<String, Object>();
+		if(!StringUtils.isEmpty(keyword)){
+			whereParams.put("or_realName_like", keyword);
+			whereParams.put("or_contactNumber_like", keyword);
+			whereParams.put("or_type_like", keyword);
+			whereParams.put("or_content_like",keyword);
+			whereParams.put("or_status_like",keyword);
+			whereParams.put("or_address_like", keyword);
+			whereParams.put("or_reply_like", keyword);
+		}
+		return baseDao.listPageRowsByClassNameAndParams(Application.class, whereParams, currentPage, pageSize);
+	}
+
+	@Override
+	public int countByKeyword(String keyword) {
+		Map<String, Object> whereParams=new HashMap<String, Object>();
+		if(!StringUtils.isEmpty(keyword)){
+			whereParams.put("or_realName_like", keyword);
+			whereParams.put("or_contactNumber_like", keyword);
+			whereParams.put("or_type_like", keyword);
+			whereParams.put("or_content_like",keyword);
+			whereParams.put("or_status_like",keyword);
+			whereParams.put("or_address_like", keyword);
+			whereParams.put("or_reply_like", keyword);
+		}
+		return baseDao.countByClassNameAndParams(Application.class, whereParams);
 	}
 	
 }

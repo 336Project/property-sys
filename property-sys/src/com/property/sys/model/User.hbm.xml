@@ -22,9 +22,6 @@
         <property name="password" type="java.lang.String">
             <column name="password" length="45" not-null="true"/>
         </property>
-        <property name="nickName" type="java.lang.String">
-            <column name="nick_name" length="45" />
-        </property>
         <property name="email" type="java.lang.String">
             <column name="email" length="45" />
         </property>
@@ -42,9 +39,6 @@
         </property>
         <property name="status" type="java.lang.String">
             <column name="status" length="45" />
-        </property>
-         <property name="introduction" type="java.lang.String">
-            <column name="introduction" length="300" />
         </property>
         <property name="balance" type="java.lang.String">
             <column name="balance" length="45" default="0"/>

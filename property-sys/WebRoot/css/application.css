@@ -2017,7 +2017,7 @@ Layout: Masthead
 ------------------------------------------------------------------- */
 #masthead {
   width: 100%;
-  padding: 20px 0;
+  padding: 5px 0;
   color: #333333;
   background-color: #f8f8f8;
   background-image: -moz-linear-gradient(top, #ffffff, #ededed);
@@ -2077,7 +2077,7 @@ Layout: Content
   margin-bottom: 8em;
 }
 #content .row {
-  margin-top: 5em;
+  margin-top: 20px;
 }
 #content .row:first-child {
   margin-top: 0;

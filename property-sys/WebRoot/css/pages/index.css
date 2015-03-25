@@ -581,3 +581,9 @@ text-overflow: ellipsis;white-space:nowrap;overflow: hidden; }
 .cst-services li:hover{color: #3235B3;}
 .editorPanel{margin-bottom:20px;}
 button.text-right{float:right;}
+.inline{display:inline-block;}
+
+/* 详细内容的布局 */
+.h-c-left{width: 24%;background: #E5EDF2;border-right: 1px solid #C2D5E3;height: 100%;}
+.h-c-right{width:70%;}
+td{padding:0;}

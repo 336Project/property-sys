@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.property.sys.model.Article;
 import com.property.sys.service.ArticleService;
+import com.property.sys.utils.DataTableParams;
 import com.property.sys.utils.Page;
 import com.sechand.platform.base.BaseAction;
 
@@ -16,6 +17,18 @@ public class ArticleAction extends BaseAction {
 	private int currentPage=1;
 	private int pageSize=9;
 	private int type;
+	private Article article;
+	private String options;
+	private int id;
+	private String dataTableParams;//表单参数,json格式
+	/**
+	 * 
+	 * @Author:Helen  
+	 * 2015-3-18下午9:15:28
+	 * @return
+	 * String
+	 * @TODO 获取文章
+	 */
 	public String list(){
 		List<Article> articles=articleService.listPageRowsByType(currentPage, pageSize,type);
 		Page page=new Page(currentPage, articleService.countByType(type), pageSize);
@@ -27,8 +40,71 @@ public class ArticleAction extends BaseAction {
 		json.setMsg(map);
 		return SUCCESS;
 	}
-	
-	
+	/**
+	 * 
+	 * @Author:Helen  
+	 * 2015-3-18下午9:17:25
+	 * @return
+	 * String
+	 * @TODO 发布文章
+	 */
+	public String publish(){
+		String[] opts=options.split(",");
+		if(opts!=null&&opts.length>=2){
+			int id=articleService.add(article, opts);
+			if(id>0){
+				json.setMsg("发布成功!");
+				json.setSuccess(true);
+			}else {
+				json.setMsg("发布失败!");
+				json.setSuccess(false);
+			}
+		}else{
+			json.setMsg("投票必须至少有两个选项!");
+			json.setSuccess(false);
+		}
+		return SUCCESS;
+	}
+	/**
+	 * 
+	 * @Author:Helen  
+	 * 2015-3-23下午9:34:35
+	 * @return
+	 * String 
+	 * @TODO 查看文章
+	 */
+	public String look(){
+		Article a=articleService.getById(id);
+		if(a!=null){
+			json.setMsg(a);
+			json.setSuccess(true);
+		}else{
+			json.setSuccess(false);
+		}
+		return SUCCESS;
+	}
+	/**
+	 * 
+	 * @Author:Helen  
+	 * 2015-3-23下午10:47:39
+	 * @return
+	 * String
+	 * @TODO 获取文章列表
+	 */
+	public String listArticleByParams(){
+		DataTableParams params=DataTableParams.getInstance();
+		params.parse(dataTableParams);
+		Map<String, Object> dataMap=new HashMap<String, Object>();
+		List<Article> applications=articleService.listPageRowsArticlesByKeyword(params.current_page, params.page_size, params.keyword);
+		int count=articleService.countByKeyword(params.keyword);
+		dataMap.put("recordsTotal", count);
+		dataMap.put("recordsFiltered", count);
+		dataMap.put("draw",params.draw);
+		dataMap.put("data", applications);
+		json.setMsg(dataMap);
+		json.setSuccess(true);
+		return SUCCESS;
+	}
 	public ArticleService getArticleService() {
 		return articleService;
 	}
@@ -52,5 +128,29 @@ public class ArticleAction extends BaseAction {
 	}
 	public void setType(int type) {
 		this.type = type;
+	}
+	public Article getArticle() {
+		return article;
+	}
+	public void setArticle(Article article) {
+		this.article = article;
+	}
+	public String getOptions() {
+		return options;
+	}
+	public void setOptions(String options) {
+		this.options = options;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getDataTableParams() {
+		return dataTableParams;
+	}
+	public void setDataTableParams(String dataTableParams) {
+		this.dataTableParams = dataTableParams;
 	}
 }

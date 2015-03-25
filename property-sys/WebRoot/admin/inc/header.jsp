@@ -11,55 +11,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<i class="icon-cog"></i>
 		</a>
 	
-		<div id="top-nav">
-			
-			<!-- <ul>
-				<li class="dropdown">
-					<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-						我的社区			
-						<b class="caret"></b>
-					</a>
-					<ul class="dropdown-menu pull-right">
-						<li><a href="javascript:;">发布信息</a></li>
-						<li><a href="javascript:;">社区活动</a></li>
-						<li><a href="javascript:;">咨询</a></li>
-						<li><a href="javascript:;">投诉</a></li>
-						<li class="dropdown-submenu">
-		                  <a tabindex="-1" href="#">下拉菜单</a>
-		                  <ul class="dropdown-menu">
-		                    <li><a tabindex="-1" href="#">菜单1</a></li>
-		                    <li><a tabindex="-1" href="#">菜单2</a></li>
-		                    <li><a tabindex="-1" href="#">菜单3</a></li>
-		                  </ul>
-		                </li>
-					</ul> 
-				</li>
-			</ul> -->
-			
+		<div id="top-nav">			
 			<ul class="pull-right">
-				<li><a href="javascript:;"><span class="badge badge-primary">1</span> 新消息</a></li>
-				<!-- <li class="dropdown">
-					<a href="./pages/settings.html" class="dropdown-toggle" data-toggle="dropdown">
-						设置						
-						<b class="caret"></b>
-					</a>
-					
-					<ul class="dropdown-menu pull-right">
-						<li><a href="javascript:;">设置 #1</a></li>
-						<li><a href="javascript:;">设置 #2</a></li>
-						<li class="dropdown-submenu">
-		                  <a tabindex="-1" href="#">下拉菜单</a>
-		                  <ul class="dropdown-menu">
-		                    <li><a tabindex="-1" href="#">菜单1</a></li>
-		                    <li><a tabindex="-1" href="#">菜单2</a></li>
-		                    <li><a tabindex="-1" href="#">菜单3</a></li>
-		                  </ul>
-		                </li>
-					</ul> 
-				</li> -->
-				<li><a href="login.jsp">退出</a></li>
+				<li><a href="javascript:;"><span class="badge badge-primary" id="span_count"></span>申请待处理</a></li>
+				<li><a href="<%=path%>/property-sys/userAction!logout.action">退出</a></li>
 			</ul>
-			
 		</div> <!-- /#top-nav -->
 		
 	</div> <!-- /.container -->
@@ -73,7 +29,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<div class="container">
 		
-		<a href="./index.jsp" class="brand">个人信息</a>
+		<a href="javascript:void(0);" class="brand">个人信息</a>
 		
 		<a href="javascript:;" class="btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
         	<i class="icon-reorder"></i>
@@ -81,66 +37,49 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 		<div class="nav-collapse">
 			<ul id="main-nav" class="nav pull-right">
-				<li class="nav-icon active">
-					<a href="./index.jsp">
+				<li class="nav-icon">
+					<a href="./admin_index.jsp">
 						<i class="icon-home"></i>
 						<span>首页</span>        					
 					</a>
 				</li>
 				
-				<li class="dropdown">
+				<li class="dropdown" id="menu-zhanghu">
 					<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
 						<i class="icon-th"></i>
-						<span>模块一</span> 
+						<span>账户管理</span> 
 						<b class="caret"></b>
 					</a>	
 				
 					<ul class="dropdown-menu">
-						<li><a href="#">二级菜单</a></li>
-						<li><a href="#">二级菜单</a></li>
-						<li><a href="#">二级菜单</a></li>
-						<li><a href="#">二级菜单</a></li>
-						<li><a href="#">二级菜单</a></li>
-						<li class="dropdown-submenu">
-		                  <a tabindex="-1" href="#">二级菜单</a>
-		                  <ul class="dropdown-menu">
-		                    <li><a tabindex="-1" href="#">三级菜单</a></li>
-		                    <li><a tabindex="-1" href="#">三级菜单</a></li>
-		                    <li><a tabindex="-1" href="#">三级菜单</a></li>
-		                  </ul>
-		                </li>
+						<li><a href="zhuhu.jsp">用户管理</a></li>
+						<!-- <li><a href="administrator.jsp">管理员账户管理</a></li> -->
 					</ul>    				
 				</li>
 				
-				<li class="dropdown">					
+				<li class="dropdown" id="menu-neirong">					
 					<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
 						<i class="icon-copy"></i>
-						<span>模块二</span> 
+						<span>内容管理</span> 
 						<b class="caret"></b>
 					</a>	
 				
 					<ul class="dropdown-menu">
-						<li><a href="#">二级菜单</a></li>
-						<li><a href="#">二级菜单</a></li>
-						<li><a href="#">二级菜单</a></li>
-						<li><a href="#">二级菜单</a></li>
-						<li><a href="#">二级菜单</a></li>
+						<li><a href="wenzhang.jsp">文章管理</a></li>
 					</ul>    				
 				</li>
 				
-				<li class="dropdown">					
+				<li class="dropdown" id="menu-wuye">					
 					<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
 						<i class="icon-external-link"></i>
-						<span>模块三</span> 
+						<span>物业管理</span> 
 						<b class="caret"></b>
 					</a>	
 				
-					<ul class="dropdown-menu">							
-						<li><a href="#">二级菜单</a></li>
-						<li><a href="#">二级菜单</a></li>
-						<li><a href="#">二级菜单</a></li>
-						<li><a href="#">二级菜单</a></li>
-						<li><a href="#">二级菜单</a></li>
+					<ul class="dropdown-menu">
+						<li><a href="shenqing_shenpi.jsp">申请审批</a></li>
+						<li><a href="jiaofei_tongzhi.jsp">缴费通知</a></li>
+						<li><a href="chongzhi.jsp">用户充值</a></li>
 					</ul>    				
 				</li>
 			</ul>
@@ -150,3 +89,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div> <!-- /.container -->
 	
 </div> <!-- /#header -->
+<script type="text/javascript" src="../js/libs/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+ $(function(){
+		$.ajax({
+			type : "POST",
+			url : "<%=path%>/property-sys/applyAction!countUnhandle.action",
+			dataType : "json",
+			success : function(data) {
+				if(data.success){
+					$("#span_count").html(data.msg);
+				} else {
+					$("#span_count").html(0);
+				}
+			}
+		});
+});
+</script>

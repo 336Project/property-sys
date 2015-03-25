@@ -19,4 +19,44 @@ public interface ArticleService extends BaseService {
 	 */
 	public List<Article> listPageRowsByType(int currentPage,int pageSize,int type);
 	public int countByType(int type);
+	/**
+	 * 
+	 * @Author:Helen  
+	 * 2015-3-18下午8:50:20
+	 * @param article
+	 * @param options
+	 * @return
+	 * int
+	 * @TODO 添加投票、活动、投诉、咨询、议题、公告
+	 */
+	public int add(Article article,String[] optionNames);
+	/**
+	 * 
+	 * @Author:Helen  
+	 * 2015-3-23下午9:19:12
+	 * @param id
+	 * void
+	 * @TODO 查看文章
+	 */
+	public Article getById(int id);
+	/**
+	 * 
+	 * @Author:Helen  
+	 * 2015-3-23下午10:51:58
+	 * @param currentPage
+	 * @param pageSize
+	 * @param keyword
+	 * @return
+	 * List<Article>
+	 * @TODO 获取文章列表
+	 */
+	public List<Article> listPageRowsArticlesByKeyword(int currentPage,int pageSize,String keyword);
+	/**
+	 * 
+	 * 2015-1-6 下午12:54:15
+	 * @param keyword
+	 * @return 
+	 * TODO 根据搜索关键字统计记录条数
+	 */
+	public int countByKeyword(String keyword);
 }

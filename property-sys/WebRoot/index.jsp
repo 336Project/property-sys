@@ -27,7 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="l-b-row ta-c">
         <div class="l-b-col l-side">
             <div class="box-shadow">
-                <div class="wgt-logo">社区物业管理</div>
+                <div class="wgt-logo">社区物业</div>
             </div>
             <div class="box-shadow">
                 <div class="wgt-activityList sibar">
@@ -123,6 +123,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             '/toupiao': function(){changeMainPanel("list_toupiao");},
             '/tousu': function(){changeMainPanel("list_tousu");},
             '/zixun': function(){changeMainPanel("list_zixun");}
+        },
+        '/content':{
+        	'/huodong':function(){changeMainPanel("content_huodong");}
         }
     };
 
