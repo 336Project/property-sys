@@ -3,8 +3,10 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<script type="text/javascript">
+jQuery.urlRoot = "<%=path%>";
+</script>
 <div id="topbar">
-	
 	<div class="container">
 		
 		<a href="javascript:;" id="menu-trigger" class="dropdown-toggle" data-toggle="dropdown" data-target="#">

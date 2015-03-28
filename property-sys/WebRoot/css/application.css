@@ -8,6 +8,8 @@
 
 
 -------------------------------------------------------------------*/
+input[type="radio"], input[type="checkbox"] {margin:0;padding:0;}
+td label{display:inline-block;margin:0;padding:0;}
 .clearfix {
   *zoom: 1;
 }
@@ -220,38 +222,7 @@ select {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffeeeeee', GradientType=0);
   border: 1px solid #dddddd;
 }
-/* Buttons */
-.btn-primary {
-  color: #ffffff;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  background-color: #92b765;
-  background-image: -moz-linear-gradient(top, #a0c277, #7da64b);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#a0c277), to(#7da64b));
-  background-image: -webkit-linear-gradient(top, #a0c277, #7da64b);
-  background-image: -o-linear-gradient(top, #a0c277, #7da64b);
-  background-image: linear-gradient(to bottom, #a0c277, #7da64b);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffa0c277', endColorstr='#ff7da64b', GradientType=0);
-  border-color: #7da64b #7da64b #567233;
-  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  *background-color: #7da64b;
-  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
 
-  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
-}
-.btn-primary:hover,
-.btn-primary:active,
-.btn-primary.active,
-.btn-primary.disabled,
-.btn-primary[disabled] {
-  color: #ffffff;
-  background-color: #7da64b;
-  *background-color: #709543;
-}
-.btn-primary:active,
-.btn-primary.active {
-  background-color: #63833b \9;
-}
 .btn-secondary {
   color: #ffffff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);

@@ -22,8 +22,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="container">
 			<div class="masthead-pad">
 				<div class="masthead-text">
-					<h2>申请审批</h2>
-				<!-- 	<p>这里也可以不写任何内容</p> -->
+					<div class="row">
+						<h2 class="span9">住户管理<h2>
+						<div class="span3">
+							<button class="btn btn-primary" type="button">通过审核</button>
+							<button class="btn btn-primary" type="button">回复</button>
+							<button class="btn btn-primary" type="button">删除</button>
+						</div>
+					</div>
 				</div> <!-- /.masthead-text -->
 			</div>
 		</div> <!-- /.container -->	
@@ -31,11 +37,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<div id="content">
 		<div class="container">
-			<div class="row">
-				<div class="span12 ">
-					 <button class="btn" type="button">通过审核</button>
-				</div>
-			</div>
 			<div class="row">
 				<div class="span12"><table id="table-shenqing" class="hover order-column"></table></div>
 				
@@ -47,7 +48,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 </div> <!-- /#wrapper -->
 <jsp:include page="/admin/inc/footer.jsp"></jsp:include>
-
 <script src="js/shenqing_shenpi.js"></script>
 </body>
 </html>

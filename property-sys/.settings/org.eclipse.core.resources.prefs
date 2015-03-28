@@ -1,6 +1,9 @@
 eclipse.preferences.version=1
 encoding//WebRoot/admin/inc/commonheader.jsp=UTF-8
 encoding//WebRoot/modules/content_huodong.html=UTF-8
+encoding//WebRoot/modules/form_huodong.html=UTF-8
+encoding//WebRoot/modules/form_tousu.html=UTF-8
+encoding//WebRoot/modules/form_yiti.html=UTF-8
 encoding//WebRoot/modules/form_zixun.html=UTF-8
 encoding//WebRoot/modules/list.html=UTF-8
 encoding//WebRoot/modules/list_huodong.html=UTF-8
