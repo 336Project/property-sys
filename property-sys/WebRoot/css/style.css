@@ -1,4 +1,4 @@
-/*-- 绠�槗娑堟伅鎻愮ず妗�--*/
+
 .tech-alert{z-index: 2000;position: fixed;top: 0;left: 0;width: 100%;height: 100%;background: rgba(0,0,0,0.2);}
 .tech-alert>div{font-size: 16px;z-index: 2001;position: fixed;top: 40%;left: 36%;min-width: 240px;min-height: 100px;padding: 12px;padding-bottom: 4px;background: #fff;border: 3px solid #aaa;}
 .tech-alert .close{float: right;}
@@ -7,8 +7,9 @@
 .tech-alert .alert-btn{margin-top: 16px;text-align: center;display: none; }
 .tech-alert .btn{margin-right:4px;};
 
-/* 对模板的修改 */
 .f-error { background: #fcf5f5 }
 .f-error input, .f-error select, .f-error textarea { border-color: #B94A48; color: #a60d10; }
 .f-error label.error { font-size: 12px; font-weight: 700; color: #a60d10; }
 .select2{width:222px;}
+
+.PL-box{width:100%;background:#fff;border:1px solid #ddd;border-top:3px solid #C2D5E3;}

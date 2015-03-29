@@ -29,7 +29,8 @@ var CreatList={
 			model = model.replace(/{title}/g, item.title)
 				.replace(/{content}/g, content)
 				.replace(/{author}/g, item.author)
-				/*.replace(/{id}/g, item.id)*/
+				.replace(/{type}/g, "huodong")
+				.replace(/{id}/g, 4)
 				.replace(/{date}/g, item.publishDate);
 			str += model;
 			
@@ -61,7 +62,7 @@ var MSGmodel={
                 '</div>'+
                 '<a class="preview-mask" href="#/content/huodong"></a>'+
                 '<h5>'+
-                    '<a href="#/content/huodong">{title}</a>'+
+                    '<a href="#/content/{type}/{id}">{title}</a>'+
                 '</h5>'+
                 '<div class="info">'+
                     '<span class="author-info">'+
@@ -81,13 +82,16 @@ var MSGmodel={
 
 
 //模块html加载
-function changeMainPanel(pname){
+function changeMainPanel(pname,params){
     $.ajax({
         url:"modules/"+pname+".html",
         dataType:"html",
         type:"get",
         cache:true,
         success:function(result){
+        	if(params != null){
+        		MODEL = params;
+        	}
             $("#main-panel").html(result);
         },error:function(){
         	alert("404");
