@@ -29,8 +29,8 @@ var CreatList={
 			model = model.replace(/{title}/g, item.title)
 				.replace(/{content}/g, content)
 				.replace(/{author}/g, item.author)
-				.replace(/{type}/g, "huodong")
-				.replace(/{id}/g, 4)
+				//.replace(/{type}/g, "huodong")
+				.replace(/{id}/g, item.id)
 				.replace(/{date}/g, item.publishDate);
 			str += model;
 			
@@ -60,9 +60,9 @@ var MSGmodel={
                 '<div class="preview-box">'+
                      '<blockquote>{content}</blockquote>'+
                 '</div>'+
-                '<a class="preview-mask" href="#/content/huodong"></a>'+
+                '<a class="preview-mask" href="#/content/{id}"></a>'+
                 '<h5>'+
-                    '<a href="#/content/{type}/{id}">{title}</a>'+
+                    '<a href="#/content/{id}">{title}</a>'+
                 '</h5>'+
                 '<div class="info">'+
                     '<span class="author-info">'+
@@ -84,7 +84,7 @@ var MSGmodel={
 //模块html加载
 function changeMainPanel(pname,params){
     $.ajax({
-        url:"modules/"+pname+".html",
+        url:"modules/"+pname,
         dataType:"html",
         type:"get",
         cache:true,

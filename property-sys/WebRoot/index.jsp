@@ -109,27 +109,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript">
 	var MODEl = null;/* 页面级参数 */
     var routes = {
-        '/listAll':function(){changeMainPanel("list");},
+        '/listAll':function(){changeMainPanel("list.html");},
         '/form':{ //表单页
-            '/ruzhu':function(){changeMainPanel("form_ruzhu");}, //其中changeMainPanel()是切换主面板的内容，当然，也可以执行其他函数
-            '/baoxiu': function(){changeMainPanel("form_baoxiu");},
-            '/zhuangxiu': function(){changeMainPanel("form_zhuangxiu");},
-            '/yiti': function(){changeMainPanel("form_yiti");},
-            '/toupiao': function(){changeMainPanel("form_toupiao");},
-            '/huodong': function(){changeMainPanel("form_huodong");},
-            '/tousu': function(){changeMainPanel("form_tousu");},
-            '/zixun': function(){changeMainPanel("form_zixun");}
+            '/ruzhu':function(){changeMainPanel("form_ruzhu.html");}, //其中changeMainPanel()是切换主面板的内容，当然，也可以执行其他函数
+            '/baoxiu': function(){changeMainPanel("form_baoxiu.html");},
+            '/zhuangxiu': function(){changeMainPanel("form_zhuangxiu.html");},
+            '/yiti': function(){changeMainPanel("form_yiti.html");},
+            '/toupiao': function(){changeMainPanel("form_toupiao.html");},
+            '/huodong': function(){changeMainPanel("form_huodong.html");},
+            '/tousu': function(){changeMainPanel("form_tousu.html");},
+            '/zixun': function(){changeMainPanel("form_zixun.html");}
         },
         '/list': { //列表页
-			'/gonggao': function(){changeMainPanel("list_gonggao");},
-			'/yiti': function(){changeMainPanel("list_yiti");},
-			'/huodong': function(){changeMainPanel("list_huodong");},
-            '/toupiao': function(){changeMainPanel("list_toupiao");},
-            '/tousu': function(){changeMainPanel("list_tousu");},
-            '/zixun': function(){changeMainPanel("list_zixun");}
+			'/gonggao': function(){changeMainPanel("list_gonggao.html");},
+			'/yiti': function(){changeMainPanel("list_yiti.html");},
+			'/huodong': function(){changeMainPanel("list_huodong.html");},
+            '/toupiao': function(){changeMainPanel("list_toupiao.html");},
+            '/tousu': function(){changeMainPanel("list_tousu.html");},
+            '/zixun': function(){changeMainPanel("list_zixun.html");}
         },
         '/content':{//将id传递到下一页，id 可以从MODEL.id中获取 ，如果存为{"xxx":someParams}，则可以通过MODEL.xxx获取到该参数
-        	'/huodong/:id':function(id){changeMainPanel("content_huodong",{"id":id});}
+        	'/:id':function(id){changeMainPanel("content.jsp",{"id":id});}
         }
     };
 

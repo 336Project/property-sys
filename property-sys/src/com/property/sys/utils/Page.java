@@ -15,7 +15,8 @@ public class Page {
 		this.size = size;
 		this.total = total;
 		if(total==0){
-			crr = up = down = first  = end = 1;
+			this.crr = up = down = first  = end = 1;
+			return;
 		}
 		this.crr = crr;
 		first = 1;
