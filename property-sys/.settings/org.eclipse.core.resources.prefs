@@ -1,4 +1,3 @@
-#Mon Mar 30 10:59:38 CST 2015
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
 >>>>>>>=refs/remotes/origin/master
@@ -12,5 +11,6 @@ encoding//WebRoot/modules/form_yiti.html=UTF-8
 encoding//WebRoot/modules/form_zixun.html=UTF-8
 encoding//WebRoot/modules/list.html=UTF-8
 encoding//WebRoot/modules/list_huodong.html=UTF-8
+encoding//WebRoot/modules/toupiao.jsp=UTF-8
 encoding//src/com/property/sys/model/User.java=UTF-8
 encoding/<project>=UTF-8

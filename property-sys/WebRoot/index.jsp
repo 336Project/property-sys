@@ -21,6 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script type="text/javascript">
 		jQuery.urlRoot = "<%=path%>";
 	</script>
+	<script type="text/javascript" src="js/libs/echarts/echarts-all.js"></script>
 </head>
 
 <body>
@@ -131,7 +132,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         '/content':{//将id传递到下一页，id 可以从MODEL.id中获取 ，如果存为{"xxx":someParams}，则可以通过MODEL.xxx获取到该参数
         	'/huodong/:id':function(id){changeMainPanel("content.jsp",{"id":id,"type":"huodong"});},
         	'/gonggao/:id':function(id){changeMainPanel("content.jsp",{"id":id,"type":"gonggao"});},
-        	'/toupiao/:id':function(id){changeMainPanel("content.jsp",{"id":id,"type":"toupiao"});},
+        	'/toupiao/:id':function(id){changeMainPanel("toupiao.jsp",{"id":id,"type":"toupiao"});},
         	'/tousu/:id':function(id){changeMainPanel("content.jsp",{"id":id,"type":"tousu"});},
         	'/yiti/:id':function(id){changeMainPanel("content.jsp",{"id":id,"type":"yiti"});},
         	'/zixun/:id':function(id){changeMainPanel("content.jsp",{"id":id,"type":"zixun"});}
