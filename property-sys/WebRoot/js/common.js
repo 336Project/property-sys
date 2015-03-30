@@ -8,7 +8,8 @@ var CreatList={
 			url:"/property-sys/property-sys/articleAction!list.action",
 			data : {
 				type : type,
-				currentPage : p+1
+				currentPage : p+1,
+				pageSize:12
 			},
 			type:"post",
 			success:function(result){
@@ -20,6 +21,20 @@ var CreatList={
 		var str = "", pgStr = "";
 		for(var i=0; i<d.list.length; i++){//数据
 			var item = d.list[i];
+			var typeStr="";
+			if(item.type=="公告"){//公告
+				typeStr="gonggao";
+			}else if(item.type=="活动"){//活动
+				typeStr="huodong";
+			}else if(item.type=="投票"){//投票
+				typeStr="toupiao";
+			}else if(item.type=="投诉"){//投诉
+				typeStr="tousu";
+			}else if(item.type=="议题"){//议题
+				typeStr="yiti";
+			}else if(item.type=="咨询"){//咨询
+				typeStr="zixun";
+			}
 			var model = MSGmodel.namol;
 			var content=item.content;
 			var lengthLimit=100;
@@ -29,7 +44,9 @@ var CreatList={
 			model = model.replace(/{title}/g, item.title)
 				.replace(/{content}/g, content)
 				.replace(/{author}/g, item.author)
-				/*.replace(/{id}/g, item.id)*/
+				.replace(/{typeStr}/g, typeStr)
+				.replace(/{type}/g, item.type)
+				.replace(/{id}/g, item.id)
 				.replace(/{date}/g, item.publishDate);
 			str += model;
 			
@@ -59,9 +76,9 @@ var MSGmodel={
                 '<div class="preview-box">'+
                      '<blockquote>{content}</blockquote>'+
                 '</div>'+
-                '<a class="preview-mask" href="#/content/huodong"></a>'+
+                '<a class="preview-mask" href="#/content/{id}"></a>'+
                 '<h5>'+
-                    '<a href="#/content/huodong">{title}</a>'+
+                    '<a href="#/content/{typeStr}/{id}">{title}<div style="float:right;color:#999">{type}</div></a>'+
                 '</h5>'+
                 '<div class="info">'+
                     '<span class="author-info">'+
@@ -81,13 +98,16 @@ var MSGmodel={
 
 
 //模块html加载
-function changeMainPanel(pname){
+function changeMainPanel(pname,params){
     $.ajax({
-        url:"modules/"+pname+".html",
+        url:"modules/"+pname,
         dataType:"html",
         type:"get",
         cache:true,
         success:function(result){
+        	if(params != null){
+        		MODEL = params;
+        	}
             $("#main-panel").html(result);
         },error:function(){
         	alert("404");

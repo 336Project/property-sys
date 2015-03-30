@@ -56,4 +56,33 @@ $().ready(function(){
 			} 
 		}
 	});
+	$("#btn-deleteZhuhu").on("click.delete",function(){
+		var ListId = controls.getCheckedId("#table-zhuhu");
+		//打印根目录地址
+		console.log("根目录地址："+$.urlRoot);
+		if(ListId.length){
+			$.W.alert("确定删除"+ListId.length+"条记录？",true,function(){
+				//console.log("参数id数组："+idList);
+				//ajax提交
+				/*$.ajax({
+	        		url:$.urlRoot+"/platform/orderAction!deleteOrderByIds.action",
+	        		type:"post",
+	        		dataType:"json",
+	        		data:{ids:ListId.toString()},
+	        		success:function(d){
+	        			$.W.alert(d.msg,true);
+	        			//删除后刷新表格
+	        			if(d.success){
+	        				tables.order.draw();
+	        			}
+	        		}
+	        	});*/
+			});
+		}else{
+			$.W.alert("请选中要删除的订单！",true);
+		}
+	});
 });
+
+
+//

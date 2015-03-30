@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 import com.property.sys.model.Article;
+import com.property.sys.model.Comment;
 import com.property.sys.service.ArticleService;
+import com.property.sys.service.CommentService;
 import com.property.sys.utils.DataTableParams;
 import com.property.sys.utils.Page;
 import com.sechand.platform.base.BaseAction;
@@ -14,6 +16,7 @@ public class ArticleAction extends BaseAction {
 	private static final long serialVersionUID = -3008564197229636900L;
 	
 	private ArticleService articleService;
+	private CommentService commentService;
 	private int currentPage=1;
 	private int pageSize=9;
 	private int type;
@@ -76,7 +79,13 @@ public class ArticleAction extends BaseAction {
 	public String look(){
 		Article a=articleService.getById(id);
 		if(a!=null){
-			json.setMsg(a);
+			List<Comment> comments=commentService.listPageRowCommentsByArticleId(a.getId(), currentPage, pageSize);
+			Page page=new Page(currentPage, commentService.countByArticelId(a.getId()), pageSize);
+			Map<String, Object> dataMap=new HashMap<String, Object>();
+			dataMap.put("article", a);
+			dataMap.put("comments",comments);
+			dataMap.put("page", page);
+			json.setMsg(dataMap);
 			json.setSuccess(true);
 		}else{
 			json.setSuccess(false);
@@ -152,5 +161,11 @@ public class ArticleAction extends BaseAction {
 	}
 	public void setDataTableParams(String dataTableParams) {
 		this.dataTableParams = dataTableParams;
+	}
+	public CommentService getCommentService() {
+		return commentService;
+	}
+	public void setCommentService(CommentService commentService) {
+		this.commentService = commentService;
 	}
 }

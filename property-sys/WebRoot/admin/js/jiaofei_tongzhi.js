@@ -1,6 +1,6 @@
 $().ready(function(){
 	$("#menu-wuye").addClass("active");
-	$("#table-shenqing").DataTable({
+	$("#table-jiaofei").DataTable({
 		"columns":[//定义要显示的列名
 					{ data: 'id',sTitle:"",
 						render: function(id) {
@@ -35,10 +35,9 @@ $().ready(function(){
 	    		dataType:"json",
 	    		data:{dataTableParams:JSON.stringify(params)},
 	    		success:function(d){
-	    			fnCallback(d.msg);
-	   			
-	    		}
-	    	});
+	   			fnCallback(d.msg);
+	   		}
+	   	});
 	   },
 		"sort": false,
 		"language": {
@@ -56,16 +55,4 @@ $().ready(function(){
 			} 
 		}
 	});
-	
-	//行选中事件
-	$("#table-shenqing").on("click","tr",function(){
-    	var $check = $(this).find(".tcheckbox");
-    	if($check.prop("checked")){
-    		$check.prop("checked",false);
-    	}else{
-    		$check.prop("checked",true);
-    	}
-    	 $(this).toggleClass('selected');
-    });
-	
 });

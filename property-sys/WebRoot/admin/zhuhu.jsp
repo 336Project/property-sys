@@ -21,8 +21,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="container">
 			<div class="masthead-pad">
 				<div class="masthead-text">
-					<h2>住户管理<h2>
-				<!-- 	<p>这里也可以不写任何内容</p> -->
+					<div class="row">
+						<h2 class="span9">住户管理<h2>
+						<div class="span3">
+							<button id="btn-addZhuhu" class="btn btn-primary" type="button">添加</button>
+							<button id="btn-deleteZhuhu" class="btn btn-primary" type="button">删除</button>
+							<button id="btn-edictZhuhu" class="btn btn-primary" type="button">编辑</button>
+						</div>
+					</div>
 				</div> <!-- /.masthead-text -->
 			</div>
 		</div> <!-- /.container -->	

@@ -42,6 +42,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div> <!-- /#wrapper -->
 <jsp:include page="/admin/inc/footer.jsp"></jsp:include>
 
-<script src="js/ruzhu.js"></script>
+<script src="js/huodong.js"></script>
 </body>
 </html>

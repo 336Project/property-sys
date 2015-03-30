@@ -35,5 +35,8 @@
 		<!-- 申请管理 -->
 		<action name="applyAction" class="applyAction">
 		</action>
+		<!-- 评论管理 -->
+		<action name="commentAction" class="commentAction">
+		</action>
 	</package>
 </struts>  

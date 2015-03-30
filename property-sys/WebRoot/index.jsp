@@ -13,10 +13,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/bootstrap-responsive.css">
 	<link rel="stylesheet" href="css/pages/index.css" type="text/css"></link>
+	<link rel="stylesheet" href="css/style.css" type="text/css"></link>
 	<script type="text/javascript" src="js/libs/jquery-1.7.2.min.js"></script>
 	<script type="text/javascript" src="js/libs/director/director.min.js"></script>
 	
 	<script type="text/javascript" src="js/ueditor/ueditor.config.js"></script>
+	<script type="text/javascript">
+		jQuery.urlRoot = "<%=path%>";
+	</script>
 </head>
 
 <body>
@@ -103,29 +107,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div>
 <script type="text/javascript" src="js/common.js"></script>
 <script type="text/javascript">
-	// url路由功能，a标签的href="#/form/ruzhu" 则对应执行  /form :{"/ruzhu":...} 的方法，其中changeMainPanel()是切换主面板的内容，当然，也可以执行其他函数。
+	var MODEl = null;/* 页面级参数 */
     var routes = {
-        '/listAll':function(){changeMainPanel("list");},
+        '/listAll':function(){changeMainPanel("list.html");},
         '/form':{ //表单页
-            '/ruzhu':function(){changeMainPanel("form_ruzhu");}, //其中changeMainPanel()是切换主面板的内容，当然，也可以执行其他函数
-            '/baoxiu': function(){changeMainPanel("form_baoxiu");},
-            '/zhuangxiu': function(){changeMainPanel("form_zhuangxiu");},
-            '/yiti': function(){changeMainPanel("form_yiti");},
-            '/toupiao': function(){changeMainPanel("form_toupiao");},
-            '/huodong': function(){changeMainPanel("form_huodong");},
-            '/tousu': function(){changeMainPanel("form_tousu");},
-            '/zixun': function(){changeMainPanel("form_zixun");}
+            '/ruzhu':function(){changeMainPanel("form_ruzhu.html");}, //其中changeMainPanel()是切换主面板的内容，当然，也可以执行其他函数
+            '/baoxiu': function(){changeMainPanel("form_baoxiu.html");},
+            '/zhuangxiu': function(){changeMainPanel("form_zhuangxiu.html");},
+            '/yiti': function(){changeMainPanel("form_yiti.html");},
+            '/toupiao': function(){changeMainPanel("form_toupiao.html");},
+            '/huodong': function(){changeMainPanel("form_huodong.html");},
+            '/tousu': function(){changeMainPanel("form_tousu.html");},
+            '/zixun': function(){changeMainPanel("form_zixun.html");}
         },
-        '/list': { //1的列表页
-			'/gonggao': function(){changeMainPanel("list_gonggao");},
-			'/yiti': function(){changeMainPanel("list_yiti");},
-			'/huodong': function(){changeMainPanel("list_huodong");},
-            '/toupiao': function(){changeMainPanel("list_toupiao");},
-            '/tousu': function(){changeMainPanel("list_tousu");},
-            '/zixun': function(){changeMainPanel("list_zixun");}
+        '/list': { //列表页
+			'/gonggao': function(){changeMainPanel("list_gonggao.html");},
+			'/yiti': function(){changeMainPanel("list_yiti.html");},
+			'/huodong': function(){changeMainPanel("list_huodong.html");},
+            '/toupiao': function(){changeMainPanel("list_toupiao.html");},
+            '/tousu': function(){changeMainPanel("list_tousu.html");},
+            '/zixun': function(){changeMainPanel("list_zixun.html");}
         },
-        '/content':{
-        	'/huodong':function(){changeMainPanel("content_huodong");}
+        '/content':{//将id传递到下一页，id 可以从MODEL.id中获取 ，如果存为{"xxx":someParams}，则可以通过MODEL.xxx获取到该参数
+        	'/huodong/:id':function(id){changeMainPanel("content.jsp",{"id":id,"type":"huodong"});},
+        	'/gonggao/:id':function(id){changeMainPanel("content.jsp",{"id":id,"type":"gonggao"});},
+        	'/toupiao/:id':function(id){changeMainPanel("content.jsp",{"id":id,"type":"toupiao"});},
+        	'/tousu/:id':function(id){changeMainPanel("content.jsp",{"id":id,"type":"tousu"});},
+        	'/yiti/:id':function(id){changeMainPanel("content.jsp",{"id":id,"type":"yiti"});},
+        	'/zixun/:id':function(id){changeMainPanel("content.jsp",{"id":id,"type":"zixun"});}
         }
     };
 
