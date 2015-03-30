@@ -138,4 +138,9 @@ public class ArticleServiceImpl extends BaseServiceImpl implements
 		return baseDao.countByClassNameAndParams(Article.class, whereParams);
 	}
 
+	@Override
+	public void deleteByIds(String[] ids) {
+		baseDao.deleteByClassNameAndIds(Article.class, ids);
+	}
+
 }

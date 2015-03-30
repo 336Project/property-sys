@@ -23,11 +23,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="masthead-pad">
 				<div class="masthead-text">
 					<div class="row">
-						<h2 class="span9">住户管理<h2>
+						<h2 class="span9">申请管理</h2>
 						<div class="span3">
-							<button class="btn btn-primary" type="button">通过审核</button>
-							<button class="btn btn-primary" type="button">回复</button>
-							<button class="btn btn-primary" type="button">删除</button>
+							<button class="btn btn-primary" type="button" id="btn_shenhe_apply">通过审核</button>
+							<button class="btn btn-primary" type="button" id="btn_reply_apply">回复</button>
+							<button class="btn btn-primary" type="button" id="btn_delete_apply">删除</button>
 						</div>
 					</div>
 				</div> <!-- /.masthead-text -->

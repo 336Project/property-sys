@@ -53,4 +53,30 @@ $().ready(function(){
 			} 
 		}
 	});
+	
+	//删除文章
+	$("#btn_delete_wenzhang").on("click.delete",function(){
+		var ListId = controls.getCheckedId("#table-wenzhang");
+		if(ListId.length>0){
+			$.W.alert("确定删除"+ListId.length+"条记录？",true,function(){
+				console.log("参数id数组："+ListId);
+				//ajax提交
+				$.ajax({
+	        		url:"/property-sys/property-sys/articleAction!deleteArticleByIds.action",
+	        		type:"post",
+	        		dataType:"json",
+	        		data:{ids:ListId.toString()},
+	        		success:function(d){
+	        			$.W.alert(d.msg,true);
+	        			//删除后刷新表格
+	        			if(d.success){
+	        				window.location.reload(true);
+	        			}
+	        		}
+	        	});
+			});
+		}else{
+			$.W.alert("请选中要删除的文章！",true);
+		}
+	});
 });

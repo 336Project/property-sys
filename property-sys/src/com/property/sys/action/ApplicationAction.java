@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.property.sys.model.Application;
 import com.property.sys.service.ApplicationService;
 import com.property.sys.utils.DataTableParams;
@@ -16,6 +18,7 @@ public class ApplicationAction extends BaseAction {
 	private Application app;
 	private int type;
 	private String dataTableParams;//表单参数,json格式
+	private String ids;
 	
 	public String apply(){
 		int id=applicationService.save(app, type);
@@ -64,6 +67,45 @@ public class ApplicationAction extends BaseAction {
 		return SUCCESS;
 	}
 	
+	/**
+	 * 
+	 * @author lixiaowei
+	 * 2015-3-30 下午2:01:46
+	 * @return 
+	 * TODO 批量删除申请
+	 */
+	public String deleteApplyByIds(){
+		if(!StringUtils.isBlank(ids)){
+			String[] idList=ids.split(",");
+			applicationService.deleteByIds(idList);
+			json.setMsg("删除成功!");
+			json.setSuccess(true);
+		}else{
+			json.setMsg("删除失败!");
+			json.setSuccess(false);
+		}
+		return SUCCESS;
+	}
+	/**
+	 * 
+	 * @author lixiaowei
+	 * 2015-3-30 下午2:14:49
+	 * @return 
+	 * TODO 批量通过申请
+	 */
+	public String passByIds(){
+		if(!StringUtils.isBlank(ids)){
+			String[] idList=ids.split(",");
+			applicationService.pass(idList);
+			json.setMsg("审核通过!");
+			json.setSuccess(true);
+		}else{
+			json.setMsg("审核失败!");
+			json.setSuccess(false);
+		}
+		return SUCCESS;
+	}
+	
 	public ApplicationService getApplicationService() {
 		return applicationService;
 	}
@@ -92,5 +134,11 @@ public class ApplicationAction extends BaseAction {
 	}
 	public void setDataTableParams(String dataTableParams) {
 		this.dataTableParams = dataTableParams;
+	}
+	public String getIds() {
+		return ids;
+	}
+	public void setIds(String ids) {
+		this.ids = ids;
 	}
 }

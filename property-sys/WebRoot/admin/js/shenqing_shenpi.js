@@ -11,6 +11,7 @@ $().ready(function(){
 							return str;
 			        	}
 					},
+					{data : 'userName',sTitle : "用户账号"},
 					{data : 'realName',sTitle : "真实姓名"},
 					{data : 'contactNumber',sTitle : "用户联系电话"}, 
 					{data : 'address',sTitle : "地址"},
@@ -57,15 +58,56 @@ $().ready(function(){
 		}
 	});
 	
-	//行选中事件
-	$("#table-shenqing").on("click","tr",function(){
-    	var $check = $(this).find(".tcheckbox");
-    	if($check.prop("checked")){
-    		$check.prop("checked",false);
-    	}else{
-    		$check.prop("checked",true);
-    	}
-    	 $(this).toggleClass('selected');
-    });
+	//删除申请
+	$("#btn_delete_apply").on("click.delete",function(){
+		var ListId = controls.getCheckedId("#table-shenqing");
+		if(ListId.length>0){
+			$.W.alert("确定删除"+ListId.length+"条记录？",true,function(){
+				console.log("参数id数组："+ListId);
+				//ajax提交
+				$.ajax({
+	        		url:"/property-sys/property-sys/applyAction!deleteApplyByIds.action",
+	        		type:"post",
+	        		dataType:"json",
+	        		data:{ids:ListId.toString()},
+	        		success:function(d){
+	        			$.W.alert(d.msg,true);
+	        			//删除后刷新表格
+	        			if(d.success){
+	        				//
+	        				window.location.reload(true);
+	        			}
+	        		}
+	        	});
+			});
+		}else{
+			$.W.alert("请选中要删除的申请！",true);
+		}
+	});
+	//批量通过申请
+	$("#btn_shenhe_apply").on("click.delete",function(){
+		var ListId = controls.getCheckedId("#table-shenqing");
+		if(ListId.length>0){
+			$.W.alert("确定审核通过"+ListId.length+"条记录？",true,function(){
+				console.log("参数id数组："+ListId);
+				//ajax提交
+				$.ajax({
+	        		url:"/property-sys/property-sys/applyAction!passByIds.action",
+	        		type:"post",
+	        		dataType:"json",
+	        		data:{ids:ListId.toString()},
+	        		success:function(d){
+	        			$.W.alert(d.msg,true);
+	        			//删除后刷新表格
+	        			if(d.success){
+	        				window.location.reload(true);
+	        			}
+	        		}
+	        	});
+			});
+		}else{
+			$.W.alert("请选中要审核的申请！",true);
+		}
+	});
 	
 });

@@ -19,7 +19,8 @@ $().ready(function(){
 					{data : 'registerTime',sTitle : "注册时间"},
 					{data : 'lastLoginTime',sTitle : "最后一次登录"},
 					{data : 'source',sTitle : "来源"},
-					{data : 'status',sTitle : "状态"}
+					{data : 'status',sTitle : "状态"},
+					{data : 'unit',sTitle : "所属单元"}
 				],
 		"order": [[ 1, 'asc' ]],
 		"scrollX": true,//水平滚动条
@@ -56,16 +57,16 @@ $().ready(function(){
 			} 
 		}
 	});
+	
+	//删除用户
 	$("#btn-deleteZhuhu").on("click.delete",function(){
 		var ListId = controls.getCheckedId("#table-zhuhu");
-		//打印根目录地址
-		console.log("根目录地址："+$.urlRoot);
-		if(ListId.length){
+		if(ListId.length>0){
 			$.W.alert("确定删除"+ListId.length+"条记录？",true,function(){
-				//console.log("参数id数组："+idList);
+				console.log("参数id数组："+ListId);
 				//ajax提交
-				/*$.ajax({
-	        		url:$.urlRoot+"/platform/orderAction!deleteOrderByIds.action",
+				$.ajax({
+	        		url:"/property-sys/property-sys/userAction!deleteUserByIds.action",
 	        		type:"post",
 	        		dataType:"json",
 	        		data:{ids:ListId.toString()},
@@ -73,13 +74,42 @@ $().ready(function(){
 	        			$.W.alert(d.msg,true);
 	        			//删除后刷新表格
 	        			if(d.success){
-	        				tables.order.draw();
+	        				//
+	        				window.location.reload(true);
 	        			}
 	        		}
-	        	});*/
+	        	});
 			});
 		}else{
-			$.W.alert("请选中要删除的订单！",true);
+			$.W.alert("请选中要删除的用户！",true);
+		}
+	});
+	//重置密码
+	$("#btn-resetPassword").on("click.delete",function(){
+		var userId = controls.getCheckedId("#table-zhuhu");
+		if(userId.length>0){
+			console.log("参数id数组："+userId);
+			if(userId.length>1){
+				$.W.alert("一次只能重置一个用户的密码！",true);
+			}else{
+				$.W.alert("确定要重置密码吗？",function(){
+					$.ajax({
+		        		url:"/property-sys/property-sys/userAction!resetPassword.action",
+		        		type:"post",
+		        		dataType:"json",
+		        		data:{ids:userId[0]},
+		        		success:function(d){
+		        			$.W.alert(d.msg,true);
+		        			//重置后刷新表格
+		        			if(d.success){
+		        				window.location.reload(true);
+		        			}
+		        		}
+		        	});
+				});
+			}
+		}else{
+			$.W.alert("请选中要重置密码的用户！",true);
 		}
 	});
 });

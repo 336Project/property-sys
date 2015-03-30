@@ -59,4 +59,12 @@ public interface ArticleService extends BaseService {
 	 * TODO 根据搜索关键字统计记录条数
 	 */
 	public int countByKeyword(String keyword);
+	/**
+	 * 
+	 * @author lixiaowei
+	 * 2015-3-30 下午1:59:09
+	 * @param ids 
+	 * TODO 批量删除
+	 */
+	public void deleteByIds(String[] ids);
 }

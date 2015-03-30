@@ -15,6 +15,7 @@ public class Application implements Serializable{
 	
 	private Integer id;
 	private Integer userId;//用户id
+	private String userName;//账号
 	private String realName;//真实姓名，称呼
 	private String contactNumber;//联系电话
 	private String type;//申请类型
@@ -90,5 +91,11 @@ public class Application implements Serializable{
 	}
 	public void setContactNumber(String contactNumber) {
 		this.contactNumber = contactNumber;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 }

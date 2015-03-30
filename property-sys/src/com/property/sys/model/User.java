@@ -25,6 +25,7 @@ public class User implements java.io.Serializable {
 	private String registerTime;//注册时间
 	private String status;//账号状态
 	private String balance;//余额
+	private String unit;//楼栋单元
 	public Integer getId() {
 		return id;
 	}
@@ -96,6 +97,12 @@ public class User implements java.io.Serializable {
 	}
 	public void setBalance(String balance) {
 		this.balance = balance;
+	}
+	public String getUnit() {
+		return unit;
+	}
+	public void setUnit(String unit) {
+		this.unit = unit;
 	}
 	
 }

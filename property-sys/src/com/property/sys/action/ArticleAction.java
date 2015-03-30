@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.property.sys.model.Article;
 import com.property.sys.model.Comment;
 import com.property.sys.service.ArticleService;
@@ -24,6 +26,7 @@ public class ArticleAction extends BaseAction {
 	private String options;
 	private int id;
 	private String dataTableParams;//表单参数,json格式
+	private String ids;
 	/**
 	 * 
 	 * @Author:Helen  
@@ -114,6 +117,26 @@ public class ArticleAction extends BaseAction {
 		json.setSuccess(true);
 		return SUCCESS;
 	}
+	/**
+	 * 
+	 * @author lixiaowei
+	 * 2015-3-30 下午2:01:46
+	 * @return 
+	 * TODO 批量删除文章
+	 */
+	public String deleteArticleByIds(){
+		if(!StringUtils.isBlank(ids)){
+			String[] idList=ids.split(",");
+			articleService.deleteByIds(idList);
+			json.setMsg("删除成功!");
+			json.setSuccess(true);
+		}else{
+			json.setMsg("删除失败!");
+			json.setSuccess(false);
+		}
+		return SUCCESS;
+	}
+	
 	public ArticleService getArticleService() {
 		return articleService;
 	}
@@ -167,5 +190,11 @@ public class ArticleAction extends BaseAction {
 	}
 	public void setCommentService(CommentService commentService) {
 		this.commentService = commentService;
+	}
+	public String getIds() {
+		return ids;
+	}
+	public void setIds(String ids) {
+		this.ids = ids;
 	}
 }

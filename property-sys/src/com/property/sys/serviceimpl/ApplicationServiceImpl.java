@@ -22,6 +22,7 @@ public class ApplicationServiceImpl extends BaseServiceImpl implements
 		User user=(User) BaseUtil.getSession(BaseUtil.KEY_LOGIN_USER_SESSION);
 		if(user!=null&&app!=null&&type>=1&&type<=3){
 			app.setUserId(user.getId());
+			app.setUserName(user.getUserName());
 			app.setApplyTime(SysUtils.getDateFormat(new Date()));
 			app.setStatus(Application.STATUS_APPLYING);
 			switch (type) {
@@ -78,6 +79,27 @@ public class ApplicationServiceImpl extends BaseServiceImpl implements
 			whereParams.put("or_reply_like", keyword);
 		}
 		return baseDao.countByClassNameAndParams(Application.class, whereParams);
+	}
+
+	@Override
+	public void deleteByIds(String[] ids) {
+		baseDao.deleteByClassNameAndIds(Application.class, ids);
+	}
+
+	@Override
+	public void pass(String[] ids) {
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("status", Application.STATUS_COMPLETE);
+		map.put("completeTime", SysUtils.getDateFormat(new Date()));
+		baseDao.updateColumnsByParmas(Application.class, ids, map);
+		for (String id : ids) {
+			Application app=baseDao.getByClassNameAndId(Application.class, id);
+			if(app.getType().equals(Application.TYPE_CHECK_IN)){//入住申请，通过审核后，修改用户信息
+				User u=baseDao.getByClassNameAndId(User.class, app.getUserId());
+				u.setUnit(app.getAddress());
+				baseDao.update(u);
+			}
+		}
 	}
 	
 }
