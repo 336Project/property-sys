@@ -3,7 +3,8 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<h3 class="ptitle text-center">标题：<span class="toupiao-title"></span></h3>
+<div style="width: 100%;"><h3 class="ptitle text-center">标题：<span class="toupiao-title"></span></h3><div style="font-size:16px;color:#3E98C5;float: right;margin-top:-30px;margin-right: 100px;">发起者：<span class="toupiao-author"></span></div>
+</div>
 <div class="row-fluid">
 	<div  class="offset1 span10" style="box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.10);background-color: #fff;padding-top:10px;">
 		<div id="chart-toupiao" style="width:100%;height:300px;"></div>
@@ -136,6 +137,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					console.log(MODEL.type);
 					/**生成投票start*/
 					var article = result.msg.article;
+					$(".toupiao-author").text(article.author);
 					$(".overviewNum").text(article.visitors);
 					var options = result.msg.options;
 					 //给标题和题目赋值

@@ -51,4 +51,12 @@
         	<ref bean="optionService"/>
         </property>
     </bean>
+     <!-- 账户管理 -->
+    <bean id="accountService" class="com.property.sys.serviceimpl.AccountServiceImpl" parent="baseService">
+    </bean>
+    <bean id="accountAction" class="com.property.sys.action.AccountAction" parent="baseAction">
+    	<property name="accountService">
+        	<ref bean="accountService"/>
+        </property>
+    </bean>
 </beans>

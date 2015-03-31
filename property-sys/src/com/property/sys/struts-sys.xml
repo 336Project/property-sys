@@ -42,5 +42,8 @@
 		<!-- 选项管理 -->
 		<action name="optionAction" class="optionAction">
 		</action>
+		<!-- 账户管理 -->
+		<action name="accountAction" class="accountAction">
+		</action>
 	</package>
 </struts>  

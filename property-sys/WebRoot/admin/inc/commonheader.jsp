@@ -13,7 +13,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="../css/application.css">
 	<link rel="stylesheet" href="../css/pages/dashboard.css">
 	<link rel="stylesheet" href="../css/style.css" type="text/css"></link>
-	
 	<link rel="stylesheet" type="text/css" href="../js/libs/datatables/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="../js/libs/datatables/css/jquery.dataTables_themeroller.css">
 
