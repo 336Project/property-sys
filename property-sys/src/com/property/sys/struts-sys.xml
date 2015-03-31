@@ -28,6 +28,7 @@
 		</global-results>
 		<!-- 用户管理 -->
 		<action name="userAction" class="userAction">
+			<result name="login2back">/admin/admin_index.jsp</result>
 		</action>
 		<!-- 文章管理 -->
 		<action name="articleAction" class="articleAction">
@@ -37,6 +38,9 @@
 		</action>
 		<!-- 评论管理 -->
 		<action name="commentAction" class="commentAction">
+		</action>
+		<!-- 选项管理 -->
+		<action name="optionAction" class="optionAction">
 		</action>
 	</package>
 </struts>  

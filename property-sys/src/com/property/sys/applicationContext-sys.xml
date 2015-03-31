@@ -23,6 +23,9 @@
         <property name="commentService">
         	<ref bean="commentService"/>
         </property>
+        <property name="optionService">
+        	<ref bean="optionService"/>
+        </property>
     </bean>
     <!-- 申请管理 -->
     <bean id="applicationService" class="com.property.sys.serviceimpl.ApplicationServiceImpl" parent="baseService">
@@ -38,6 +41,14 @@
     <bean id="commentAction" class="com.property.sys.action.CommentAction" parent="baseAction">
     	<property name="commentService">
         	<ref bean="commentService"/>
+        </property>
+    </bean>
+     <!-- 选项管理 -->
+    <bean id="optionService" class="com.property.sys.serviceimpl.OptionServiceImpl" parent="baseService">
+    </bean>
+    <bean id="optionAction" class="com.property.sys.action.OptionAction" parent="baseAction">
+    	<property name="optionService">
+        	<ref bean="optionService"/>
         </property>
     </bean>
 </beans>

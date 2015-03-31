@@ -16,6 +16,7 @@ jQuery.urlRoot = "<%=path%>";
 		<div id="top-nav">			
 			<ul class="pull-right">
 				<li><a href="javascript:;"><span class="badge badge-primary" id="span_count"></span>申请待处理</a></li>
+				<li><a href="<%=path%>/index.jsp#/listAll">前台</a></li>
 				<li><a href="<%=path%>/property-sys/userAction!logout.action">退出</a></li>
 			</ul>
 		</div> <!-- /#top-nav -->
@@ -40,7 +41,7 @@ jQuery.urlRoot = "<%=path%>";
 		<div class="nav-collapse">
 			<ul id="main-nav" class="nav pull-right">
 				<li class="nav-icon">
-					<a href="./admin_index.jsp">
+					<a href="<%=path%>/admin/admin_index.jsp">
 						<i class="icon-home"></i>
 						<span>首页</span>        					
 					</a>
@@ -54,7 +55,7 @@ jQuery.urlRoot = "<%=path%>";
 					</a>	
 				
 					<ul class="dropdown-menu">
-						<li><a href="zhuhu.jsp">用户管理</a></li>
+						<li><a href="<%=path%>/admin/zhuhu.jsp">用户管理</a></li>
 						<!-- <li><a href="administrator.jsp">管理员账户管理</a></li> -->
 					</ul>    				
 				</li>
@@ -67,7 +68,7 @@ jQuery.urlRoot = "<%=path%>";
 					</a>	
 				
 					<ul class="dropdown-menu">
-						<li><a href="wenzhang.jsp">文章管理</a></li>
+						<li><a href="<%=path%>/admin/wenzhang.jsp">文章管理</a></li>
 					</ul>    				
 				</li>
 				
@@ -79,9 +80,9 @@ jQuery.urlRoot = "<%=path%>";
 					</a>	
 				
 					<ul class="dropdown-menu">
-						<li><a href="shenqing_shenpi.jsp">申请审批</a></li>
-						<li><a href="jiaofei_tongzhi.jsp">缴费通知</a></li>
-						<li><a href="chongzhi.jsp">用户充值</a></li>
+						<li><a href="<%=path%>/admin/shenqing_shenpi.jsp">申请审批</a></li>
+						<li><a href="<%=path%>/admin/jiaofei_tongzhi.jsp">缴费通知</a></li>
+						<li><a href="<%=path%>/admin/chongzhi.jsp">用户充值</a></li>
 					</ul>    				
 				</li>
 			</ul>

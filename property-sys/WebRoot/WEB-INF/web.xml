@@ -53,7 +53,7 @@
   <!-- 权限控制 -->
   <filter>
     <filter-name>AuthorityFilter</filter-name>
-    <filter-class>com.sechand.platform.base.auth.AuthorityFilter</filter-class>
+    <filter-class>com.property.sys.utils.BackFilter</filter-class>
     <init-param>
     	<param-name>excludeJsp</param-name>
     	<param-value>/filter.properties</param-value>

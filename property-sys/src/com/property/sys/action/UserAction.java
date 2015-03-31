@@ -50,11 +50,11 @@ public class UserAction extends BaseAction{
 				//更新最后一次登录时间
 				userService.updateColumnById(User.class, "lastLoginTime", SysUtils.getDateFormat(new Date()), a.getId());
 				json.setSuccess(true);
-				if(a.getRoleCode().equals(Role.CODE_ADMIN)){
+				/*if(a.getRoleCode().equals(Role.CODE_ADMIN)){
 					json.setMsg("/admin/admin_index.jsp");
-				}else{
+				}else{*/
 					json.setMsg("/index.jsp#/listAll");
-				}
+				//}
 			}
 		}else {
 			json.setSuccess(false);
@@ -62,6 +62,24 @@ public class UserAction extends BaseAction{
 		}
 		return SUCCESS;
 	}
+	/**
+	 * 
+	 * @author Helen  
+	 * 2015-3-31 下午2:48:00
+	 * @return 
+	 * TODO 跳转到后台
+	 */
+	public String login2back(){
+		User u=(User) WebUtil.getSession(WebUtil.KEY_LOGIN_USER_SESSION);
+		if(u!=null&&u.getRoleCode().equals(Role.CODE_ADMIN)){
+			json.setMsg("/admin/admin_index.jsp");
+			return "login2back";
+		}else{
+			return ERROR;
+		}
+		
+	}
+	
 	/**
 	 * 
 	 * @Author:Helen  

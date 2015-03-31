@@ -92,7 +92,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <a href="#/list/zixun">咨询</a>
                     </li>
                     <li>
-                        <a href="admin/login.jsp">我是管理员</a><!-- 后台管理登入入口 -->
+                        <a href="<%=path%>/property-sys/userAction!login2back.action">我是管理员</a><!-- 后台管理登入入口 -->
                     </li>
                     <li>
                         <a href="<%=path%>/property-sys/userAction!logout.action">注销</a>
@@ -130,7 +130,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             '/zixun': function(){changeMainPanel("list_zixun.html");}
         },
         '/content':{//将id传递到下一页，id 可以从MODEL.id中获取 ，如果存为{"xxx":someParams}，则可以通过MODEL.xxx获取到该参数
-        	'/huodong/:id':function(id){changeMainPanel("content.jsp",{"id":id,"type":"huodong"});},
+        	'/huodong/:id':function(id){changeMainPanel("toupiao.jsp",{"id":id,"type":"huodong"});},
         	'/gonggao/:id':function(id){changeMainPanel("content.jsp",{"id":id,"type":"gonggao"});},
         	'/toupiao/:id':function(id){changeMainPanel("toupiao.jsp",{"id":id,"type":"toupiao"});},
         	'/tousu/:id':function(id){changeMainPanel("content.jsp",{"id":id,"type":"tousu"});},
@@ -141,6 +141,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     var router = Router(routes);
     router.init();
+    
 </script>
 </body>
 </html>

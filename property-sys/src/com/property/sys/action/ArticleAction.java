@@ -8,8 +8,10 @@ import org.apache.commons.lang.StringUtils;
 
 import com.property.sys.model.Article;
 import com.property.sys.model.Comment;
+import com.property.sys.model.Option;
 import com.property.sys.service.ArticleService;
 import com.property.sys.service.CommentService;
+import com.property.sys.service.OptionService;
 import com.property.sys.utils.DataTableParams;
 import com.property.sys.utils.Page;
 import com.sechand.platform.base.BaseAction;
@@ -19,6 +21,7 @@ public class ArticleAction extends BaseAction {
 	
 	private ArticleService articleService;
 	private CommentService commentService;
+	private OptionService optionService;
 	private int currentPage=1;
 	private int pageSize=9;
 	private int type;
@@ -83,10 +86,12 @@ public class ArticleAction extends BaseAction {
 		Article a=articleService.getById(id);
 		if(a!=null){
 			List<Comment> comments=commentService.listPageRowCommentsByArticleId(a.getId(), currentPage, pageSize);
+			List<Option> options=optionService.listByArticleId(a.getId());
 			Page page=new Page(currentPage, commentService.countByArticelId(a.getId()), pageSize);
 			Map<String, Object> dataMap=new HashMap<String, Object>();
 			dataMap.put("article", a);
 			dataMap.put("comments",comments);
+			dataMap.put("options",options);
 			dataMap.put("page", page);
 			json.setMsg(dataMap);
 			json.setSuccess(true);
@@ -196,5 +201,11 @@ public class ArticleAction extends BaseAction {
 	}
 	public void setIds(String ids) {
 		this.ids = ids;
+	}
+	public OptionService getOptionService() {
+		return optionService;
+	}
+	public void setOptionService(OptionService optionService) {
+		this.optionService = optionService;
 	}
 }

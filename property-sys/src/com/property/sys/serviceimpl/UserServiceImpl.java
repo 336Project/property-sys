@@ -22,7 +22,7 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService{
 		Map<String, Object> whereParams=new HashMap<String, Object>();
 		whereParams.put("userName", username);
 		whereParams.put("password", SysUtils.encrypt(password));
-		whereParams.put("roleCode", roleType);
+		//whereParams.put("roleCode", roleType);
 		return baseDao.getByClassNameAndParams(User.class, whereParams);
 	}
 

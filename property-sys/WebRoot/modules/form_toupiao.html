@@ -47,6 +47,16 @@ $(function(){
 	});
 	
 	$("#btn_toupiao").click(function(){
+		var optList = "";
+		var $opt = $(".option");
+		for(var i=0;i<$opt.length;i++){
+			if(i==$opt.length-1){
+				optList+=$opt.eq(i).find("input").val();
+			}else{
+				optList+=$opt.eq(i).find("input").val()+",";
+			}
+		}
+		console.log("选项结果："+optList);
 		$.ajax({
 			type:"post",
 			url:"property-sys/articleAction!publish.action",
@@ -55,7 +65,7 @@ $(function(){
 				"article.title":$("#title").val(),
 				"article.content":$("#content").val(),
 				"article.type":"投票",
-				"options":"赞成,反对"//选项
+				"options":optList//选项
 			},
 			success : function(data) {
 				if(data.success){
