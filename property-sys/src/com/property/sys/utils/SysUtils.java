@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Properties;
+import java.util.regex.Pattern;
 
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -40,7 +41,7 @@ public class SysUtils {
 		return format.format(date);
 	}
 	/**
-	 * 判断是否是数�?
+	 * 判断是否是数�?
 	 * @param isNumber
 	 * @return
 	 */
@@ -58,7 +59,7 @@ public class SysUtils {
 	 * base64加密
 	 * 
 	 * @param password
-	 *            �?��加密的密�?
+	 *            �?��加密的密�?
 	 * @return 加密后的结果
 	 */
 	public static String encrypt(String password) {
@@ -86,7 +87,7 @@ public class SysUtils {
 	 * @param key
 	 * @param path
 	 * @return 
-	 * TODO 从配置文件Properties读取key的�?
+	 * TODO 从配置文件Properties读取key的�?
 	 */
 	public static String readFromProperties(String key,String path){
 		Resource resource = new ClassPathResource(path);
@@ -98,5 +99,16 @@ public class SysUtils {
 			e.printStackTrace();
 		}
 		return "";
+	}
+	/**
+	 * 
+	 * 2015-4-1 上午9:17:19
+	 * @param str
+	 * @return 
+	 * TODO 有效金额
+	 */
+	public static boolean isMoneyNumber(String str){
+		Pattern pattern = Pattern.compile("(^[1-9]\\d*$)|(^([1-9]\\d*|0)\\.\\d{1,2}$)");
+		return pattern.matcher(str).matches();
 	}
 }

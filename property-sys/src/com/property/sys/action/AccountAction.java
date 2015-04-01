@@ -47,11 +47,12 @@ public class AccountAction extends BaseAction {
 	 */
 	public String recharge(){
 		if(account!=null) account.setSource(Account.SOURCE_PLATFORM);
-		if(accountService.add(account)>0){
+		String msg=accountService.add(account);
+		if(StringUtils.isBlank(msg)){
 			json.setMsg("充值成功，等待确认!");
 			json.setSuccess(true);
 		}else{
-			json.setMsg("充值失败!");
+			json.setMsg(msg);
 			json.setSuccess(false);
 		}
 		return SUCCESS;
@@ -67,10 +68,10 @@ public class AccountAction extends BaseAction {
 		String msg=accountService.confirmById(ids);
 		if(StringUtils.isNotBlank(msg)){
 			json.setMsg(msg);
-			json.setSuccess(true);
-		}else{
-			json.setMsg("确认失败!");
 			json.setSuccess(false);
+		}else{
+			json.setMsg("确认成功!");
+			json.setSuccess(true);
 		}
 		return SUCCESS;
 	}
@@ -117,11 +118,12 @@ public class AccountAction extends BaseAction {
 	 */
 	public String applyRecharge(){
 		if(account!=null) account.setSource(Account.SOURCE_USER);
-		if(accountService.add(account)>0){
+		String msg=accountService.add(account);
+		if(StringUtils.isBlank(msg)){
 			json.setMsg("充值成功，等待确认!");
 			json.setSuccess(true);
 		}else{
-			json.setMsg("充值失败!");
+			json.setMsg(msg);
 			json.setSuccess(false);
 		}
 		return SUCCESS;

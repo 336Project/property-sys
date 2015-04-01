@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 	<jsp:include page="/admin/inc/commonheader.jsp"></jsp:include>
 	<script src="../js/libs/modernizr-2.5.3.min.js"></script>
-	<link rel="stylesheet" href="../js/libs/select2/css/select2.min.css" type="text/css"></link>
+	<!-- <link rel="stylesheet" href="../js/libs/select2/css/select2.min.css" type="text/css"></link> -->
 </head>
 
 <body>
@@ -26,6 +26,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<h2 class="span9">充值管理</h2>
 						<div class="span3">
 							<button class="btn btn-primary" type="button" id="btn-modal-addAccount">充值</button>
+							<button class="btn btn-primary" type="button" id="btn-comfirm">充值确认</button>
+							<button class="btn btn-primary" type="button" id="btn-delete">删除</button>
 						</div>
 					</div>
 				</div> <!-- /.masthead-text -->
@@ -58,13 +60,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						     <select class="select2" id="userName" name="userName" ></select>
 					    </div>
 				  </div>
-				  <div class="form-group">
+				  <div class="form-group" style="margin-top: 20px;">
 				    <label for="inputEmail3" class="col-sm-4 control-label">充值金额</label>
 				    <div class="col-sm-8">
 				      <input type="text" class="form-control" id="money" name="money" placeholder="请输入要充值的金额">
 				    </div>
 				  </div>
-				  <div class="form-group">
+				  <div class="form-group" style="margin-top: 20px;">
 				    <label for="inputEmail3" class="col-sm-4 control-label">备注</label>
 				    <div class="col-sm-8">
 				      <input type="text" class="form-control" id="remark" name="remark" placeholder="" value="后台充值">
@@ -81,8 +83,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 </div> <!-- /#wrapper -->
 <jsp:include page="/admin/inc/footer.jsp"></jsp:include>
-	<script type="text/javascript" src="../js/libs/select2/js/i18n/zh-CN.js"></script>
-	<script type="text/javascript" src="../js/libs/select2/js/select2.js"></script>
+	<!-- <script type="text/javascript" src="../js/libs/select2/js/i18n/zh-CN.js"></script>
+	<script type="text/javascript" src="../js/libs/select2/js/select2.js"></script> -->
 <script src="js/chongzhi.js"></script>
 </body>
 </html>

@@ -19,8 +19,11 @@ public class AccountServiceImpl extends BaseServiceImpl implements
 		AccountService {
 
 	@Override
-	public long add(Account account) {
+	public String add(Account account) {
 		if(account!=null){
+			if(!SysUtils.isMoneyNumber(account.getMoney())){
+				return "金额格式有误,请输入金额数值，保留两位小数";
+			}
 			User user=baseDao.getByClassAndId(User.class, account.getUserId());
 			if(user!=null){
 				Account a=new Account();
@@ -33,10 +36,13 @@ public class AccountServiceImpl extends BaseServiceImpl implements
 				a.setType(Account.TYPE_RECHARGE);
 				a.setUserId(user.getId());
 				a.setUserName(user.getUserName());
-				return baseDao.save(Account.class,a);
+				int id=baseDao.save(Account.class,a);
+				if(id>0){
+					return "";
+				}
 			}
 		}
-		return -1;
+		return "充值失败";
 	}
 
 	@Override
@@ -122,7 +128,7 @@ public class AccountServiceImpl extends BaseServiceImpl implements
 								//更新用户余额
 								baseDao.updateColumnById(User.class, "balance", current_balance, user.getId());
 							}
-							return "确认成功!";
+							return "";
 						}catch (Exception e) {
 						}
 					}
@@ -131,7 +137,7 @@ public class AccountServiceImpl extends BaseServiceImpl implements
 				return "该记录已确认过，请勿重复确认!";
 			}
 		}
-		return null;
+		return "确认失败!";
 	}
 
 	@Override

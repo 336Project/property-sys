@@ -6,7 +6,7 @@ $().ready(function(){
 						render: function(id) {
 			        		var cell = arguments[3];
 			        		var index = (cell.settings._iDisplayStart+cell.row+1);
-							var str = "<input class='tcheckbox' id='d"+index+"' name='slecteAccount' data-uid='"+id+"' type=checkbox> "
+							var str = "<input class='tcheckbox' id='d"+index+"' name='slecteOrder' data-uid='"+id+"' type=checkbox> "
 							   +"<label for='d"+index+"'>"+index+"</label>";
 							return str;
 			        	}
@@ -69,25 +69,90 @@ $().ready(function(){
 	        url:"/property-sys/property-sys/userAction!listAllUsers.action",
 	        success: function (d) {
 	        	 //请将返回值的格式设置为[{id: "这里等于value", text: '这是text' },{id: "admin", text: '管理员'}]
-	            var data=[];
+	            //var data=[];
 	            var result=d.msg;
+	            var options="";
 	            for ( var i = 0; i < result.length; i++) {//动态加载角色
-					var obj=new Object();
-					obj.id=result[i].id;
-					obj.text=result[i].userName;
-					data.push(obj);
+	            	options+="<option value='"+result[i].id+"'>"+result[i].userName+"</option>";
 				}
-	            console.log(data);
-	            $.fn.modal.Constructor.prototype.enforceFocus = function() {}; 
-	            $("#addAccount").find("[name=userName]").select2({
-				  placeholder: "选择用户名",
-				  data:data
-				}); 
+	            $("#userName").html(options);
 	        }
 		});
 		$("#addAccount").modal("show");
 	});
-	//删除文章
+	//提交充值的表单
+	$("#btn-addAccount").off('click.save').on("click.save",function(){
+		$.ajax({
+    		url:"/property-sys/property-sys/accountAction!recharge.action",
+    		type:"post",
+    		dataType:"json",
+    		data:{
+    				"account.userId":$("#addAccount").find("[name=userName]").val(),
+    				"account.money":$("#addAccount").find("[name=money]").val(),
+    				"account.remark":$("#addAccount").find("[name=remark]").val()
+    		},
+    		success:function(d){
+    			$.W.alert(d.msg,true);
+    			//添加后刷新表格
+    			if(d.success){
+    				$("#addAccount").modal('hide');
+    				window.location.reload(true);
+    			}
+    		}
+    	});
+	});
+	//充值确认
+	$("#btn-comfirm").on("click.delete",function(){
+		var ListId = controls.getCheckedId("#table-chongzhi");
+		console.log(ListId);
+		if(ListId.length>0){
+			if(ListId.length>1){//避免还要解决并发问题
+				$.W.alert("一次只能确认一条记录！",true);
+			}else{
+				$.ajax({
+	        		url:"/property-sys/property-sys/accountAction!confirmAccount.action",
+	        		type:"post",
+	        		dataType:"json",
+	        		data:{ids:ListId[0]},
+	        		success:function(d){
+	        			$.W.alert(d.msg,true);
+	        			//确认后刷新表格
+	        			if(d.success){
+	        				window.location.reload(true);
+	        			}
+	        		}
+	        	});
+			}
+		}else{
+			$.W.alert("请选中要确认的记录！",true);
+		}
+	});
+	//删除账户记录
+	$("#btn-delete").on("click.delete",function(){
+		var ListId = controls.getCheckedId("#table-chongzhi");
+		if(ListId.length>0){
+			$.W.alert("确定删除"+ListId.length+"条记录？",true,function(){
+				//console.log(idList);
+				//ajax提交删除
+				$.ajax({
+	        		url:"/property-sys/property-sys/accountAction!deleteAccountByIds.action",
+	        		type:"post",
+	        		dataType:"json",
+	        		data:{ids:ListId.toString()},
+	        		success:function(d){
+	        			$.W.alert(d.msg,true);
+	        			//删除后刷新表格
+	        			if(d.success){
+	        				window.location.reload(true);
+	        			}
+	        		}
+	        	});
+			});
+		}else{
+			$.W.alert("请选中要删除的记录！",true);
+		}
+	});
+	/*//删除文章
 	$("#btn_delete_wenzhang").on("click.delete",function(){
 		var ListId = controls.getCheckedId("#table-wenzhang");
 		if(ListId.length>0){
@@ -111,5 +176,5 @@ $().ready(function(){
 		}else{
 			$.W.alert("请选中要删除的文章！",true);
 		}
-	});
+	});*/
 });

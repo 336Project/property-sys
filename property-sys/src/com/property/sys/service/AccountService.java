@@ -7,7 +7,7 @@ import com.sechand.platform.base.BaseService;
 
 
 public interface AccountService extends BaseService{
-	public long add(Account account);
+	public String add(Account account);
 	/**
 	 * 
 	 * 2015-1-6 下午12:43:16
