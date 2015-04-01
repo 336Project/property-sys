@@ -11,6 +11,7 @@ public class Application implements Serializable{
 	public static final String TYPE_FITMENT="装修申请";
 	
 	public static final String STATUS_APPLYING="申请中";
+	public static final String STATUS_NO_PASS="申请失败";
 	public static final String STATUS_COMPLETE="已完成";
 	
 	private Integer id;

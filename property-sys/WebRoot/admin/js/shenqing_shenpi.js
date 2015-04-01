@@ -1,6 +1,6 @@
 $().ready(function(){
 	$("#menu-wuye").addClass("active");
-	$("#table-shenqing").DataTable({
+	var table_shenqing=$("#table-shenqing").DataTable({
 		"columns":[//定义要显示的列名
 					{ data: 'id',sTitle:"",
 						render: function(id) {
@@ -15,6 +15,7 @@ $().ready(function(){
 					{data : 'realName',sTitle : "真实姓名"},
 					{data : 'contactNumber',sTitle : "用户联系电话"}, 
 					{data : 'address',sTitle : "地址"},
+					{data : 'type',sTitle : "申请类型"},
 					{data : 'content',sTitle : "申请内容"},
 					{data : 'applyTime',sTitle : "申请时间"}, 
 					{data : 'completeTime',sTitle : "完成时间"}, 
@@ -108,6 +109,77 @@ $().ready(function(){
 		}else{
 			$.W.alert("请选中要审核的申请！",true);
 		}
+	});
+	
+	//弹出申请的表单窗口
+	$("#btn_reply_apply").click(function(){
+		//选中的行
+		//获取到该行订单的所有信息
+		var $tr = $("#table-shenqing [name='slecteOrder']:checked").parent().parent();
+		var obj = table_shenqing.row($tr.eq(0)).data();
+		if($tr.length>1){
+			$.W.alert("不能同时回复多条记录!",true);
+		}else if($tr.length<=0){
+			$.W.alert("请先选中行再点击回复!",true);
+		}else{
+			if(obj.status=="申请中"){
+				//将信息填充到表单上
+				$("#update-id").val(obj.id);
+				$("#update-content").val(obj.content);
+				$("#update-userName").val(obj.userName);
+				$("#update-realName").val(obj.realName);
+				$("#update-type").val(obj.type);
+				$("#update-contactNumber").val(obj.contactNumber);
+				$("#update-address").val(obj.address);
+				$("#update-applyTime").val(obj.applyTime);
+				$("#update-reply").val(obj.reply);
+				$("#replyApply").modal("show");
+			}else{
+				$.W.alert("该记录已审核过!",true);
+			}
+		}
+	});
+	//审核通过
+	$("#btn-pass").off('click.save').on("click.save",function(){
+		$.ajax({
+    		url:"/property-sys/property-sys/applyAction!reply.action",
+    		type:"post",
+    		dataType:"json",
+    		data:{
+    				id:$("#replyApply").find("[name=id]").val(),
+    				type:1,
+    				reply:$("#replyApply").find("[name=reply]").val()
+    		},
+    		success:function(d){
+    			$.W.alert(d.msg,true);
+    			//添加后刷新表格
+    			if(d.success){
+    				$("#replyApply").modal('hide');
+    				window.location.reload(true);
+    			}
+    		}
+    	});
+	});
+	//审核不通过
+	$("#btn-no-pass").off('click.save').on("click.save",function(){
+		$.ajax({
+    		url:"/property-sys/property-sys/applyAction!reply.action",
+    		type:"post",
+    		dataType:"json",
+    		data:{
+    				id:$("#replyApply").find("[name=id]").val(),
+    				type:2,
+    				reply:$("#replyApply").find("[name=reply]").val()
+    		},
+    		success:function(d){
+    			$.W.alert(d.msg,true);
+    			//添加后刷新表格
+    			if(d.success){
+    				$("#replyApply").modal('hide');
+    				window.location.reload(true);
+    			}
+    		}
+    	});
 	});
 	
 });

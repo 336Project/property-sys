@@ -52,4 +52,14 @@ public interface ApplicationService extends BaseService {
 	 * TODO 批量通过申请
 	 */
 	public void pass(String[] ids);
+	/**
+	 * 
+	 * @author lixiaowei
+	 * 2015-4-1 下午1:37:22
+	 * @param id 
+	 * @param type 类型：1通过，2不通过
+	 * @param content 回复内容
+	 * TODO
+	 */
+	public String replyById(String id,int type,String reply);
 }

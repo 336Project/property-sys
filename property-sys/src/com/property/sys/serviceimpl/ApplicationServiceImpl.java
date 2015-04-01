@@ -101,5 +101,35 @@ public class ApplicationServiceImpl extends BaseServiceImpl implements
 			}
 		}
 	}
+
+	@Override
+	public String replyById(String id, int type, String reply) {
+		try{
+			Map<String, Object> map=new HashMap<String, Object>();
+			map.put("completeTime", SysUtils.getDateFormat(new Date()));
+			switch (type) {
+			case 1://通过
+				map.put("status", Application.STATUS_COMPLETE);
+				break;
+			case 2://不通过
+				if(StringUtils.isBlank(reply)) return "回复内容不能为空";
+				map.put("status", Application.STATUS_NO_PASS);
+				break;
+			default:
+				break;
+			}
+			map.put("reply", reply);
+			baseDao.updateColumnsByParmas(Application.class, id, map);
+			Application app=baseDao.getByClassNameAndId(Application.class, id);
+			if(app.getType().equals(Application.TYPE_CHECK_IN)){//入住申请，通过审核后，修改用户信息
+				User u=baseDao.getByClassNameAndId(User.class, app.getUserId());
+				u.setUnit(app.getAddress());
+				baseDao.update(u);
+			}
+		}catch(Exception e){
+			return "系统错误";
+		}
+		return "";
+	}
 	
 }

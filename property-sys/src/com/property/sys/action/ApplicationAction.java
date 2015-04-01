@@ -19,6 +19,8 @@ public class ApplicationAction extends BaseAction {
 	private int type;
 	private String dataTableParams;//表单参数,json格式
 	private String ids;
+	private String id;
+	private String reply;//回复内容
 	
 	public String apply(){
 		int id=applicationService.save(app, type);
@@ -105,6 +107,24 @@ public class ApplicationAction extends BaseAction {
 		}
 		return SUCCESS;
 	}
+	/**
+	 * 
+	 * @author lixiaowei
+	 * 2015-4-1 下午1:47:23
+	 * @return 
+	 * TODO 回复
+	 */ 
+	public String reply(){
+		String msg=applicationService.replyById(id, type, reply);
+		if(!StringUtils.isBlank(msg)){
+			json.setMsg(msg);
+			json.setSuccess(false);
+		}else{
+			json.setMsg("操作成功");
+			json.setSuccess(true);
+		}
+		return SUCCESS;
+	}
 	
 	public ApplicationService getApplicationService() {
 		return applicationService;
@@ -140,5 +160,17 @@ public class ApplicationAction extends BaseAction {
 	}
 	public void setIds(String ids) {
 		this.ids = ids;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getReply() {
+		return reply;
+	}
+	public void setReply(String reply) {
+		this.reply = reply;
 	}
 }
