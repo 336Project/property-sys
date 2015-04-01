@@ -29,7 +29,7 @@ public interface ArticleService extends BaseService {
 	 * int
 	 * @TODO 添加投票、活动、投诉、咨询、议题、公告
 	 */
-	public int add(Article article,String[] optionNames);
+	public String add(Article article,String optionStr);
 	/**
 	 * 
 	 * @Author:Helen  

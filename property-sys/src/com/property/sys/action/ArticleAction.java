@@ -58,19 +58,13 @@ public class ArticleAction extends BaseAction {
 	 * @TODO 发布文章
 	 */
 	public String publish(){
-		String[] opts=options.split(",");
-		if(opts!=null&&opts.length>=2){
-			int id=articleService.add(article, opts);
-			if(id>0){
-				json.setMsg("发布成功!");
-				json.setSuccess(true);
-			}else {
-				json.setMsg("发布失败!");
-				json.setSuccess(false);
-			}
-		}else{
-			json.setMsg("投票必须至少有两个选项!");
+		String msg=articleService.add(article, options);
+		if(StringUtils.isNotBlank(msg)){
+			json.setMsg(msg);
 			json.setSuccess(false);
+		}else{
+			json.setMsg("发布成功");
+			json.setSuccess(true);
 		}
 		return SUCCESS;
 	}

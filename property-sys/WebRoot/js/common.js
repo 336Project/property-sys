@@ -51,22 +51,24 @@ var CreatList={
 			str += model;
 			
 		}
-		for(var i=0; i<d.pg; i++){//页码
-			var liStr = "";
-			if(i+1 == d.curent){
-				liStr = '<li><span class="active">'+(i+1)+'</span></li>';
-			}else{
-				liStr = '<li><a href="javascript:void(0);" class="paginaList" data-pag="'+i+'">'+(i+1)+'</a></li>';
+		if(str.length>0){
+			for(var i=0; i<d.pg; i++){//页码
+				var liStr = "";
+				if(i+1 == d.curent){
+					liStr = '<li><span class="active">'+(i+1)+'</span></li>';
+				}else{
+					liStr = '<li><a href="javascript:void(0);" class="paginaList" data-pag="'+i+'">'+(i+1)+'</a></li>';
+				}
+				pgStr += liStr;
 			}
-			pgStr += liStr;
+			$w.html(str);
+			$(".pagination ul").html(pgStr);
+			$(".paginaList").on("click.p",function(){
+				pageNum = $(this).data("pag");
+				//这个是分页的
+				CreatList.init(type,pageNum);
+			});
 		}
-		$w.html(str);
-		$(".pagination ul").html(pgStr);
-		$(".paginaList").on("click.p",function(){
-			pageNum = $(this).data("pag");
-			//这个是分页的
-			CreatList.init(type,pageNum);
-		});
 	}
 }
 

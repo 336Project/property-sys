@@ -44,7 +44,7 @@
             <column name="balance" length="45" default="0"/>
         </property>
         <property name="unit" type="java.lang.String">
-            <column name="unit" length="45" default="0"/>
+            <column name="unit" length="45"/>
         </property>
     </class>
 </hibernate-mapping>

@@ -84,24 +84,44 @@ public class ArticleServiceImpl extends BaseServiceImpl implements
 	}
 
 	@Override
-	public int add(Article article, String[] optionNames) {
+	public String add(Article article, String optionStr) {
 		User user=(User) BaseUtil.getSession(BaseUtil.KEY_LOGIN_USER_SESSION);
-		if(article!=null){
+		if(article!=null&&user!=null){
+			if(StringUtils.isBlank(article.getTitle())){
+				return "标题不能为空";
+			}
+			if(StringUtils.isBlank(article.getContent())||article.getContent().length()>300){
+				return "内容不能为空且最多300个字符";
+			}
 			article.setAuthor(user.getUserName());
 			article.setUserId(user.getId());
 			article.setPublishDate(SysUtils.getDateFormat(new Date()));
 			int id=baseDao.save(article);
-			if(id>0){
-				for (String name : optionNames) {
-					Option option=new Option();
-					option.setArticleId(id);
-					option.setName(name);
-					baseDao.save(option);
+			if(id<0){
+				return "系统错误";
+			}
+			if(article.getType().equals(Article.TYPE_COMMUNITY_ACTIVITIES)||
+					article.getType().equals(Article.TYPE_VOTE)){
+				if(StringUtils.isBlank(optionStr)){
+					return "投票必须至少有两个选项!";
+				}else{
+					String[] optionNames=optionStr.split(",");
+					if(optionNames.length>=2){
+						for (String name : optionNames) {
+							Option option=new Option();
+							option.setArticleId(id);
+							option.setName(name);
+							baseDao.save(option);
+						}
+					}else{
+						return "投票必须至少有两个选项!";
+					}
 				}
 			}
-			return id;
+		}else{
+			return "操作异常";
 		}
-		return 0;
+		return "";
 	}
 
 	@Override

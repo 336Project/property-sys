@@ -79,4 +79,32 @@ $().ready(function(){
 			$.W.alert("请选中要删除的文章！",true);
 		}
 	});
+	//弹出发布公告窗口
+	$("#btn_publish_gonggao").click(function(){
+		//重置表单,ps:form元素才有reset
+		$("#publish-gonggao").find("form")[0].reset();
+		$("#publish-gonggao").modal("show");
+	});
+	//发布
+	$("#btn-publish-gonggao").off('click.save').on("click.save",function(){
+		$.ajax({
+	        type: "POST",
+	        dataType: "json",
+	        url:"/property-sys/property-sys/articleAction!publish.action",
+	        data:{
+				"article.title":$("#publish-gonggao").find("[name=title]").val(),
+				"article.content":$("#publish-gonggao").find("[name=content]").val(),
+				"article.type":"公告",
+				"options":""//选项
+			},
+	        success: function (d) {
+	        	$.W.alert(d.msg,true);
+	        	if(d.success){
+	        		$("#publish-gonggao").modal('hide');
+	        		//window.location.reload(true);
+	        	}
+	        }
+		});
+	});
+	
 });

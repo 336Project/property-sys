@@ -26,6 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<h2 class="span9">文章管理</h2>
 						<div class="span3">
 							<button class="btn btn-primary" type="button" id="btn_delete_wenzhang">删除</button>
+							<button class="btn btn-primary" type="button" id="btn_publish_gonggao">发布公告</button>
 						</div>
 					</div>
 				</div> <!-- /.masthead-text -->
@@ -42,7 +43,37 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div> <!-- /.container -->
 	
 	</div> <!-- /#content -->
-
+	<!-- 发布公告弹出框 start  -->
+		<div class="modal fade" id="publish-gonggao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+		        <h4 class="modal-title" id="myModalLabel">发布公告</h4>
+		      </div>
+		      <div class="modal-body row">
+		        <form class="form-horizontal col-xs-offset-2 col-xs-8 " role="form" id="addAccountForm">
+				  <div class="form-group" style="margin-top: 20px;">
+				    <label for="inputEmail3" class="col-sm-4 control-label">标题</label>
+				    <div class="col-sm-8">
+				      <input type="text" class="form-control" id="publish-title" name="title" placeholder="请输入标题">
+				    </div>
+				  </div>
+				  <div class="form-group" style="margin-top: 20px;">
+				    <label for="inputEmail3" class="col-sm-4 control-label">发布内容</label>
+				    <div class="col-sm-8">
+				      <textarea rows="8" class="form-control" id="publish-content" name="content" placeholder="请输入公告内容"></textarea>
+				    </div>
+				  </div>
+				</form>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+		        <button id="btn-publish-gonggao" type="button" class="btn btn-primary">发布</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
 </div> <!-- /#wrapper -->
 <jsp:include page="/admin/inc/footer.jsp"></jsp:include>
 
