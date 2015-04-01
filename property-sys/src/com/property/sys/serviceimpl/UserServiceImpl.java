@@ -44,7 +44,15 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService{
 			if(u!=null){
 				return "该用户名已存在,请重新注册!";
 			}
-			
+			if(!SysUtils.isEmail(user.getEmail())){
+				return "邮箱格式错误!";
+			}
+			if(!SysUtils.isPhoneNumber(user.getTel())){
+				return "手机格式错误!";
+			}
+			if(StringUtils.isBlank(user.getPassword())){
+				return "密码不能为空!";
+			}
 			u=new User();
 			u.setBalance("0");
 			u.setEmail(user.getEmail());

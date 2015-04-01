@@ -10,6 +10,7 @@ import java.util.Locale;
 import java.util.Properties;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
@@ -110,5 +111,31 @@ public class SysUtils {
 	public static boolean isMoneyNumber(String str){
 		Pattern pattern = Pattern.compile("(^[1-9]\\d*$)|(^([1-9]\\d*|0)\\.\\d{1,2}$)");
 		return pattern.matcher(str).matches();
+	}
+	/**
+	 * 
+	 * @author lixiaowei
+	 * 2015-4-1 下午3:15:45
+	 * @param str
+	 * @return 
+	 * TODO 邮箱验证
+	 */
+	public static boolean isEmail(String str){
+		Pattern pattern = Pattern.compile("^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$");
+		return pattern.matcher(str).matches();
+	}
+	/**
+	 * 
+	 * @author lixiaowei
+	 * 2015-4-1 下午3:24:21
+	 * @param str
+	 * @return 
+	 * TODO 手机验证
+	 */
+	public static boolean isPhoneNumber(String str){
+		if(StringUtils.isNotBlank(str)&&str.startsWith("1")&&str.length()==11){
+			return true;
+		}
+		return false;
 	}
 }
