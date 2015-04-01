@@ -45,5 +45,8 @@
 		<!-- 账户管理 -->
 		<action name="accountAction" class="accountAction">
 		</action>
+		<!-- 缴费管理 -->
+		<action name="paymentAction" class="paymentAction">
+		</action>
 	</package>
 </struts>  

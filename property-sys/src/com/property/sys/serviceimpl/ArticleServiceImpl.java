@@ -161,6 +161,11 @@ public class ArticleServiceImpl extends BaseServiceImpl implements
 	@Override
 	public void deleteByIds(String[] ids) {
 		baseDao.deleteByClassNameAndIds(Article.class, ids);
+		for(int i=0;i<ids.length;i++){//删除文章也将文章下的选项删除
+			Map<String, Object> map=new HashMap<String, Object>();
+			map.put("articleId", ids[i]);
+			baseDao.deleteByClassNameAndParams(Option.class, map);
+		}
 	}
 
 }

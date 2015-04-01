@@ -59,4 +59,12 @@
         	<ref bean="accountService"/>
         </property>
     </bean>
+    <!-- 缴费管理 -->
+    <bean id="paymentService" class="com.property.sys.serviceimpl.PaymentServiceImpl" parent="baseService">
+    </bean>
+    <bean id="paymentAction" class="com.property.sys.action.PaymentAction" parent="baseAction">
+    	<property name="paymentService">
+        	<ref bean="paymentService"/>
+        </property>
+    </bean>
 </beans>
