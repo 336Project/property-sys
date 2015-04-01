@@ -1,6 +1,6 @@
 $().ready(function(){
 	$("#menu-neirong").addClass("active");
-	$("#table-wenzhang").DataTable({
+	var table_wenzhang=$("#table-wenzhang").DataTable({
 		"columns":[//定义要显示的列名
 					{ data: 'id',sTitle:"",
 						render: function(id) {
@@ -70,13 +70,35 @@ $().ready(function(){
 	        			$.W.alert(d.msg,true);
 	        			//删除后刷新表格
 	        			if(d.success){
-	        				window.location.reload(true);
+	        				table_wenzhang.draw();
+	        				//window.location.reload(true);
 	        			}
 	        		}
 	        	});
 			});
 		}else{
 			$.W.alert("请选中要删除的文章！",true);
+		}
+	});
+	//查看文章
+	$("#btn_look_wenzhang").click(function(){
+		//选中的行
+		//获取到该行的所有信息
+		var $tr = $("#table-wenzhang [name='slecteOrder']:checked").parent().parent();
+		var obj = table_wenzhang.row($tr.eq(0)).data();
+		if($tr.length>1){
+			$.W.alert("不能同时查看多条记录!",true);
+		}else if($tr.length<=0){
+			$.W.alert("请先选中行再点击查看!",true);
+		}else{
+			//将信息填充到表单上
+			$("#look-title").val(obj.title);
+			$("#look-content").val(obj.content);
+			$("#look-author").val(obj.author);
+			$("#look-publishDate").val(obj.publishDate);
+			$("#look-type").val(obj.type);
+			$("#look-visitors").val(obj.visitors);
+			$("#look-wenzhang").modal("show");
 		}
 	});
 	//弹出发布公告窗口
@@ -101,7 +123,7 @@ $().ready(function(){
 	        	$.W.alert(d.msg,true);
 	        	if(d.success){
 	        		$("#publish-gonggao").modal('hide');
-	        		//window.location.reload(true);
+	        		table_wenzhang.draw();
 	        	}
 	        }
 		});

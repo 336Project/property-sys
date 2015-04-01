@@ -114,7 +114,7 @@ $().ready(function(){
 	//弹出申请的表单窗口
 	$("#btn_reply_apply").click(function(){
 		//选中的行
-		//获取到该行订单的所有信息
+		//获取到该行的所有信息
 		var $tr = $("#table-shenqing [name='slecteOrder']:checked").parent().parent();
 		var obj = table_shenqing.row($tr.eq(0)).data();
 		if($tr.length>1){
