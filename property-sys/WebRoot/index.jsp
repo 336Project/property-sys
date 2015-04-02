@@ -55,11 +55,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <!-- <a href="#" class="btn-more">更多</a> -->
                     </div>
                     <ul>
-                        <li>账户信息</li>
+                    	<li><a href="#/info/my">我的信息</a></li>
+                        <li><a href="#/info/zhanghu">账户信息</a></li>
                         <li>缴费</li>
-                        <li>充值</li>
                         <li>我的申请</li>
-                        <li>我的消息</li>
                         <li>我的发布</li>
                     </ul>
                 </div>
@@ -136,6 +135,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         	'/tousu/:id':function(id){changeMainPanel("content.jsp",{"id":id,"type":"tousu"});},
         	'/yiti/:id':function(id){changeMainPanel("content.jsp",{"id":id,"type":"yiti"});},
         	'/zixun/:id':function(id){changeMainPanel("content.jsp",{"id":id,"type":"zixun"});}
+        },
+        '/info':{
+        	'/my':function(){changeMainPanel("info_my.jsp");},
+        	'/zhanghu':function(){changeMainPanel("info_zhanghu.jsp");}
         }
     };
 
