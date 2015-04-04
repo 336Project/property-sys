@@ -14,9 +14,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="css/bootstrap-responsive.css">
 	<link rel="stylesheet" href="css/pages/index.css" type="text/css"></link>
 	<link rel="stylesheet" href="css/style.css" type="text/css"></link>
+	<link rel="stylesheet" type="text/css" href="js/libs/datatables/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="js/libs/datatables/css/jquery.dataTables_themeroller.css">
+	
 	<script type="text/javascript" src="js/libs/jquery-1.7.2.min.js"></script>
 	<script type="text/javascript" src="js/libs/director/director.min.js"></script>
-	
+	<script type="text/javascript" src="js/libs/datatables/js/jquery.dataTables.min.js"></script>
 	<script type="text/javascript" src="js/ueditor/ueditor.config.js"></script>
 	<script type="text/javascript">
 		jQuery.urlRoot = "<%=path%>";
