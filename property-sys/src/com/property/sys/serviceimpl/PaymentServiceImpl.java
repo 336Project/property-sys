@@ -13,6 +13,7 @@ import com.property.sys.model.User;
 import com.property.sys.service.PaymentService;
 import com.property.sys.utils.SysUtils;
 import com.sechand.platform.base.BaseServiceImpl;
+import com.sechand.platform.base.BaseUtil;
 
 public class PaymentServiceImpl extends BaseServiceImpl implements
 		PaymentService {
@@ -65,8 +66,13 @@ public class PaymentServiceImpl extends BaseServiceImpl implements
 
 	@Override
 	public List<Payment> listPageRowPaymentsByKeyword(int currentPage,
-			int pageSize, String keyword) {
+			int pageSize, String keyword,boolean isAdmin) {
+		User user=(User) BaseUtil.getSession(BaseUtil.KEY_LOGIN_USER_SESSION);
+		if(user==null) return null;
 		Map<String, Object> whereParams=new HashMap<String, Object>();
+		if(!isAdmin){
+			whereParams.put("userId", user.getId());
+		}
 		if(!StringUtils.isEmpty(keyword)){
 			whereParams.put("or_userName_like", keyword);
 			whereParams.put("or_createTime_like", keyword);
@@ -80,8 +86,13 @@ public class PaymentServiceImpl extends BaseServiceImpl implements
 	}
 
 	@Override
-	public int countByKeyword(String keyword) {
+	public int countByKeyword(String keyword,boolean isAdmin) {
+		User user=(User) BaseUtil.getSession(BaseUtil.KEY_LOGIN_USER_SESSION);
+		if(user==null) return 0;
 		Map<String, Object> whereParams=new HashMap<String, Object>();
+		if(!isAdmin){
+			whereParams.put("userId", user.getId());
+		}
 		if(!StringUtils.isEmpty(keyword)){
 			whereParams.put("or_userName_like", keyword);
 			whereParams.put("or_createTime_like", keyword);
@@ -102,6 +113,34 @@ public class PaymentServiceImpl extends BaseServiceImpl implements
 			map.put("payId", ids[i]);
 			baseDao.deleteByClassNameAndParams(PayItem.class, map);
 		}
+	}
+
+	@Override
+	public String pay(String id,String userName) {
+		Map<String, Object> whereMap=new HashMap<String, Object>();
+		whereMap.put("userName", userName);
+		User user=baseDao.getByClassNameAndParams(User.class, whereMap);
+		if(user!=null){
+			Payment payment=baseDao.getByClassAndId(Payment.class, Integer.valueOf(id));
+			if(payment!=null){
+				double balance=Double.valueOf(user.getBalance());
+				double money=Double.valueOf(payment.getMoney());
+				if(balance<money){
+					return "您的余额不足，请先充值！";
+				}else{
+					balance=balance-money;
+					baseDao.updateColumnById(User.class, "balance", balance, user.getId());
+					whereMap.clear();
+					whereMap.put("payTime", SysUtils.getDateFormat(new Date()));
+					whereMap.put("status", Payment.STATUS_PAY);
+					baseDao.updateColumnsByParmas(Payment.class, payment.getId(), whereMap);
+					user.setBalance(String.valueOf(balance));
+					BaseUtil.add2Session(BaseUtil.KEY_LOGIN_USER_SESSION, user);
+					return"";
+				}
+			}
+		}
+		return "缴费失败";
 	}
 	
 }

@@ -52,8 +52,13 @@ public class ApplicationServiceImpl extends BaseServiceImpl implements
 
 	@Override
 	public List<Application> listPageRowsApplicationsByKeyword(int currentPage,
-			int pageSize, String keyword) {
+			int pageSize, String keyword,boolean isAdmin) {
+		User user=(User) BaseUtil.getSession(BaseUtil.KEY_LOGIN_USER_SESSION);
+		if(user==null) return null;
 		Map<String, Object> whereParams=new HashMap<String, Object>();
+		if(!isAdmin){
+			whereParams.put("userId", user.getId());
+		}
 		if(!StringUtils.isEmpty(keyword)){
 			whereParams.put("or_realName_like", keyword);
 			whereParams.put("or_contactNumber_like", keyword);
@@ -67,8 +72,13 @@ public class ApplicationServiceImpl extends BaseServiceImpl implements
 	}
 
 	@Override
-	public int countByKeyword(String keyword) {
+	public int countByKeyword(String keyword,boolean isAdmin) {
+		User user=(User) BaseUtil.getSession(BaseUtil.KEY_LOGIN_USER_SESSION);
+		if(user==null) return 0;
 		Map<String, Object> whereParams=new HashMap<String, Object>();
+		if(!isAdmin){
+			whereParams.put("userId", user.getId());
+		}
 		if(!StringUtils.isEmpty(keyword)){
 			whereParams.put("or_realName_like", keyword);
 			whereParams.put("or_contactNumber_like", keyword);

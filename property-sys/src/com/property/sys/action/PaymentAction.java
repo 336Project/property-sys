@@ -19,6 +19,7 @@ public class PaymentAction extends BaseAction {
 	private String dataTableParams;//表单参数,json格式
 	private String ids;
 	private String id;
+	private String userName;//用户账号
 	private Payment payment;
 	private String items;//List<Payment> json格式
 	
@@ -55,8 +56,30 @@ public class PaymentAction extends BaseAction {
 		DataTableParams params=DataTableParams.getInstance();
 		params.parse(dataTableParams);
 		Map<String, Object> dataMap=new HashMap<String, Object>();
-		List<Payment> payments=paymentService.listPageRowPaymentsByKeyword(params.current_page, params.page_size, params.keyword);
-		int count=paymentService.countByKeyword(params.keyword);
+		List<Payment> payments=paymentService.listPageRowPaymentsByKeyword(params.current_page, params.page_size, params.keyword,true);
+		int count=paymentService.countByKeyword(params.keyword,true);
+		dataMap.put("recordsTotal", count);
+		dataMap.put("recordsFiltered", count);
+		dataMap.put("draw",params.draw);
+		dataMap.put("data", payments);
+		json.setMsg(dataMap);
+		json.setSuccess(true);
+		return SUCCESS;
+	}
+	/**
+	 * 
+	 * @Author:Helen  
+	 * 2015-4-1下午9:15:22
+	 * @return
+	 * String
+	 * @TODO 获取缴费列表
+	 */
+	public String listPaymentsByUser(){
+		DataTableParams params=DataTableParams.getInstance();
+		params.parse(dataTableParams);
+		Map<String, Object> dataMap=new HashMap<String, Object>();
+		List<Payment> payments=paymentService.listPageRowPaymentsByKeyword(params.current_page, params.page_size, params.keyword,false);
+		int count=paymentService.countByKeyword(params.keyword,false);
 		dataMap.put("recordsTotal", count);
 		dataMap.put("recordsFiltered", count);
 		dataMap.put("draw",params.draw);
@@ -99,6 +122,25 @@ public class PaymentAction extends BaseAction {
 		List<PayItem> items=paymentService.listByClassNameAndParams(PayItem.class, map);
 		json.setMsg(items);
 		json.setSuccess(true);
+		return SUCCESS;
+	}
+	/**
+	 * 
+	 * @Author:Helen  
+	 * 2015-4-4下午10:42:01
+	 * @return
+	 * String
+	 * @TODO
+	 */
+	public String toPay(){
+		String msg=paymentService.pay(id, userName);
+		if(StringUtils.isNotBlank(msg)){
+			json.setMsg(msg);
+			json.setSuccess(false);
+		}else{
+			json.setMsg("缴费成功");
+			json.setSuccess(true);
+		}
 		return SUCCESS;
 	}
 	
@@ -151,6 +193,14 @@ public class PaymentAction extends BaseAction {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 }

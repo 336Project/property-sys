@@ -78,7 +78,7 @@ var MSGmodel={
                 '<div class="preview-box">'+
                      '<blockquote>{content}</blockquote>'+
                 '</div>'+
-                '<a class="preview-mask" href="#/content/{id}"></a>'+
+                '<a class="preview-mask" href="#/content/{typeStr}/{id}"></a>'+
                 '<h5>'+
                     '<a href="#/content/{typeStr}/{id}">{title}<div style="float:right;color:#999">{type}</div></a>'+
                 '</h5>'+

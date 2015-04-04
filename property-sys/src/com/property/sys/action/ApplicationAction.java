@@ -45,8 +45,30 @@ public class ApplicationAction extends BaseAction {
 		DataTableParams params=DataTableParams.getInstance();
 		params.parse(dataTableParams);
 		Map<String, Object> dataMap=new HashMap<String, Object>();
-		List<Application> applications=applicationService.listPageRowsApplicationsByKeyword(params.current_page, params.page_size, params.keyword);
-		int count=applicationService.countByKeyword(params.keyword);
+		List<Application> applications=applicationService.listPageRowsApplicationsByKeyword(params.current_page, params.page_size, params.keyword,true);
+		int count=applicationService.countByKeyword(params.keyword,true);
+		dataMap.put("recordsTotal", count);
+		dataMap.put("recordsFiltered", count);
+		dataMap.put("draw",params.draw);
+		dataMap.put("data", applications);
+		json.setMsg(dataMap);
+		json.setSuccess(true);
+		return SUCCESS;
+	}
+	/**
+	 * 
+	 * @Author:Helen  
+	 * 2015-3-23下午10:47:39
+	 * @return
+	 * String
+	 * @TODO 获取申请列表
+	 */
+	public String listApplyByUser(){
+		DataTableParams params=DataTableParams.getInstance();
+		params.parse(dataTableParams);
+		Map<String, Object> dataMap=new HashMap<String, Object>();
+		List<Application> applications=applicationService.listPageRowsApplicationsByKeyword(params.current_page, params.page_size, params.keyword,false);
+		int count=applicationService.countByKeyword(params.keyword,false);
 		dataMap.put("recordsTotal", count);
 		dataMap.put("recordsFiltered", count);
 		dataMap.put("draw",params.draw);

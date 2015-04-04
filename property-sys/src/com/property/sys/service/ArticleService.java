@@ -50,7 +50,7 @@ public interface ArticleService extends BaseService {
 	 * List<Article>
 	 * @TODO 获取文章列表
 	 */
-	public List<Article> listPageRowsArticlesByKeyword(int currentPage,int pageSize,String keyword);
+	public List<Article> listPageRowsArticlesByKeyword(int currentPage,int pageSize,String keyword,boolean isAdmin);
 	/**
 	 * 
 	 * 2015-1-6 下午12:54:15
@@ -58,7 +58,7 @@ public interface ArticleService extends BaseService {
 	 * @return 
 	 * TODO 根据搜索关键字统计记录条数
 	 */
-	public int countByKeyword(String keyword);
+	public int countByKeyword(String keyword,boolean isAdmin);
 	/**
 	 * 
 	 * @author lixiaowei

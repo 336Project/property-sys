@@ -29,7 +29,7 @@ public interface PaymentService extends BaseService {
 	 * List<Payment>
 	 * @TODO 分页显示缴费记录
 	 */
-	public List<Payment> listPageRowPaymentsByKeyword(int currentPage,int pageSize,String keyword);
+	public List<Payment> listPageRowPaymentsByKeyword(int currentPage,int pageSize,String keyword,boolean isAdmin);
 	/**
 	 * 
 	 * @Author:Helen  
@@ -39,7 +39,7 @@ public interface PaymentService extends BaseService {
 	 * int
 	 * @TODO 统计
 	 */
-	public int countByKeyword(String keyword);
+	public int countByKeyword(String keyword,boolean isAdmin);
 	
 	/**
 	 * 
@@ -49,4 +49,14 @@ public interface PaymentService extends BaseService {
 	 * TODO 批量删除
 	 */
 	public void deleteByIds(String[] ids);
+	/**
+	 * 
+	 * @Author:Helen  
+	 * 2015-4-4下午10:28:01
+	 * @param id
+	 * @return
+	 * String
+	 * @TODO 缴费
+	 */
+	public String pay(String id,String userName);
 }

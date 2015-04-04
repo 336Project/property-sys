@@ -106,8 +106,30 @@ public class ArticleAction extends BaseAction {
 		DataTableParams params=DataTableParams.getInstance();
 		params.parse(dataTableParams);
 		Map<String, Object> dataMap=new HashMap<String, Object>();
-		List<Article> applications=articleService.listPageRowsArticlesByKeyword(params.current_page, params.page_size, params.keyword);
-		int count=articleService.countByKeyword(params.keyword);
+		List<Article> applications=articleService.listPageRowsArticlesByKeyword(params.current_page, params.page_size, params.keyword,true);
+		int count=articleService.countByKeyword(params.keyword,true);
+		dataMap.put("recordsTotal", count);
+		dataMap.put("recordsFiltered", count);
+		dataMap.put("draw",params.draw);
+		dataMap.put("data", applications);
+		json.setMsg(dataMap);
+		json.setSuccess(true);
+		return SUCCESS;
+	}
+	/**
+	 * 
+	 * @Author:Helen  
+	 * 2015-3-23下午10:47:39
+	 * @return
+	 * String
+	 * @TODO 获取文章列表
+	 */
+	public String listArticleByUser(){
+		DataTableParams params=DataTableParams.getInstance();
+		params.parse(dataTableParams);
+		Map<String, Object> dataMap=new HashMap<String, Object>();
+		List<Article> applications=articleService.listPageRowsArticlesByKeyword(params.current_page, params.page_size, params.keyword,false);
+		int count=articleService.countByKeyword(params.keyword,false);
 		dataMap.put("recordsTotal", count);
 		dataMap.put("recordsFiltered", count);
 		dataMap.put("draw",params.draw);

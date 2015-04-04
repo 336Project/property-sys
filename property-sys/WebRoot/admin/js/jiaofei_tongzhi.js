@@ -93,6 +93,7 @@ $().ready(function(){
 	//确定提交
 	$("#btn-commit").click(function(){
 		var $items = $(".item");
+		console.log($items);
 		var list=new Array();
 		for(var i=0;i<$items.length;i++){
 			var obj=new Object();
@@ -147,12 +148,12 @@ $().ready(function(){
 		}
 	});
 	var itmeDetailStr='<div class="control-group option" style="margin-top: 10px;">'+
-						'<div class="col-sm-8 item" style="text-align: center;">'+
+						'<div class="col-sm-8 itemDetail" style="text-align: center;">'+
 							'<input type="text" value="{name}" />：'+
 							'<input type="text" value="{money}" />'+
 						'</div>'+
 					  '</div>';
-	//查看文章
+	//查看缴费记录
 	$("#btn_look_jiaofei").click(function(){
 		//选中的行
 		//获取到该行的所有信息

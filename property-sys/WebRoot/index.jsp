@@ -60,9 +60,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <ul>
                     	<li><a href="#/info/my">我的信息</a></li>
                         <li><a href="#/info/zhanghu">账户信息</a></li>
-                        <li>缴费</li>
-                        <li>我的申请</li>
-                        <li>我的发布</li>
+                        <li><a href="#/info/jiaofei">缴费</a></li>
+                        <li><a href="#/info/shenqing">我的申请</a></li>
+                        <li><a href="#/info/fabu">我的发布</a></li>
                     </ul>
                 </div>
             </div>
@@ -141,7 +141,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         },
         '/info':{
         	'/my':function(){changeMainPanel("info_my.jsp");},
-        	'/zhanghu':function(){changeMainPanel("info_zhanghu.jsp");}
+        	'/zhanghu':function(){changeMainPanel("info_zhanghu.jsp");},
+        	'/jiaofei':function(){changeMainPanel("info_jiaofei.jsp");},
+        	'/shenqing':function(){changeMainPanel("info_shenqing.jsp");},
+        	'/fabu':function(){changeMainPanel("info_fabu.jsp");}
         }
     };
 

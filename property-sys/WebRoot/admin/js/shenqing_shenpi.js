@@ -75,8 +75,7 @@ $().ready(function(){
 	        			$.W.alert(d.msg,true);
 	        			//删除后刷新表格
 	        			if(d.success){
-	        				//
-	        				window.location.reload(true);
+	        				table_shenqing.draw();
 	        			}
 	        		}
 	        	});
@@ -101,7 +100,7 @@ $().ready(function(){
 	        			$.W.alert(d.msg,true);
 	        			//删除后刷新表格
 	        			if(d.success){
-	        				window.location.reload(true);
+	        				table_shenqing.draw();
 	        			}
 	        		}
 	        	});
@@ -155,7 +154,7 @@ $().ready(function(){
     			//添加后刷新表格
     			if(d.success){
     				$("#replyApply").modal('hide');
-    				window.location.reload(true);
+    				table_shenqing.draw();
     			}
     		}
     	});
@@ -176,7 +175,7 @@ $().ready(function(){
     			//添加后刷新表格
     			if(d.success){
     				$("#replyApply").modal('hide');
-    				window.location.reload(true);
+    				table_shenqing.draw();
     			}
     		}
     	});

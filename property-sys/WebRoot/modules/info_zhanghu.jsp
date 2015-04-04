@@ -3,11 +3,51 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<link rel="stylesheet" href="<%=path%>/css/bootstrap.css">
+<link rel="stylesheet" href="<%=path%>/css/bootstrap-responsive.css">
+<script src="<%=path%>/js/libs/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="<%=path%>/admin/js/common.js"></script>
 <h3 class="ptitle text-center" style="margin-top:0;">账户信息</h3>
+<div class="span3" style="float: right;margin-top: 10px;">
+		<button class="btn btn-primary" type="button"
+			id="btn-modal-addAccount">充值</button>
+	</div>
 <div class="row-fluid userMsg box-shadow my-msg" >
-<div class="span12" style="padding:10px;min-height:200px;"><table id="table-chongzhi" class="hover order-column" ></table></div>
+	
+	<div class="span12" style="padding:10px;min-height:200px;"><table id="table-chongzhi" class="hover order-column" ></table></div>
 </div>
-
+<!-- 充值弹出框 start  -->
+		<div class="modal fade" id="addAccount" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+		        <h4 class="modal-title" id="myModalLabel">充值</h4>
+		      </div>
+		      <div class="modal-body row">
+		        <form class="form-horizontal col-xs-offset-2 col-xs-8 " role="form" id="addAccountForm">
+				  <div class="form-group" style="margin-top: 20px;">
+				    <label for="inputEmail3" class="col-sm-4 control-label">充值金额</label>
+				    <div class="col-sm-8">
+				      <input type="text" class="form-control" id="money" name="money" placeholder="请输入要充值的金额">
+				      <input type="text" class="form-control" id="userId" name="userId" value="${sessionScope.user.id}" style="display: none;">
+				    </div>
+				  </div>
+				  <div class="form-group" style="margin-top: 20px;">
+				    <label for="inputEmail3" class="col-sm-4 control-label">备注</label>
+				    <div class="col-sm-8">
+				      <input type="text" class="form-control" id="remark" name="remark" placeholder="">
+				    </div>
+				  </div>
+				</form>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+		        <button id="btn-addAccount" type="button" class="btn btn-primary">确认充值</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
 <script>
 $().ready(function(){
 	var table_chongzhi=$("#table-chongzhi").DataTable({
@@ -21,7 +61,6 @@ $().ready(function(){
 							return str;
 			        	}
 					},
-					{data : 'userName',sTitle : "用户账号"}, 
 					{data : 'balance',sTitle : "当前余额"},
 					{data : 'completeTime',sTitle : "完成时间"}, 
 					{data : 'money',sTitle : "交易金额(元)"}, 
@@ -32,7 +71,7 @@ $().ready(function(){
 		"dom":"<lf<t>ip>",
 		"order": [[ 2, 'asc' ]],
 		"scrollX": true,//水平滚动条
-		"scrollXInner":"110%",
+		"scrollXInner":"120%",
 		"processing": true,
         "serverSide": true,
         "bAutoWidth": false,//自适应宽度
@@ -41,7 +80,7 @@ $().ready(function(){
         	//alert(JSON.stringify(params));
         	params.push({name:"sSearch",value:params[5].value.value});
         	$.ajax({
-        		url:"/property-sys/property-sys/accountAction!listAccountsByParams.action",
+        		url:"/property-sys/property-sys/accountAction!listAccountsByUser.action",
         		type:"post",
         		dataType:"json",
         		data:{dataTableParams:JSON.stringify(params)},
@@ -66,104 +105,33 @@ $().ready(function(){
 			} 
 		}
 	});
-/* 	//点击充值按钮时，加载用户下拉框
+	//点击充值按钮时，加载用户下拉框
 	$("#btn-modal-addAccount").click(function(){
 		//重置表单,ps:form元素才有reset
 		$("#addAccount").find("form")[0].reset();
-		//加载充值功能中用户列表
-		$.ajax({
-	        type: "POST",
-	        contentType: "application/json;utf-8",
-	        dataType: "json",
-	        url:"/property-sys/property-sys/userAction!listAllUsers.action",
-	        success: function (d) {
-	        	 //请将返回值的格式设置为[{id: "这里等于value", text: '这是text' },{id: "admin", text: '管理员'}]
-	            //var data=[];
-	            var result=d.msg;
-	            var options="";
-	            for ( var i = 0; i < result.length; i++) {//动态加载角色
-	            	options+="<option value='"+result[i].id+"'>"+result[i].userName+"</option>";
-				}
-	            $("#userName").html(options);
-	        }
-		});
 		$("#addAccount").modal("show");
 	});
 	//提交充值的表单
 	$("#btn-addAccount").off('click.save').on("click.save",function(){
 		$.ajax({
-    		url:"/property-sys/property-sys/accountAction!recharge.action",
-    		type:"post",
-    		dataType:"json",
-    		data:{
-    				"account.userId":$("#addAccount").find("[name=userName]").val(),
-    				"account.money":$("#addAccount").find("[name=money]").val(),
-    				"account.remark":$("#addAccount").find("[name=remark]").val()
-    		},
-    		success:function(d){
-    			$.W.alert(d.msg,true);
-    			//添加后刷新表格
-    			if(d.success){
-    				$("#addAccount").modal('hide');
-    				//window.location.reload(true);
-    				table_chongzhi.draw();
-    			}
-    		}
-    	});
+       		url:"/property-sys/property-sys/accountAction!applyRecharge.action",
+       		type:"post",
+       		dataType:"json",
+       		data:{
+       				"account.userId":$("#addAccount").find("[name=userId]").val(),
+       				"account.money":$("#addAccount").find("[name=money]").val(),
+       				"account.remark":$("#addAccount").find("[name=remark]").val()
+       		},
+       		success:function(d){
+       			$("#addAccount").modal('hide');
+       			$.W.alert(d.msg,true);
+       			//添加后刷新表格
+       			if(d.success){
+       				table_chongzhi.draw();
+       			}
+       		}
+       	});
 	});
-	//充值确认
-	$("#btn-comfirm").on("click.delete",function(){
-		var ListId = controls.getCheckedId("#table-chongzhi");
-		console.log(ListId);
-		if(ListId.length>0){
-			if(ListId.length>1){//避免还要解决并发问题
-				$.W.alert("一次只能确认一条记录！",true);
-			}else{
-				$.ajax({
-	        		url:"/property-sys/property-sys/accountAction!confirmAccount.action",
-	        		type:"post",
-	        		dataType:"json",
-	        		data:{ids:ListId[0]},
-	        		success:function(d){
-	        			$.W.alert(d.msg,true);
-	        			//确认后刷新表格
-	        			if(d.success){
-	        				//window.location.reload(true);
-	        				table_chongzhi.draw();
-	        			}
-	        		}
-	        	});
-			}
-		}else{
-			$.W.alert("请选中要确认的记录！",true);
-		}
-	});
-	//删除账户记录
-	$("#btn-delete").on("click.delete",function(){
-		var ListId = controls.getCheckedId("#table-chongzhi");
-		if(ListId.length>0){
-			$.W.alert("确定删除"+ListId.length+"条记录？",true,function(){
-				//console.log(idList);
-				//ajax提交删除
-				$.ajax({
-	        		url:"/property-sys/property-sys/accountAction!deleteAccountByIds.action",
-	        		type:"post",
-	        		dataType:"json",
-	        		data:{ids:ListId.toString()},
-	        		success:function(d){
-	        			$.W.alert(d.msg,true);
-	        			//删除后刷新表格
-	        			if(d.success){
-	        				//window.location.reload(true);
-	        				table_chongzhi.draw();
-	        			}
-	        		}
-	        	});
-			});
-		}else{
-			$.W.alert("请选中要删除的记录！",true);
-		}
-	}); */
 	
 });
 

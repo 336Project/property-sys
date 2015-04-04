@@ -26,7 +26,7 @@ public interface ApplicationService extends BaseService {
 	 * @return
 	 * @TODO
 	 */
-	public List<Application> listPageRowsApplicationsByKeyword(int currentPage,int pageSize,String keyword);
+	public List<Application> listPageRowsApplicationsByKeyword(int currentPage,int pageSize,String keyword,boolean isAdmin);
 	/**
 	 * 
 	 * 2015-1-6 下午12:54:15
@@ -34,7 +34,7 @@ public interface ApplicationService extends BaseService {
 	 * @return 
 	 * TODO 根据搜索关键字统计记录条数
 	 */
-	public int countByKeyword(String keyword);
+	public int countByKeyword(String keyword,boolean isAdmin);
 	/**
 	 * 
 	 * @author lixiaowei
