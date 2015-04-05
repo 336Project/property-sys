@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MyHtml.html</title>
+	
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+   <script type="text/javascript" src="../js/libs/jquery-1.7.2.min.js"></script>
+   <script type="text/javascript" src="../js/libs/bootstrap/bootstrap.min.js"></script>
+   <link rel="stylesheet" href="../css/bootstrap.css" type="text/css"></link>
+  
+  
+	<!-- 时间选择器的js和css -->
+  <link rel="stylesheet" href="../js/libs/datepicker/css/datepicker.css" type="text/css"></link>
+  <script type="text/javascript" src="../js/libs/datepicker/js/bootstrap-datepicker.js"></script>
+  
+ 
+  </head>
+  
+  <body>
+    <h2>时间选择器demo：</h2>
+    <!-- 基本使用 -->
+    
+    <input type="text" class="input-small" id="datePicker" name="time" placeholder="yyyy-mm-dd">
+    
+    <script type="text/javascript">
+    $(function(){
+    	$("#datePicker").datepicker();
+    });
+    </script>
+    
+    
+    <!-- 时间范围 -->
+    <div class="control-group">
+		<label class="control-label" for="t_from">时间范围：</label>
+		<div class="controls">
+			<div class="input-append date_t_from">
+				<span class="group">
+					<input type="text" class="input-small" id="t_from" name="t_from" placeholder="yyyy-mm-dd">
+		    	</span>
+			</div>
+			<label class="help-inline" for="t_to">至&nbsp;</label>
+			<div class="input-append date_t_to">
+				<span class="group">
+					<input type="text" class="input-small" id="t_to" name="t_to" placeholder="yyyy-mm-dd">
+		    	</span>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var nowTemp = new Date();
+		var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+		//console.log(now);
+		//180天前
+		var ago180DayTemp = new Date(Date.parse(nowTemp.toString()) - 86400000*180);
+		var ago180Day = new Date(ago180DayTemp.getFullYear(), ago180DayTemp.getMonth(), ago180DayTemp.getDate(), 0, 0, 0, 0);
+		 
+		var timeFrom = $("#t_from").datepicker({
+			format:"yyyy-mm-dd",
+			onRender: function(date) {
+			    return  date.valueOf() >= now ? 'disabled' : '';
+			  }
+		}).datepicker('setValue', ago180Day).on('changeDate', function(ev) {
+			if (ev.date.valueOf() > timeTo.date.valueOf()) {
+			    var newDate = new Date(ev.date)
+			    newDate.setDate(newDate.getDate() + 1);
+			    timeTo.setValue(newDate);
+			  }
+			timeFrom.hide();
+			$("#t_to")[0].focus();
+		}).data('datepicker');
+		
+		var timeTo = $("#t_to").datepicker({
+			format:"yyyy-mm-dd",
+			onRender: function(date) {
+			    return (date.valueOf() <=  timeFrom.date.valueOf())||( date.valueOf() > now) ? 'disabled' : '';
+			  }
+		}).datepicker('setValue', now).on('changeDate', function(ev) {
+			timeTo.hide();
+		}).data('datepicker');
+	</script>
+  </body>
+</html>
