@@ -1,5 +1,7 @@
 $().ready(function(){
 	$("#menu-wuye").addClass("active");
+	$.fn.modal.Constructor.prototype.enforceFocus = function() {}; 
+	$("#endTime").datepicker();
 	var table_jiaofei=$("#table-jiaofei").DataTable({
 		"columns":[//定义要显示的列名
 					{ data: 'id',sTitle:"",

@@ -17,5 +17,4 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" type="text/css" href="../js/libs/datatables/css/jquery.dataTables_themeroller.css">
 
 <script src="../js/libs/jquery-1.7.2.min.js"></script>
-<script src="../js/libs/jquery-ui-1.8.21.custom.min.js"></script>
 <script src="../js/libs/jquery.ui.touch-punch.min.js"></script>

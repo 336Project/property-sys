@@ -350,7 +350,6 @@ body:not(:-moz-handler-blocked) .dropdown-submenu > a:after {
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
 }
 .modal-header {
-  padding: 15px;
   background-color: #264565;
   background-image: -moz-linear-gradient(top, #2b4e72, #1e3751);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#2b4e72), to(#1e3751));
@@ -393,7 +392,6 @@ body:not(:-moz-handler-blocked) .dropdown-submenu > a:after {
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
 .modal-header .close {
-  margin-top: -10px;
   color: #ffffff;
   font-size: 18px;
   opacity: 1;
