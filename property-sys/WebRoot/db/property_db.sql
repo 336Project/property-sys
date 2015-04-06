@@ -10,10 +10,33 @@ Target Server Type    : MYSQL
 Target Server Version : 50529
 File Encoding         : 65001
 
-Date: 2015-03-23 20:33:44
+Date: 2015-04-06 19:44:46
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for tb_account
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_account`;
+CREATE TABLE `tb_account` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `create_time` varchar(45) DEFAULT NULL,
+  `complete_time` varchar(45) DEFAULT NULL,
+  `status` varchar(45) DEFAULT NULL,
+  `user_name` varchar(45) DEFAULT NULL,
+  `money` varchar(45) DEFAULT NULL,
+  `balance` varchar(45) DEFAULT NULL,
+  `type` varchar(45) DEFAULT NULL,
+  `remark` varchar(45) DEFAULT NULL,
+  `source` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of tb_account
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for tb_application
@@ -21,30 +44,23 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `tb_application`;
 CREATE TABLE `tb_application` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `user_name` varchar(45) DEFAULT NULL,
+  `real_name` varchar(45) DEFAULT NULL,
+  `contact_number` varchar(45) DEFAULT NULL,
   `type` varchar(45) DEFAULT NULL,
   `apply_time` varchar(45) DEFAULT NULL,
   `complete_time` varchar(45) DEFAULT NULL,
   `content` longtext,
   `status` varchar(45) DEFAULT NULL,
   `reply` longtext,
-  `user_id` int(11) DEFAULT NULL,
-  `real_name` varchar(45) DEFAULT NULL,
-  `contact_number` varchar(45) DEFAULT NULL,
   `address` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_application
 -- ----------------------------
-INSERT INTO `tb_application` VALUES ('1', '报修申请', '2015-03-15 15:37:17', null, '', '申请中', null, '1', '12', '213', '321');
-INSERT INTO `tb_application` VALUES ('2', '报修申请', '2015-03-15 15:37:29', null, '', '申请中', null, '2', '12', '213', '321');
-INSERT INTO `tb_application` VALUES ('3', '报修申请', '2015-03-15 15:37:34', null, '', '申请中', null, '3', '12', '213', '321');
-INSERT INTO `tb_application` VALUES ('4', '报修申请', '2015-03-15 15:40:04', null, '', '申请中', null, '4', '', '', '');
-INSERT INTO `tb_application` VALUES ('5', '入住申请', '2015-03-15 15:54:54', null, '', '申请中', null, '5', '', '', '');
-INSERT INTO `tb_application` VALUES ('6', '入住申请', '2015-03-15 15:55:07', null, '', '申请中', null, '6', '', '', '');
-INSERT INTO `tb_application` VALUES ('7', '装修申请', '2015-03-15 15:55:39', null, '', '申请中', null, '7', '', '', '');
-INSERT INTO `tb_application` VALUES ('8', '装修申请', '2015-03-18 20:33:20', null, '', '申请中', null, '8', '', '', '');
 
 -- ----------------------------
 -- Table structure for tb_article
@@ -57,31 +73,14 @@ CREATE TABLE `tb_article` (
   `content` longtext,
   `user_id` int(11) DEFAULT NULL,
   `author` varchar(45) DEFAULT NULL,
-  `visitors` bigint(20) DEFAULT '0',
-  `supporters` bigint(20) DEFAULT '0',
-  `opponents` bigint(20) DEFAULT '0',
   `publish_date` varchar(45) DEFAULT NULL,
+  `visitors` bigint(20) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_article
 -- ----------------------------
-INSERT INTO `tb_article` VALUES ('1', '活动', '社区活动1', '社区活动1', '1', '张三', '0', '0', '0', '2015-03-10');
-INSERT INTO `tb_article` VALUES ('2', '活动', '社区活动1', '社区活动1', '1', '张三', '0', '0', '0', '2015-03-09');
-INSERT INTO `tb_article` VALUES ('3', '活动', '社区活动1', '社区活动1', '1', '张三', '0', '0', '0', '2015-03-10');
-INSERT INTO `tb_article` VALUES ('4', '活动', '社区活动1', '社区活动1', '1', '张三', '0', '0', '0', '2015-03-11');
-INSERT INTO `tb_article` VALUES ('5', '活动', '社区活动1', '社区活动1', '1', '张三', '0', '0', '0', '2015-03-10');
-INSERT INTO `tb_article` VALUES ('6', '咨询', '咨询1', '咨询1', '1', '张三', '0', '0', '0', '2015-03-10');
-INSERT INTO `tb_article` VALUES ('7', '投诉', '投诉1', '投诉1', '1', '张三', '0', '0', '0', '2015-03-10');
-INSERT INTO `tb_article` VALUES ('8', '投票', '投票1', '投票1', '1', '张三', '0', '0', '0', '2015-03-10');
-INSERT INTO `tb_article` VALUES ('9', '议题', '社会议题1', '社会议题1', '1', '张三', '0', '0', '0', '2015-03-13');
-INSERT INTO `tb_article` VALUES ('10', '公告', '社区公告', '社区公告1', '1', '张三', '0', '0', '0', '2015-03-10');
-INSERT INTO `tb_article` VALUES ('11', '投票', '投票方式', ' ', '1', '12345', '0', '0', '0', '2015-03-18 22:06:31');
-INSERT INTO `tb_article` VALUES ('12', '投票', '我要投票', '对于投票的方式，大家是否赞成呢？', '1', '12345', '0', '0', '0', '2015-03-18 22:08:43');
-INSERT INTO `tb_article` VALUES ('13', '咨询', '我要咨询', '怎么申请入驻', '1', '12345', '0', '0', '0', '2015-03-18 22:31:34');
-INSERT INTO `tb_article` VALUES ('14', '投诉', '我要投诉', '水管老旧', '1', '12345', '0', '0', '0', '2015-03-18 22:32:11');
-INSERT INTO `tb_article` VALUES ('15', '议题', '乔丹厉害吗', '非常厉害', '1', '12345', '0', '0', '0', '2015-03-18 22:38:50');
 
 -- ----------------------------
 -- Table structure for tb_comment
@@ -111,21 +110,48 @@ CREATE TABLE `tb_option` (
   `article_id` int(11) DEFAULT NULL,
   `supporters` bigint(20) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_option
 -- ----------------------------
-INSERT INTO `tb_option` VALUES ('1', '赞成', '11', '0');
-INSERT INTO `tb_option` VALUES ('2', '反对', '11', '0');
-INSERT INTO `tb_option` VALUES ('3', '赞成', '12', '0');
-INSERT INTO `tb_option` VALUES ('4', '反对', '12', '0');
-INSERT INTO `tb_option` VALUES ('5', '赞', '13', '0');
-INSERT INTO `tb_option` VALUES ('6', '踩', '13', '0');
-INSERT INTO `tb_option` VALUES ('7', '赞', '14', '0');
-INSERT INTO `tb_option` VALUES ('8', '踩', '14', '0');
-INSERT INTO `tb_option` VALUES ('9', '赞', '15', '0');
-INSERT INTO `tb_option` VALUES ('10', '踩', '15', '0');
+
+-- ----------------------------
+-- Table structure for tb_payment
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_payment`;
+CREATE TABLE `tb_payment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `user_name` varchar(255) DEFAULT NULL,
+  `create_time` varchar(45) DEFAULT NULL,
+  `end_time` varchar(45) DEFAULT NULL,
+  `status` varchar(45) DEFAULT NULL,
+  `pay_time` varchar(45) DEFAULT NULL,
+  `money` varchar(45) DEFAULT NULL,
+  `remark` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of tb_payment
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for tb_pay_item
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_pay_item`;
+CREATE TABLE `tb_pay_item` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pay_id` int(11) DEFAULT NULL,
+  `name` varchar(45) DEFAULT NULL,
+  `money` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of tb_pay_item
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for tb_role
@@ -154,20 +180,18 @@ CREATE TABLE `tb_user` (
   `role_name` varchar(45) NOT NULL,
   `user_name` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
-  `nick_name` varchar(45) DEFAULT NULL,
   `email` varchar(45) DEFAULT NULL,
   `tel` varchar(45) DEFAULT NULL,
   `source` varchar(45) DEFAULT NULL,
   `last_login_time` varchar(45) DEFAULT NULL,
   `register_time` varchar(45) DEFAULT NULL,
   `status` varchar(45) DEFAULT NULL,
-  `introduction` longtext,
   `balance` varchar(45) DEFAULT '0',
+  `unit` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_user
 -- ----------------------------
-INSERT INTO `tb_user` VALUES ('1', '2', '普通用户', '12345', 'dpLc3BnkHmbGri3lSmlrJQ==', null, null, null, null, '2015-03-18 22:45:51', null, '正常', null, '0');
-INSERT INTO `tb_user` VALUES ('2', '1', '物业管理员', '123456', 'dpLc3BnkHmbGri3lSmlrJQ==', null, null, null, null, '2015-03-03 21:37:22', null, '正常', null, '0');
+INSERT INTO `tb_user` VALUES ('1', '1', '物业管理员', 'admin', '6CO+d3rD2LEFLmLJbJZQSQ==', null, null, '手动录入', '2015-04-06 19:42:03', '2015-04-06', '正常', '0', null);

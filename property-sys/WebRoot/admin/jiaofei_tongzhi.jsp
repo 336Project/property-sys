@@ -54,7 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div id="add-jiaofei" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Modal header</h3>
+    <h3 id="myModalLabel">缴费通知</h3>
   </div>
   <div class="modal-body">
     <form class="form-horizontal col-xs-offset-2 col-xs-8 " role="form" id="addAccountForm">
@@ -67,7 +67,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  <div class="form-group" style="margin-top: 10px;">
 		    <label for="inputEmail3" class="col-sm-4 control-label">截止时间</label>
 			    <div class="col-sm-8">
-				    <input type="text" class="input-small" id="endTime" name="time" placeholder="yyyy-mm-dd">
+				    <input type="text" class="input-small" id="endTime" name="endTime" placeholder="yyyy-mm-dd">
 			    </div>
 		  </div>
 		  <div class="form-group" style="margin-top: 10px;">
