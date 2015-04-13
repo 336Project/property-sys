@@ -7,6 +7,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="stylesheet" href="<%=path%>/css/bootstrap-responsive.css">
 <script src="<%=path%>/js/libs/bootstrap/bootstrap.min.js"></script>
 <script type="text/javascript" src="<%=path%>/admin/js/common.js"></script>
+<script type="text/javascript" src="<%=path%>/js/common.js"></script>
 <h3 class="ptitle text-center" style="margin-top:0;">账户信息</h3>
 <div class="span3" style="float: right;margin-top: 10px;">
 		<button class="btn btn-primary" type="button"
@@ -33,12 +34,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				      <input type="text" class="form-control" id="userId" name="userId" value="${sessionScope.user.id}" style="display: none;">
 				    </div>
 				  </div>
-				  <div class="form-group" style="margin-top: 20px;">
+				  <!-- <div class="form-group" style="margin-top: 20px;">
 				    <label for="inputEmail3" class="col-sm-4 control-label">备注</label>
 				    <div class="col-sm-8">
 				      <input type="text" class="form-control" id="remark" name="remark" placeholder="">
 				    </div>
-				  </div>
+				  </div> -->
 				</form>
 		      </div>
 		      <div class="modal-footer">
@@ -113,7 +114,7 @@ $().ready(function(){
 	});
 	//提交充值的表单
 	$("#btn-addAccount").off('click.save').on("click.save",function(){
-		$.ajax({
+		/* $.ajax({
        		url:"/property-sys/property-sys/accountAction!applyRecharge.action",
        		type:"post",
        		dataType:"json",
@@ -130,7 +131,23 @@ $().ready(function(){
        				table_chongzhi.draw();
        			}
        		}
-       	});
+       	}); */
+       	$("#addAccount").modal('hide');
+       	//recharge($("#addAccount").find("[name=money]").val());
+       	$.ajax({
+        url:"modules/chongzhi.jsp?money="+$("#addAccount").find("[name=money]").val(),
+        dataType:"html",
+        type:"get",
+        cache:true,
+        success:function(result){
+        	/*if(params != null){
+        		MODEL = params;
+        	}*/
+            $("#main-panel").html(result);
+        },error:function(){
+        	alert("404");
+        }
+    });
 	});
 	
 });

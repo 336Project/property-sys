@@ -25,8 +25,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="row">
 						<h2 class="span9">充值管理</h2>
 						<div class="span3">
-							<button class="btn btn-primary" type="button" id="btn-modal-addAccount">充值</button>
-							<button class="btn btn-primary" type="button" id="btn-comfirm">充值确认</button>
+							<!-- <button class="btn btn-primary" type="button" id="btn-modal-addAccount">充值</button>
+							<button class="btn btn-primary" type="button" id="btn-comfirm">充值确认</button> -->
 							<button class="btn btn-primary" type="button" id="btn-delete">删除</button>
 						</div>
 					</div>
